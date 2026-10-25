@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scooter Compare - Сравнение электросамокатов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0e;
+            --card-bg: #16161d;
+            --text-main: #ffffff;
+            --text-muted: #8b8b9e;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --table-header-bg: #1c1c24;
+            --row-hover: rgba(59, 130, 246, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(10, 10, 14, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 40px 3%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+        th {
+            background: var(--table-header-bg);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--row-hover);
+        }
+
+        .model-name {
+            font-weight: 800;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .spec-value {
+            color: var(--text-muted);
+        }
+
+        .spec-value strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-left: 8px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-muted);
+        }
+
+        .brand-tag.kukirin { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .brand-tag.kugoo { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .brand-tag.ninebot { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .brand-tag.joyor { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .brand-tag.ausom { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .brand-tag.xiaomi { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+        .brand-tag.dualtron { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .brand-tag.kaabo { background: rgba(107, 114, 128, 0.2); color: #9ca3af; }
+        .brand-tag.vsett { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+        .brand-tag.inmotion { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+        .brand-tag.nami { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .brand-tag.hiboy { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .calculator {
+            margin-top: 80px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .calc-group label {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .calc-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #2a2a35;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .calc-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .calc-group .value-display {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .calc-result {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .calc-result h3 {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .calc-result .range-value {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .calc-result .range-unit {
+            font-size: 24px;
+            color: var(--text-muted);
+        }
+
+        .about-section {
+            margin-top: 80px;
+            margin-bottom: 60px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 60px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .about-section .highlight-text {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .section-title { font-size: 28px; }
+            .calculator { padding: 20px; }
+            .about-section { padding: 30px 20px; }
+            .calc-result .range-value { font-size: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Scooter<span>Compare</span></a>
+        <nav>
+            <a href="#compare">Сравнение</a>
+            <a href="#calculator">Калькулятор</a>
+            <a href="#about">О нас</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <section id="compare" style="padding-top: 20px;">
+            <h1 class="section-title">Сравнение электросамокатов</h1>
+            <p class="section-subtitle">Все популярные бренды и модели в одном месте</p>
+
+            <div class="filters">
+                <button class="filter-btn active" data-brand="all">Все бренды</button>
+                <button class="filter-btn" data-brand="KuKirin">KuKirin</button>
+                <button class="filter-btn" data-brand="Kugoo">Kugoo</button>
+                <button class="filter-btn" data-brand="Ninebot">Ninebot</button>
+                <button class="filter-btn" data-brand="Joyor">Joyor</button>
+                <button class="filter-btn" data-brand="Ausom">Ausom</button>
+                <button class="filter-btn" data-brand="Xiaomi">Xiaomi</button>
+                <button class="filter-btn" data-brand="Dualtron">Dualtron</button>
+                <button class="filter-btn" data-brand="Kaabo">Kaabo</button>
+                <button class="filter-btn" data-brand="Vsett">Vsett</button>
+                <button class="filter-btn" data-brand="Inmotion">Inmotion</button>
+                <button class="filter-btn" data-brand="Nami">Nami</button>
+                <button class="filter-btn" data-brand="Hiboy">Hiboy</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="scooterTable">
+                    <thead>
+                        <tr>
+                            <th>Модель</th>
+                            <th>Мотор</th>
+                            <th>Батарея</th>
+                            <th>Макс. скорость</th>
+                            <th>Запас хода</th>
+                            <th>Вес</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- KuKirin -->
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G2 Pro <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">48 V 15.6 Ah</td>
+                            <td class="spec-value">45 км/ч</td>
+                            <td class="spec-value">55 км</td>
+                            <td class="spec-value"><strong>22 кг</strong></td>
+                        </tr>
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G2 Master <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">52 V 20.8 Ah</td>
+                            <td class="spec-value highlight">60 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>30 кг</strong></td>
+                        </tr>
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G2 Max <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>1000 W</strong></td>
+                            <td class="spec-value">48 V 20 Ah</td>
+                            <td class="spec-value">55 км/ч</td>
+                            <td class="spec-value">75 км</td>
+                            <td class="spec-value"><strong>30 кг</strong></td>
+                        </tr>
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G3 Pro <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>1200 W</strong></td>
+                            <td class="spec-value">52 V 23 Ah</td>
+                            <td class="spec-value highlight">65 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>31 кг</strong></td>
+                        </tr>
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G2 Ultra <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>2×800 W</strong></td>
+                            <td class="spec-value">48 V 18 Ah</td>
+                            <td class="spec-value">50 км/ч</td>
+                            <td class="spec-value">55 км</td>
+                            <td class="spec-value"><strong>28 кг</strong></td>
+                        </tr>
+                        <tr data-brand="KuKirin">
+                            <td><div class="model-name">KuKirin G4 <span class="brand-tag kukirin">KuKirin</span></div></td>
+                            <td class="spec-value"><strong>2000 W</strong></td>
+                            <td class="spec-value">60 V 20 Ah</td>
+                            <td class="spec-value highlight">70 км/ч</td>
+                            <td class="spec-value">75 км</td>
+                            <td class="spec-value"><strong>37 кг</strong></td>
+                        </tr>
+
+                        <!-- Kugoo -->
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo S3 <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">36 V 6 Ah</td>
+                            <td class="spec-value">28 км/ч</td>
+                            <td class="spec-value">25 км</td>
+                            <td class="spec-value"><strong>11 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo S1 Pro <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">36 V 7.5 Ah</td>
+                            <td class="spec-value">30 км/ч</td>
+                            <td class="spec-value">30 км</td>
+                            <td class="spec-value"><strong>12 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo M4 Pro <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">48 V 13 Ah</td>
+                            <td class="spec-value">45 км/ч</td>
+                            <td class="spec-value">60 км</td>
+                            <td class="spec-value"><strong>22 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo G2 Pro <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>800 W</strong></td>
+                            <td class="spec-value">48 V 15 Ah</td>
+                            <td class="spec-value">50 км/ч</td>
+                            <td class="spec-value">65 км</td>
+                            <td class="spec-value"><strong>25 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo Max Speed <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>600 W</strong></td>
+                            <td class="spec-value">48 V 11.1 Ah</td>
+                            <td class="spec-value">45 км/ч</td>
+                            <td class="spec-value">40 км</td>
+                            <td class="spec-value"><strong>18 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kugoo">
+                            <td><div class="model-name">Kugoo EC 03 <span class="brand-tag kugoo">Kugoo</span></div></td>
+                            <td class="spec-value"><strong>800 W</strong></td>
+                            <td class="spec-value">48 V 18 Ah</td>
+                            <td class="spec-value">45 км/ч</td>
+                            <td class="spec-value">80 км</td>
+                            <td class="spec-value"><strong>28 кг</strong></td>
+                        </tr>
+
+                        <!-- Ninebot -->
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot Max G30 <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">36 V 15.3 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">65 км</td>
+                            <td class="spec-value"><strong>19 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot Max G2 <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>900 W</strong></td>
+                            <td class="spec-value">36 V 15.3 Ah</td>
+                            <td class="spec-value">35 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>24.3 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot F40 <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">36 V 10.2 Ah</td>
+                            <td class="spec-value">30 км/ч</td>
+                            <td class="spec-value">40 км</td>
+                            <td class="spec-value"><strong>17.1 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot F30 <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">36 V 7.65 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">30 км</td>
+                            <td class="spec-value"><strong>16 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot E3 Pro <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>800 W</strong></td>
+                            <td class="spec-value">368 Wh</td>
+                            <td class="spec-value">20 км/ч</td>
+                            <td class="spec-value">55 км</td>
+                            <td class="spec-value"><strong>17.5 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ninebot">
+                            <td><div class="model-name">Ninebot F3 Pro <span class="brand-tag ninebot">Ninebot</span></div></td>
+                            <td class="spec-value"><strong>450 W</strong></td>
+                            <td class="spec-value">477 Wh</td>
+                            <td class="spec-value">20 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>18.6 кг</strong></td>
+                        </tr>
+
+                        <!-- Joyor -->
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor S5 <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">48 V 13 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">55 км</td>
+                            <td class="spec-value"><strong>22 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor S10-S <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">60 V 18 Ah</td>
+                            <td class="spec-value highlight">65 км/ч</td>
+                            <td class="spec-value highlight">85 км</td>
+                            <td class="spec-value"><strong>27 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor F5 <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">48 V 10.4 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">38 км</td>
+                            <td class="spec-value"><strong>14.3 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor T6 <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>600 W</strong></td>
+                            <td class="spec-value">48 V 18 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>24 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor T10 <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">60 V 18 Ah</td>
+                            <td class="spec-value highlight">60 км/ч</td>
+                            <td class="spec-value">75 км</td>
+                            <td class="spec-value"><strong>32.5 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Joyor">
+                            <td><div class="model-name">Joyor S8 <span class="brand-tag joyor">Joyor</span></div></td>
+                            <td class="spec-value"><strong>600 W</strong></td>
+                            <td class="spec-value">48 V 26 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">90 км</td>
+                            <td class="spec-value"><strong>28 кг</strong></td>
+                        </tr>
+
+                        <!-- Ausom -->
+                        <tr data-brand="Ausom">
+                            <td><div class="model-name">Ausom L1 <span class="brand-tag ausom">Ausom</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">48 V 15.6 Ah</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">90 км</td>
+                            <td class="spec-value"><strong>29.2 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Ausom">
+                            <td><div class="model-name">Ausom L2 Max <span class="brand-tag ausom">Ausom</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">48 V 20.8 Ah</td>
+                            <td class="spec-value highlight">64 км/ч</td>
+                            <td class="spec-value highlight">90 км</td>
+                            <td class="spec-value"><strong>33 кг</strong></td>
+                        </tr>
+
+                        <!-- Xiaomi -->
+                        <tr data-brand="Xiaomi">
+                            <td><div class="model-name">Xiaomi Electric Scooter 6 Pro <span class="brand-tag xiaomi">Xiaomi</span></div></td>
+                            <td class="spec-value"><strong>400 W</strong></td>
+                            <td class="spec-value">~ 477 Wh</td>
+                            <td class="spec-value">25 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>27.3 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Xiaomi">
+                            <td><div class="model-name">Xiaomi Electric Scooter 5 Max <span class="brand-tag xiaomi">Xiaomi</span></div></td>
+                            <td class="spec-value"><strong>1000 W</strong></td>
+                            <td class="spec-value">477 Wh</td>
+                            <td class="spec-value">20 км/ч</td>
+                            <td class="spec-value">60 км</td>
+                            <td class="spec-value"><strong>22.3 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Xiaomi">
+                            <td><div class="model-name">Xiaomi 6 Ultra <span class="brand-tag xiaomi">Xiaomi</span></div></td>
+                            <td class="spec-value"><strong>500 W</strong></td>
+                            <td class="spec-value">~ 600 Wh</td>
+                            <td class="spec-value">20 км/ч</td>
+                            <td class="spec-value">75 км</td>
+                            <td class="spec-value"><strong>33.7 кг</strong></td>
+                        </tr>
+
+                        <!-- Dualtron -->
+                        <tr data-brand="Dualtron">
+                            <td><div class="model-name">Dualtron City 2.0 <span class="brand-tag dualtron">Dualtron</span></div></td>
+                            <td class="spec-value"><strong>2×2000 W</strong></td>
+                            <td class="spec-value">60 V 25 Ah</td>
+                            <td class="spec-value highlight">70 км/ч</td>
+                            <td class="spec-value highlight">80 км</td>
+                            <td class="spec-value"><strong>~ 35 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Dualtron">
+                            <td><div class="model-name">Dualtron Spider 2 <span class="brand-tag dualtron">Dualtron</span></div></td>
+                            <td class="spec-value"><strong>3600 W</strong></td>
+                            <td class="spec-value">60 V 30 Ah</td>
+                            <td class="spec-value highlight">64 км/ч</td>
+                            <td class="spec-value highlight">80 км</td>
+                            <td class="spec-value"><strong>26 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Dualtron">
+                            <td><div class="model-name">Dualtron Compact <span class="brand-tag dualtron">Dualtron</span></div></td>
+                            <td class="spec-value"><strong>2×1700 W</strong></td>
+                            <td class="spec-value">60 V 30 Ah</td>
+                            <td class="spec-value highlight">61 км/ч</td>
+                            <td class="spec-value highlight">105 км</td>
+                            <td class="spec-value"><strong>34 кг</strong></td>
+                        </tr>
+
+                        <!-- Kaabo -->
+                        <tr data-brand="Kaabo">
+                            <td><div class="model-name">Kaabo Wolf Warrior X GT <span class="brand-tag kaabo">Kaabo</span></div></td>
+                            <td class="spec-value"><strong>2×1100 W</strong></td>
+                            <td class="spec-value">60 V 29 Ah</td>
+                            <td class="spec-value highlight">70 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>38 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kaabo">
+                            <td><div class="model-name">Kaabo Wolf King GTR Max <span class="brand-tag kaabo">Kaabo</span></div></td>
+                            <td class="spec-value"><strong>~13.4 кВт</strong></td>
+                            <td class="spec-value">72 V 40 Ah</td>
+                            <td class="spec-value highlight">105 км/ч</td>
+                            <td class="spec-value highlight">200 км</td>
+                            <td class="spec-value"><strong>67 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Kaabo">
+                            <td><div class="model-name">Kaabo Mantis King Pro <span class="brand-tag kaabo">Kaabo</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">60 V 18 Ah</td>
+                            <td class="spec-value">60 км/ч</td>
+                            <td class="spec-value">80 км</td>
+                            <td class="spec-value"><strong>34 кг</strong></td>
+                        </tr>
+
+                        <!-- Vsett -->
+                        <tr data-brand="Vsett">
+                            <td><div class="model-name">Vsett 8+ <span class="brand-tag vsett">Vsett</span></div></td>
+                            <td class="spec-value"><strong>600 W</strong></td>
+                            <td class="spec-value">48 V 16 Ah</td>
+                            <td class="spec-value">45 км/ч</td>
+                            <td class="spec-value">90 км</td>
+                            <td class="spec-value"><strong>24 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Vsett">
+                            <td><div class="model-name">Vsett 9+ <span class="brand-tag vsett">Vsett</span></div></td>
+                            <td class="spec-value"><strong>2×650 W</strong></td>
+                            <td class="spec-value">48 V 19.2 Ah</td>
+                            <td class="spec-value highlight">50 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>23 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Vsett">
+                            <td><div class="model-name">Vsett 10+ <span class="brand-tag vsett">Vsett</span></div></td>
+                            <td class="spec-value"><strong>2×1400 W</strong></td>
+                            <td class="spec-value">60 V 24 Ah</td>
+                            <td class="spec-value highlight">65 км/ч</td>
+                            <td class="spec-value">100 км</td>
+                            <td class="spec-value"><strong>32 кг</strong></td>
+                        </tr>
+
+                        <!-- Inmotion -->
+                        <tr data-brand="Inmotion">
+                            <td><div class="model-name">Inmotion RS <span class="brand-tag inmotion">Inmotion</span></div></td>
+                            <td class="spec-value"><strong>2×2000 W</strong></td>
+                            <td class="spec-value">72 V 40 Ah</td>
+                            <td class="spec-value highlight">80 км/ч</td>
+                            <td class="spec-value highlight">120 км</td>
+                            <td class="spec-value"><strong>56 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Inmotion">
+                            <td><div class="model-name">Inmotion RS Jet <span class="brand-tag inmotion">Inmotion</span></div></td>
+                            <td class="spec-value"><strong>2×1200 W</strong></td>
+                            <td class="spec-value">72 V 25 Ah</td>
+                            <td class="spec-value highlight">80 км/ч</td>
+                            <td class="spec-value">90 км</td>
+                            <td class="spec-value"><strong>46.5 кг</strong></td>
+                        </tr>
+
+                        <!-- Nami -->
+                        <tr data-brand="Nami">
+                            <td><div class="model-name">Nami Burn-e 2 <span class="brand-tag nami">Nami</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">72 V 30 Ah</td>
+                            <td class="spec-value highlight">72 км/ч</td>
+                            <td class="spec-value highlight">150 км</td>
+                            <td class="spec-value"><strong>47 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Nami">
+                            <td><div class="model-name">Nami Burn-e Max <span class="brand-tag nami">Nami</span></div></td>
+                            <td class="spec-value"><strong>2×1500 W</strong></td>
+                            <td class="spec-value">72 V 40 Ah</td>
+                            <td class="spec-value highlight">96 км/ч</td>
+                            <td class="spec-value highlight">185 км</td>
+                            <td class="spec-value"><strong>50 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Nami">
+                            <td><div class="model-name">Nami Klima Max <span class="brand-tag nami">Nami</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">60 V 30 Ah</td>
+                            <td class="spec-value highlight">67 км/ч</td>
+                            <td class="spec-value">96 км</td>
+                            <td class="spec-value"><strong>36 кг</strong></td>
+                        </tr>
+
+                        <!-- Hiboy -->
+                        <tr data-brand="Hiboy">
+                            <td><div class="model-name">Hiboy Titan Pro <span class="brand-tag hiboy">Hiboy</span></div></td>
+                            <td class="spec-value"><strong>2×750 W</strong></td>
+                            <td class="spec-value">48 V 36 Ah</td>
+                            <td class="spec-value highlight">53 км/ч</td>
+                            <td class="spec-value highlight">128 км</td>
+                            <td class="spec-value"><strong>47 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Hiboy">
+                            <td><div class="model-name">Hiboy DM2 <span class="brand-tag hiboy">Hiboy</span></div></td>
+                            <td class="spec-value"><strong>2×1000 W</strong></td>
+                            <td class="spec-value">48 V 27 Ah</td>
+                            <td class="spec-value highlight">59 км/ч</td>
+                            <td class="spec-value">70 км</td>
+                            <td class="spec-value"><strong>38 кг</strong></td>
+                        </tr>
+                        <tr data-brand="Hiboy">
+                            <td><div class="model-name">Hiboy S2 <span class="brand-tag hiboy">Hiboy</span></div></td>
+                            <td class="spec-value"><strong>350 W</strong></td>
+                            <td class="spec-value">270 Wh</td>
+                            <td class="spec-value">30 км/ч</td>
+                            <td class="spec-value">27 км</td>
+                            <td class="spec-value"><strong>13 кг</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="note">* Характеристики указаны по данным производителей и могут отличаться в зависимости от веса райдера, рельефа и погодных условий.</p>
+        </section>
+
+        <section id="calculator" class="calculator">
+            <h2 class="section-title">Калькулятор запаса хода</h2>
+            <p class="section-subtitle">Узнайте, сколько проедет ваш самокат с вашим весом и стилем езды</p>
+            
+            <div class="calc-grid">
+                <div class="calc-group">
+                    <label>Вес райдера: <span class="value-display" id="weightVal">75</span> кг</label>
+                    <input type="range" id="weight" min="40" max="120" value="75" step="1">
+                </div>
+                <div class="calc-group">
+                    <label>Средняя скорость: <span class="value-display" id="speedVal">25</span> км/ч</label>
+                    <input type="range" id="speed" min="10" max="70" value="25" step="1">
+                </div>
+                <div class="calc-group">
+                    <label>Ёмкость батареи: <span class="value-display" id="batteryVal">750</span> Вт·ч</label>
+                    <input type="range" id="battery" min="200" max="1500" value="750" step="10">
+                </div>
+                <div class="calc-result">
+                    <h3>Примерный запас хода</h3>
+                    <div>
+                        <span class="range-value" id="rangeResult">55</span>
+                        <span class="range-unit">км</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2 class="section-title">О нас</h2>
+            <p>Мы — <span class="highlight-text">Scooter Compare</span>. Этот проект создан энтузиастами для таких же любителей электросамокатов.</p>
+            <p>Мы устали от того, что характеристики моделей разбросаны по разным магазинам и форумам. Мы собрали все данные в одну удобную таблицу, добавили фильтры по брендам и сделали умный калькулятор запаса хода.</p>
+            <p>Наша цель — помочь вам выбрать идеальный самокат, который подходит именно под ваш вес, стиль езды и бюджет. И да, мы не продаем самокаты, мы просто даем честную информацию.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Scooter Compare. Сделано с душой для райдеров.</p>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const tableRows = document.querySelectorAll('#tableBody tr');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const brand = btn.getAttribute('data-brand');
+
+                tableRows.forEach(row => {
+                    if (brand === 'all' || row.getAttribute('data-brand') === brand) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        const weightInput = document.getElementById('weight');
+        const speedInput = document.getElementById('speed');
+        const batteryInput = document.getElementById('battery');
+        
+        const weightVal = document.getElementById('weightVal');
+        const speedVal = document.getElementById('speedVal');
+        const batteryVal = document.getElementById('batteryVal');
+        const rangeResult = document.getElementById('rangeResult');
+
+        function calculateRange() {
+            const weight = parseFloat(weightInput.value);
+            const speed = parseFloat(speedInput.value);
+            const battery = parseFloat(batteryInput.value);
+
+            weightVal.textContent = weight;
+            speedVal.textContent = speed;
+            batteryVal.textContent = battery;
+
+            let consumptionPerKm = 15;
+            consumptionPerKm *= (1 + (weight - 75) * 0.01);
+            consumptionPerKm *= (1 + (speed - 25) * 0.015);
+
+            if (consumptionPerKm <= 0) consumptionPerKm = 5;
+
+            const estimatedRange = battery / consumptionPerKm;
+            rangeResult.textContent = Math.round(estimatedRange);
+        }
+
+        weightInput.addEventListener('input', calculateRange);
+        speedInput.addEventListener('input', calculateRange);
+        batteryInput.addEventListener('input', calculateRange);
+
+        calculateRange();
+    </script>
+</body>
+</html>
