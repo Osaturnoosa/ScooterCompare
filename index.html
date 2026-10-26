@@ -761,6 +761,7 @@
         let currentLang = 'en';
         let currentFilter = 'all';
         let compareList = [];
+        let currentScooterWeight = 26;
 
         const scooters = [
             { id: 1, brand: "KuKirin", model: "G2", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 26 },
@@ -1109,12 +1110,14 @@
                 document.getElementById('battery').disabled = false;
                 document.getElementById('battery').value = 750;
                 updateBatteryDisplay(750);
+                currentScooterWeight = 26;
             } else {
                 const s = JSON.parse(val);
                 const batteryCapacity = parseBatteryWh(s.battery);
                 document.getElementById('battery').disabled = true;
                 document.getElementById('battery').value = batteryCapacity;
                 updateBatteryDisplay(batteryCapacity);
+                currentScooterWeight = s.weight || 26;
             }
             calculateRange();
         });
@@ -1142,19 +1145,24 @@
         const rangeResult = document.getElementById('rangeResult');
 
         function calculateRange() {
-            const weight = parseFloat(weightInput.value);
+            const riderWeight = parseFloat(weightInput.value);
             const speed = parseFloat(speedInput.value);
             const battery = parseFloat(batteryInput.value);
 
-            weightVal.textContent = weight;
+            weightVal.textContent = riderWeight;
             speedVal.textContent = speed;
             batteryVal.textContent = battery;
 
+            const totalWeight = riderWeight + currentScooterWeight;
             let consumptionPerKm = 16;
-            consumptionPerKm *= (1 + (weight - 75) * 0.01);
-            consumptionPerKm *= (1 + (speed - 25) * 0.015);
 
-            if (consumptionPerKm <= 0) consumptionPerKm = 10;
+            if (speed > 25) {
+                consumptionPerKm += (speed - 25) * 0.6; 
+            }
+
+            consumptionPerKm *= (totalWeight / 75);
+
+            if (consumptionPerKm <= 5) consumptionPerKm = 5;
 
             const estimatedRange = battery / consumptionPerKm;
             rangeResult.textContent = Math.round(estimatedRange);
