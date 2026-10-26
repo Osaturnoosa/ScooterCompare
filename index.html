@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +22,20 @@
             --danger: #ef4444;
         }
 
+        [data-theme="light"] {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --table-header-bg: #f9fafb;
+            --row-hover: rgba(37, 99, 235, 0.04);
+            --success: #059669;
+            --danger: #dc2626;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -36,6 +50,7 @@
             line-height: 1.6;
             min-height: 100vh;
             padding-bottom: 80px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         header {
@@ -43,18 +58,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(10, 10, 14, 0.9);
+            background: var(--card-bg);
             position: sticky;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .logo {
             font-size: 24px;
             font-weight: 900;
-            color: #fff;
+            color: var(--text-main);
             text-decoration: none;
         }
 
@@ -80,8 +96,14 @@
             color: var(--accent);
         }
 
-        .lang-selector {
-            background: var(--card-bg);
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-selector, .theme-btn {
+            background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-main);
             padding: 8px 12px;
@@ -90,9 +112,17 @@
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
             outline: none;
+            transition: all 0.3s;
         }
 
-        .lang-selector:focus {
+        .theme-btn {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-selector:focus, .theme-btn:hover {
             border-color: var(--accent);
         }
 
@@ -153,7 +183,8 @@
             border-radius: 24px;
             border: 1px solid var(--border-color);
             background: var(--card-bg);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         table {
@@ -193,7 +224,7 @@
         .model-name {
             font-weight: 800;
             font-size: 15px;
-            color: #fff;
+            color: var(--text-main);
         }
 
         .spec-value {
@@ -201,7 +232,7 @@
         }
 
         .spec-value strong {
-            color: #fff;
+            color: var(--text-main);
             font-weight: 700;
         }
 
@@ -213,7 +244,7 @@
             font-weight: 800;
             text-transform: uppercase;
             margin-left: 8px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(128, 128, 128, 0.2);
             color: var(--text-muted);
         }
 
@@ -245,7 +276,7 @@
             width: 100%;
             background: var(--card-bg);
             border-top: 1px solid var(--border-color);
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
@@ -319,13 +350,17 @@
             border: 1px solid var(--border-color);
         }
 
-        .compare-result {
-            margin-top: 30px;
-            display: none;
+        .compare-result, .matcher-section, .calculator, .about-section, .faq-section {
+            margin-top: 80px;
             background: var(--card-bg);
             border-radius: 24px;
             padding: 40px;
             border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .compare-result {
+            display: none;
         }
 
         .compare-result.active {
@@ -374,15 +409,7 @@
             margin-bottom: 10px;
         }
 
-        .calculator, .about-section {
-            margin-top: 80px;
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 40px;
-            border: 1px solid var(--border-color);
-        }
-
-        .calc-grid {
+        .calc-grid, .matcher-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
@@ -423,6 +450,10 @@
             background: #2a2a35;
             outline: none;
             -webkit-appearance: none;
+        }
+
+        [data-theme="light"] .calc-group input[type="range"] {
+            background: #d1d5db;
         }
 
         .calc-group input[type="range"]::-webkit-slider-thumb {
@@ -469,21 +500,90 @@
         }
 
         .calc-extra-results {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 15px;
-            padding-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .calc-extra-item {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .calc-extra-item strong {
             color: var(--accent);
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .matcher-result {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+
+        .matcher-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matcher-card h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .matcher-card span {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .faq-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--accent);
+        }
+
+        .faq-item[open] summary::after {
+            content: '-';
+        }
+
+        .faq-content {
+            padding: 0 20px 20px 20px;
+            color: var(--text-muted);
+            font-size: 15px;
         }
 
         .about-section p {
@@ -580,6 +680,31 @@
             opacity: 0.7;
         }
 
+        @media print {
+            header, footer, .filters, .compare-tray, .calculator, .matcher-section, .faq-section, .btn-compare-row, .controls {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            .table-wrapper, .compare-result {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                background: white !important;
+            }
+            th, td {
+                border-bottom: 1px solid #ccc !important;
+                color: black !important;
+            }
+            .section-title { color: black !important; }
+        }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -591,13 +716,12 @@
                 justify-content: center;
             }
             .section-title { font-size: 28px; }
-            .calculator, .about-section { padding: 20px; }
+            .calculator, .about-section, .matcher-section, .faq-section { padding: 20px; }
             .calc-result .range-value { font-size: 42px; }
             .modal-content { padding: 20px; }
             .compare-tray { flex-direction: column; gap: 15px; padding: 15px; }
             .tray-items { width: 100%; margin-right: 0; }
             .tray-actions { width: 100%; justify-content: space-between; }
-            .calc-extra-results { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -631,9 +755,12 @@
         <a href="#" class="logo">Scooter<span>Compare</span></a>
         <nav>
             <a href="#compare" data-i18n="nav_compare">Сравнение</a>
-            <a href="#sim" data-i18n="nav_sim">СИМ</a>
+            <a href="#matcher" data-i18n="nav_matcher">Подбор</a>
             <a href="#calculator" data-i18n="nav_calculator">Калькулятор</a>
-            <a href="#about" data-i18n="nav_about">О нас</a>
+            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        </nav>
+        <div class="controls">
+            <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
             <select id="langSelect" class="lang-selector" onchange="setLanguage(this.value)">
                 <option value="en">EN</option>
                 <option value="ru">RU</option>
@@ -651,13 +778,13 @@
                 <option value="nl">NL</option>
                 <option value="uk">UK</option>
             </select>
-        </nav>
+        </div>
     </header>
 
     <div class="container">
         <section id="compare" style="padding-top: 20px;">
             <h1 class="section-title" data-i18n="main_title">Сравнение электросамокатов</h1>
-            <p class="section-subtitle" data-i18n="main_subtitle">Более 150 моделей от 24 популярных брендов</p>
+            <p class="section-subtitle" data-i18n="main_subtitle">Более 200 моделей от 28 популярных брендов</p>
 
             <div class="filters" id="brandFilters">
                 <button class="filter-btn active" data-brand="all" data-i18n="filter_all">Все бренды</button>
@@ -684,6 +811,10 @@
                 <button class="filter-btn" data-brand="TurboAnt">TurboAnt</button>
                 <button class="filter-btn" data-brand="Gotrax">Gotrax</button>
                 <button class="filter-btn" data-brand="NIU">NIU</button>
+                <button class="filter-btn" data-brand="Inokim">Inokim</button>
+                <button class="filter-btn" data-brand="SoFlow">SoFlow</button>
+                <button class="filter-btn" data-brand="ePowerFun">ePowerFun</button>
+                <button class="filter-btn" data-brand="Bronco">Bronco</button>
             </div>
 
             <div class="table-wrapper">
@@ -696,6 +827,8 @@
                             <th data-i18n="th_speed">Макс. скорость</th>
                             <th data-i18n="th_range">Запас хода</th>
                             <th data-i18n="th_weight">Вес</th>
+                            <th data-i18n="th_load">Нагрузка</th>
+                            <th data-i18n="th_tire">Колёса</th>
                             <th data-i18n="th_charger">Зарядка (А)</th>
                             <th data-i18n="th_action">Действие</th>
                         </tr>
@@ -704,7 +837,10 @@
                     </tbody>
                 </table>
             </div>
-            <p class="note" data-i18n="note_specs">* Характеристики указаны по данным производителей и могут отличаться в зависимости от веса райдера, рельефа и погодных условий.</p>
+            <p class="note" data-i18n="note_specs">* Характеристики указаны по данным производителей.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="window.print()" style="background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer;" data-i18n="btn_print">Скачать PDF / Печать</button>
+            </div>
         </section>
 
         <div id="compareResult" class="compare-result">
@@ -716,6 +852,27 @@
             <div class="recommendation-box" id="recommendationBox">
             </div>
         </div>
+
+        <section id="matcher" class="matcher-section">
+            <h2 class="section-title" data-i18n="matcher_title">Умный подбор</h2>
+            <p class="section-subtitle" data-i18n="matcher_subtitle">Найдите идеальный самокат по вашим параметрам</p>
+            <div class="matcher-grid">
+                <div class="calc-group">
+                    <label><span data-i18n="matcher_budget">Бюджет (до):</span> <span class="value-display" id="budgetVal">1500</span> $</label>
+                    <input type="range" id="matcherBudget" min="200" max="5000" value="1500" step="50">
+                </div>
+                <div class="calc-group">
+                    <label><span data-i18n="matcher_speed">Мин. скорость:</span> <span class="value-display" id="minSpeedVal">25</span> км/ч</label>
+                    <input type="range" id="matcherSpeed" min="15" max="100" value="25" step="5">
+                </div>
+                <div class="calc-group">
+                    <label><span data-i18n="matcher_load">Ваш вес (кг):</span> <span class="value-display" id="userWeightVal">80</span> кг</label>
+                    <input type="range" id="matcherWeight" min="40" max="150" value="80" step="5">
+                </div>
+                <div class="matcher-result" id="matcherResult">
+                </div>
+            </div>
+        </section>
 
         <section id="calculator" class="calculator">
             <h2 class="section-title" data-i18n="calc_title">Калькулятор запаса хода</h2>
@@ -729,7 +886,7 @@
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_weight">Вес райдера:</span> <span class="value-display" id="weightVal">75</span> <span data-i18n="unit_kg">кг</span></label>
-                    <input type="range" id="weight" min="30" max="120" value="75" step="1">
+                    <input type="range" id="weight" min="30" max="150" value="75" step="1">
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_scooter_weight">Вес самоката:</span> <span class="value-display" id="scooterWeightVal">26</span> <span data-i18n="unit_kg">кг</span></label>
@@ -737,15 +894,23 @@
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_speed">Средняя скорость:</span> <span class="value-display" id="speedVal">25</span> <span data-i18n="unit_kmh">км/ч</span></label>
-                    <input type="range" id="speed" min="10" max="70" value="25" step="1">
+                    <input type="range" id="speed" min="10" max="100" value="25" step="1">
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_battery">Ёмкость батареи:</span> <span class="value-display" id="batteryVal">750</span> <span data-i18n="unit_wh">Вт·ч</span></label>
-                    <input type="range" id="battery" min="200" max="4500" value="750" step="10">
+                    <input type="range" id="battery" min="200" max="5000" value="750" step="10">
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_temp">Температура:</span> <span class="value-display" id="tempVal">20</span> <span data-i18n="unit_c">°C</span></label>
                     <input type="range" id="temp" min="-10" max="40" value="20" step="1">
+                </div>
+                <div class="calc-group">
+                    <label><span data-i18n="calc_regen">Рекуперация:</span> <span class="value-display" id="regenVal">20</span>%</label>
+                    <input type="range" id="regen" min="0" max="100" value="20" step="5">
+                </div>
+                <div class="calc-group">
+                    <label><span data-i18n="calc_health">Износ батареи:</span> <span class="value-display" id="healthVal">100</span>%</label>
+                    <input type="range" id="health" min="50" max="100" value="100" step="1">
                 </div>
                 <div class="calc-group">
                     <label data-i18n="calc_terrain">Покрытие:</label>
@@ -771,6 +936,10 @@
                     <label data-i18n="calc_charger">Зарядное устройство (Амперы):</label>
                     <input type="number" id="charger" value="2" step="0.5" min="1" max="10">
                 </div>
+                <div class="calc-group">
+                    <label data-i18n="calc_daily_dist">Пробег в день (км):</label>
+                    <input type="number" id="dailyDist" value="10" step="1" min="1">
+                </div>
 
                 <div class="calc-result">
                     <h3 data-i18n="calc_result">Примерный запас хода</h3>
@@ -785,16 +954,44 @@
                         <div class="calc-extra-item">
                             <span data-i18n="calc_charge_time">Время зарядки:</span> <strong id="timeResult">0.0</strong> <span data-i18n="unit_hours">ч</span>
                         </div>
+                        <div class="calc-extra-item">
+                            <span data-i18n="calc_cost_km">Цена за 1 км:</span> <strong id="costKmResult">0.00</strong> <span data-i18n="unit_currency">руб</span>
+                        </div>
+                        <div class="calc-extra-item">
+                            <span data-i18n="calc_monthly_cost">Стоимость в месяц:</span> <strong id="monthlyCostResult">0.00</strong> <span data-i18n="unit_currency">руб</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="faq" class="faq-section">
+            <h2 class="section-title" data-i18n="faq_title">База знаний</h2>
+            <p class="section-subtitle" data-i18n="faq_subtitle">Ответы на частые вопросы</p>
+            
+            <details class="faq-item">
+                <summary data-i18n="faq_q1">Как продлить жизнь батарее?</summary>
+                <div class="faq-content" data-i18n="faq_a1">Не заряжайте батарею до 100%, если не планируете поездку (оптимально 80-90%). Не оставляйте самокат на морозе или под прямыми солнечными лучами. Раз в пару месяцев разряжайте батарею до 10% и заряжайте заново для калибровки контроллера.</div>
+            </details>
+            <details class="faq-item">
+                <summary data-i18n="faq_q2">Что такое рекуперация?</summary>
+                <div class="faq-content" data-i18n="faq_a2">Рекуперация — это система, которая при торможении или спуске с горы превращает кинетическую энергию обратно в электрическую и возвращает её в батарею, немного увеличивая запас хода.</div>
+            </details>
+            <details class="faq-item">
+                <summary data-i18n="faq_q3">Как выбрать самокат по весу?</summary>
+                <div class="faq-content" data-i18n="faq_a3">Всегда оставляйте запас по максимальной нагрузке (обычно минимум +20 кг к вашему весу). Если ваш вес 80 кг, выбирайте модели с нагрузкой от 100-120 кг. Это влияет на долговечность рамы и запас хода.</div>
+            </details>
+            <details class="faq-item">
+                <summary data-i18n="faq_q4">Почему реальный запас хода меньше заявленного?</summary>
+                <div class="faq-content" data-i18n="faq_a4">Производители замеряют запас хода в идеальных условиях: ровный асфальт, температура +25°C, вес райдера 70 кг и скорость 15-20 км/ч. В реальности на расход влияют: ваш вес, рельеф, ветер, температура, давление в шинах и стиль езды.</div>
+            </details>
+        </section>
+
         <section id="about" class="about-section">
             <h2 class="section-title" data-i18n="about_title">О нас</h2>
             <p data-i18n="about_p1">Мы — Scooter Compare. Этот проект создан энтузиастами для таких же любителей электросамокатов.</p>
-            <p data-i18n="about_p2">Мы устали от того, что характеристики моделей разбросаны по разным магазинам и форумам. Мы собрали данные по 150+ моделям в одну удобную таблицу, добавили фильтры, инструмент сравнения и умный калькулятор запаса хода.</p>
-            <p data-i18n="about_p3">Наша цель — помочь вам выбрать идеальный самокат, который подходит именно под ваш вес, стиль езды и бюджет. Мы не продаем самокаты, мы даем честную информацию.</p>
+            <p data-i18n="about_p2">Мы собрали данные по 200+ моделям в одну удобную таблицу, добавили фильтры, умный подбор и продвинутый калькулятор.</p>
+            <p data-i18n="about_p3">Наша цель — помочь вам выбрать идеальный самокат. Мы не продаем самокаты, мы даем честную информацию.</p>
         </section>
     </div>
 
@@ -813,180 +1010,230 @@
 
     <script>
         const translations = {
-            en: { modal_title: "Select Language", modal_subtitle: "Choose your preferred language to continue", nav_compare: "Comparison", nav_sim: "Compare SIM", nav_calculator: "Calculator", nav_about: "About Us", main_title: "Electric Scooter Comparison", main_subtitle: "Over 150 models from 24 popular brands", filter_all: "All Brands", th_model: "Model", th_motor: "Motor", th_battery: "Battery", th_speed: "Max Speed", th_range: "Range", th_weight: "Weight", th_charger: "Charger (A)", th_action: "Action", note_specs: "* Specifications are based on manufacturer data and may vary depending on rider weight, terrain, and weather conditions.", btn_compare: "Compare Selected", btn_add_compare: "+ Compare", btn_added_compare: "✓ Selected", btn_clear: "Clear", sim_result_title: "Comparison Result", calc_title: "Range Calculator", calc_subtitle: "Select a model from the catalog or enter parameters manually", calc_select_label: "Select a model from the catalog:", calc_weight: "Rider Weight:", calc_scooter_weight: "Scooter Weight:", calc_speed: "Average Speed:", calc_battery: "Battery Capacity:", calc_temp: "Temperature:", calc_terrain: "Terrain:", calc_style: "Riding Style:", calc_price: "Price per kWh:", calc_charger: "Charger Amps:", calc_result: "Estimated Range", calc_cost: "Charging Cost:", calc_charge_time: "Charging Time:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Smooth Asphalt", terrain_city: "City (stop & go)", terrain_offroad: "Off-road / Hills", style_eco: "Eco (smooth)", style_normal: "Normal", style_sport: "Sport (aggressive)", about_title: "About Us", about_p1: "We are Scooter Compare. This project was created by enthusiasts for fellow electric scooter lovers.", about_p2: "We were tired of specs being scattered across different stores and forums. We gathered data on 150+ models into one convenient table, added filters, a comparison tool, and a smart range calculator.", about_p3: "Our goal is to help you choose the perfect scooter that fits your weight, riding style, and budget. We don't sell scooters, we just provide honest information.", footer: "© 2026 Scooter Compare. Made with soul for riders.", custom_battery: "-- Custom Battery --", recommendation: "Recommendation", rec_text: "The best choice among the selected is", rec_text2: "It combines high speed and good range.", max_alert: "You can select up to 4 scooters." },
-            ru: { modal_title: "Выберите язык", modal_subtitle: "Выберите предпочитаемый язык для продолжения", nav_compare: "Сравнение", nav_sim: "СИМ", nav_calculator: "Калькулятор", nav_about: "О нас", main_title: "Сравнение электросамокатов", main_subtitle: "Более 150 моделей от 24 популярных брендов", filter_all: "Все бренды", th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Макс. скорость", th_range: "Запас хода", th_weight: "Вес", th_charger: "Зарядка (А)", th_action: "Действие", note_specs: "* Характеристики указаны по данным производителей и могут отличаться в зависимости от веса райдера, рельефа и погодных условий.", btn_compare: "Сравнить выбранные", btn_add_compare: "+ Сравнить", btn_added_compare: "✓ Выбрано", btn_clear: "Очистить", sim_result_title: "Результат сравнения", calc_title: "Калькулятор запаса хода", calc_subtitle: "Выберите модель из каталога или укажите параметры вручную", calc_select_label: "Выберите модель из каталога:", calc_weight: "Вес райдера:", calc_scooter_weight: "Вес самоката:", calc_speed: "Средняя скорость:", calc_battery: "Ёмкость батареи:", calc_temp: "Температура:", calc_terrain: "Покрытие:", calc_style: "Стиль езды:", calc_price: "Цена за 1 кВт·ч:", calc_charger: "Зарядное устройство (А):", calc_result: "Примерный запас хода", calc_cost: "Стоимость зарядки:", calc_charge_time: "Время зарядки:", unit_kg: "кг", unit_kmh: "км/ч", unit_wh: "Вт·ч", unit_km: "км", unit_c: "°C", unit_hours: "ч", unit_currency: "руб", terrain_smooth: "Ровный асфальт", terrain_city: "Город (светофоры)", terrain_offroad: "Бездорожье / Горы", style_eco: "Эко (плавно)", style_normal: "Обычный", style_sport: "Спорт (резко)", about_title: "О нас", about_p1: "Мы — Scooter Compare. Этот проект создан энтузиастами для таких же любителей электросамокатов.", about_p2: "Мы устали от того, что характеристики моделей разбросаны по разным магазинам и форумам. Мы собрали данные по 150+ моделям в одну удобную таблицу, добавили фильтры, инструмент сравнения и умный калькулятор запаса хода.", about_p3: "Наша цель — помочь вам выбрать идеальный самокат, который подходит именно под ваш вес, стиль езды и бюджет. Мы не продаем самокаты, мы даем честную информацию.", footer: "© 2026 Scooter Compare. Сделано с душой для райдеров.", custom_battery: "-- Свой аккумулятор --", recommendation: "Рекомендация", rec_text: "Лучший выбор среди выбранных —", rec_text2: "Он сочетает высокую скорость и хороший запас хода.", max_alert: "Можно выбрать не более 4 самокатов." },
-            es: { modal_title: "Seleccionar idioma", modal_subtitle: "Elige tu idioma preferido", nav_compare: "Comparación", nav_sim: "Comparar SIM", nav_calculator: "Calculadora", nav_about: "Sobre nosotros", main_title: "Comparación de patinetes eléctricos", main_subtitle: "Más de 150 modelos de 24 marcas populares", filter_all: "Todas las marcas", th_model: "Modelo", th_motor: "Motor", th_battery: "Batería", th_speed: "Velocidad máx.", th_range: "Autonomía", th_weight: "Peso", th_charger: "Cargador (A)", th_action: "Acción", note_specs: "* Especificaciones basadas en datos del fabricante.", btn_compare: "Comparar seleccionados", btn_add_compare: "+ Comparar", btn_added_compare: "✓ Seleccionado", btn_clear: "Limpiar", sim_result_title: "Resultado de la comparación", calc_title: "Calculadora de autonomía", calc_subtitle: "Selecciona un modelo o introduce parámetros", calc_select_label: "Selecciona un modelo:", calc_weight: "Peso del piloto:", calc_scooter_weight: "Peso del patinete:", calc_speed: "Velocidad media:", calc_battery: "Capacidad de la batería:", calc_temp: "Temperatura:", calc_terrain: "Terreno:", calc_style: "Estilo de conducción:", calc_price: "Precio por kWh:", calc_charger: "Amperios del cargador:", calc_result: "Autonomía estimada", calc_cost: "Coste de carga:", calc_charge_time: "Tiempo de carga:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto liso", terrain_city: "Ciudad (paradas)", terrain_offroad: "Todo terreno / Colinas", style_eco: "Eco (suave)", style_normal: "Normal", style_sport: "Deportivo (agresivo)", about_title: "Sobre nosotros", about_p1: "Somos Scooter Compare. Proyecto creado por entusiastas.", about_p2: "Recopilamos datos de más de 150 modelos, añadimos filtros y calculadora.", about_p3: "Nuestro objetivo es ayudarte a elegir el patinete perfecto.", footer: "© 2026 Scooter Compare. Hecho con alma.", custom_battery: "-- Batería personalizada --", recommendation: "Recomendación", rec_text: "La mejor opción es", rec_text2: "Combina alta velocidad y buena autonomía.", max_alert: "Máximo 4 patinetes." },
-            de: { modal_title: "Sprache auswählen", modal_subtitle: "Wähle deine bevorzugte Sprache", nav_compare: "Vergleich", nav_sim: "SIMS vergleichen", nav_calculator: "Rechner", nav_about: "Über uns", main_title: "E-Scooter Vergleich", main_subtitle: "Über 150 Modelle von 24 beliebten Marken", filter_all: "Alle Marken", th_model: "Modell", th_motor: "Motor", th_battery: "Akku", th_speed: "Max. Geschw.", th_range: "Reichweite", th_weight: "Gewicht", th_charger: "Ladegerät (A)", th_action: "Aktion", note_specs: "* Spezifikationen basieren auf Herstellerangaben.", btn_compare: "Ausgewählte vergleichen", btn_add_compare: "+ Vergleichen", btn_added_compare: "✓ Ausgewählt", btn_clear: "Löschen", sim_result_title: "Vergleichsergebnis", calc_title: "Reichweitenrechner", calc_subtitle: "Wähle ein Modell oder gib Parameter ein", calc_select_label: "Wähle ein Modell:", calc_weight: "Fahrergewicht:", calc_scooter_weight: "Rollergewicht:", calc_speed: "Durchschnittsgeschw.:", calc_battery: "Akkukapazität:", calc_temp: "Temperatur:", calc_terrain: "Gelände:", calc_style: "Fahrstil:", calc_price: "Preis pro kWh:", calc_charger: "Ladegerät-Ampere:", calc_result: "Geschätzte Reichweite", calc_cost: "Ladekosten:", calc_charge_time: "Ladezeit:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "Std", unit_currency: "rub", terrain_smooth: "Glatter Asphalt", terrain_city: "Stadt (Stop & Go)", terrain_offroad: "Offroad / Hügel", style_eco: "Eco (sanft)", style_normal: "Normal", style_sport: "Sport (aggressiv)", about_title: "Über uns", about_p1: "Wir sind Scooter Compare. Von Enthusiasten erstellt.", about_p2: "Wir haben Daten von über 150 Modellen gesammelt.", about_p3: "Unser Ziel ist es, dir zu helfen, den perfekten Roller zu finden.", footer: "© 2026 Scooter Compare. Mit Seele gemacht.", custom_battery: "-- Eigener Akku --", recommendation: "Empfehlung", rec_text: "Die beste Wahl ist", rec_text2: "Er kombiniert hohe Geschwindigkeit und gute Reichweite.", max_alert: "Maximal 4 Roller." },
-            fr: { modal_title: "Choisir la langue", modal_subtitle: "Choisissez votre langue", nav_compare: "Comparaison", nav_sim: "Comparer SIM", nav_calculator: "Calculateur", nav_about: "À propos", main_title: "Comparaison de trottinettes", main_subtitle: "Plus de 150 modèles de 24 marques", filter_all: "Toutes les marques", th_model: "Modèle", th_motor: "Moteur", th_battery: "Batterie", th_speed: "Vitesse max", th_range: "Autonomie", th_weight: "Poids", th_charger: "Chargeur (A)", th_action: "Action", note_specs: "* Spécifications basées sur les données du fabricant.", btn_compare: "Comparer la sélection", btn_add_compare: "+ Comparer", btn_added_compare: "✓ Sélectionné", btn_clear: "Effacer", sim_result_title: "Résultat de la comparaison", calc_title: "Calculateur d'autonomie", calc_subtitle: "Sélectionnez un modèle ou entrez les paramètres", calc_select_label: "Sélectionnez un modèle:", calc_weight: "Poids du pilote:", calc_scooter_weight: "Poids de la trottinette:", calc_speed: "Vitesse moyenne:", calc_battery: "Capacité batterie:", calc_temp: "Température:", calc_terrain: "Terrain:", calc_style: "Style de conduite:", calc_price: "Prix par kWh:", calc_charger: "Ampères du chargeur:", calc_result: "Autonomie estimée", calc_cost: "Coût de charge:", calc_charge_time: "Temps de charge:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asphalte lisse", terrain_city: "Ville (feux)", terrain_offroad: "Tout-terrain / Collines", style_eco: "Éco (doux)", style_normal: "Normal", style_sport: "Sport (agressif)", about_title: "À propos", about_p1: "Nous sommes Scooter Compare. Créé par des passionnés.", about_p2: "Nous avons rassemblé les données de plus de 150 modèles.", about_p3: "Notre but est de vous aider à choisir la trottinette parfaite.", footer: "© 2026 Scooter Compare. Fait avec âme.", custom_battery: "-- Batterie personnalisée --", recommendation: "Recommandation", rec_text: "Le meilleur choix est", rec_text2: "Il combine vitesse et autonomie.", max_alert: "Maximum 4 trottinettes." },
-            it: { modal_title: "Seleziona lingua", modal_subtitle: "Scegli la tua lingua preferita", nav_compare: "Confronto", nav_sim: "Confronta SIM", nav_calculator: "Calcolatore", nav_about: "Chi siamo", main_title: "Confronto monopattini elettrici", main_subtitle: "Oltre 150 modelli di 24 marchi popolari", filter_all: "Tutti i marchi", th_model: "Modello", th_motor: "Motore", th_battery: "Batteria", th_speed: "Velocità max", th_range: "Autonomia", th_weight: "Peso", th_charger: "Caricatore (A)", th_action: "Azione", note_specs: "* Specifiche basate sui dati del produttore.", btn_compare: "Confronta selezionati", btn_add_compare: "+ Confronta", btn_added_compare: "✓ Selezionato", btn_clear: "Pulisci", sim_result_title: "Risultato del confronto", calc_title: "Calcolatore autonomia", calc_subtitle: "Seleziona un modello o inserisci i parametri", calc_select_label: "Seleziona un modello:", calc_weight: "Peso pilota:", calc_scooter_weight: "Peso monopattino:", calc_speed: "Velocità media:", calc_battery: "Capacità batteria:", calc_temp: "Temperatura:", calc_terrain: "Terreno:", calc_style: "Stile di guida:", calc_price: "Prezzo per kWh:", calc_charger: "Ampere caricatore:", calc_result: "Autonomia stimata", calc_cost: "Costo ricarica:", calc_charge_time: "Tempo di ricarica:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto liscio", terrain_city: "Città (semafori)", terrain_offroad: "Sterrato / Colline", style_eco: "Eco (dolce)", style_normal: "Normale", style_sport: "Sport (aggressivo)", about_title: "Chi siamo", about_p1: "Siamo Scooter Compare. Progetto creato da appassionati.", about_p2: "Abbiamo raccolto dati su oltre 150 modelli.", about_p3: "Il nostro obiettivo è aiutarti a scegliere il monopattino perfetto.", footer: "© 2026 Scooter Compare. Fatto con l'anima.", custom_battery: "-- Batteria personalizzata --", recommendation: "Raccomandazione", rec_text: "La migliore scelta è", rec_text2: "Combina alta velocità e buona autonomia.", max_alert: "Massimo 4 monopattini." },
-            pt: { modal_title: "Selecionar idioma", modal_subtitle: "Escolha seu idioma preferido", nav_compare: "Comparação", nav_sim: "Comparar SIM", nav_calculator: "Calculadora", nav_about: "Sobre nós", main_title: "Comparação de patinetes elétricos", main_subtitle: "Mais de 150 modelos de 24 marcas populares", filter_all: "Todas as marcas", th_model: "Modelo", th_motor: "Motor", th_battery: "Bateria", th_speed: "Velocidade máx", th_range: "Autonomia", th_weight: "Peso", th_charger: "Carregador (A)", th_action: "Ação", note_specs: "* Especificações baseadas nos dados do fabricante.", btn_compare: "Comparar selecionados", btn_add_compare: "+ Comparar", btn_added_compare: "✓ Selecionado", btn_clear: "Limpar", sim_result_title: "Resultado da comparação", calc_title: "Calculadora de autonomia", calc_subtitle: "Selecione um modelo ou insira parâmetros", calc_select_label: "Selecione um modelo:", calc_weight: "Peso do piloto:", calc_scooter_weight: "Peso do patinete:", calc_speed: "Velocidade média:", calc_battery: "Capacidade da bateria:", calc_temp: "Temperatura:", calc_terrain: "Terreno:", calc_style: "Estilo de condução:", calc_price: "Preço por kWh:", calc_charger: "Amperagem do carregador:", calc_result: "Autonomia estimada", calc_cost: "Custo de recarga:", calc_charge_time: "Tempo de recarga:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto liso", terrain_city: "Cidade (semáforos)", terrain_offroad: "Off-road / Colinas", style_eco: "Eco (suave)", style_normal: "Normal", style_sport: "Esportivo (agressivo)", about_title: "Sobre nós", about_p1: "Somos a Scooter Compare. Projeto criado por entusiastas.", about_p2: "Reunimos dados de mais de 150 modelos.", about_p3: "Nosso objetivo é ajudar você a escolher o patinete perfeito.", footer: "© 2026 Scooter Compare. Feito com alma.", custom_battery: "-- Bateria personalizada --", recommendation: "Recomendação", rec_text: "A melhor escolha é", rec_text2: "Combina velocidade e autonomia.", max_alert: "Máximo 4 patinetes." },
-            zh: { modal_title: "选择语言", modal_subtitle: "选择您的首选语言", nav_compare: "比较", nav_sim: "比较SIM", nav_calculator: "计算器", nav_about: "关于我们", main_title: "电动滑板车比较", main_subtitle: "超过24个热门品牌的150款车型", filter_all: "所有品牌", th_model: "型号", th_motor: "电机", th_battery: "电池", th_speed: "最高速度", th_range: "续航", th_weight: "重量", th_charger: "充电器(A)", th_action: "操作", note_specs: "* 规格基于制造商数据。", btn_compare: "比较所选", btn_add_compare: "+ 比较", btn_added_compare: "✓ 已选", btn_clear: "清除", sim_result_title: "比较结果", calc_title: "续航计算器", calc_subtitle: "从目录中选择车型或手动输入", calc_select_label: "从目录中选择：", calc_weight: "骑手体重：", calc_scooter_weight: "滑板车重量：", calc_speed: "平均速度：", calc_battery: "电池容量：", calc_temp: "温度：", calc_terrain: "路面：", calc_style: "骑行风格：", calc_price: "每千瓦时价格：", calc_charger: "充电器安培：", calc_result: "预计续航", calc_cost: "充电费用：", calc_charge_time: "充电时间：", unit_kg: "公斤", unit_kmh: "公里/小时", unit_wh: "瓦时", unit_km: "公里", unit_c: "°C", unit_hours: "小时", unit_currency: "卢布", terrain_smooth: "平坦柏油路", terrain_city: "城市道路", terrain_offroad: "越野/坡道", style_eco: "节能（平缓）", style_normal: "普通", style_sport: "运动（激进）", about_title: "关于我们", about_p1: "我们是Scooter Compare。由爱好者为爱好者创建。", about_p2: "我们收集了150多款车型的数据，添加了筛选、比较和计算器。", about_p3: "我们的目标是帮您选择完美的滑板车。", footer: "© 2026 Scooter Compare. 用心制作。", custom_battery: "-- 自定义电池 --", recommendation: "推荐", rec_text: "最佳选择是", rec_text2: "结合了高速度和良好的续航。", max_alert: "最多选择4辆滑板车。" },
-            ja: { modal_title: "言語を選択", modal_subtitle: "希望の言語を選択してください", nav_compare: "比較", nav_sim: "SIM比較", nav_calculator: "計算機", nav_about: "私たちについて", main_title: "電動キックボード比較", main_subtitle: "24の人気ブランドから150以上のモデル", filter_all: "すべてのブランド", th_model: "モデル", th_motor: "モーター", th_battery: "バッテリー", th_speed: "最高速度", th_range: "航続距離", th_weight: "重量", th_charger: "充電器 (A)", th_action: "アクション", note_specs: "* 仕様はメーカーのデータに基づいています。", btn_compare: "選択したものを比較", btn_add_compare: "+ 比較", btn_added_compare: "✓ 選択済み", btn_clear: "クリア", sim_result_title: "比較結果", calc_title: "航続距離計算機", calc_subtitle: "モデルを選択するか手動で入力", calc_select_label: "モデルを選択：", calc_weight: "ライダーの体重：", calc_scooter_weight: "キックボードの重量：", calc_speed: "平均速度：", calc_battery: "バッテリー容量：", calc_temp: "気温：", calc_terrain: "路面：", calc_style: "走行スタイル：", calc_price: "1kWhあたりの価格：", calc_charger: "充電器のアンペア数：", calc_result: "推定航続距離", calc_cost: "充電コスト：", calc_charge_time: "充電時間：", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "時間", unit_currency: "ルーブル", terrain_smooth: "滑らかなアスファルト", terrain_city: "市街地（信号あり）", terrain_offroad: "オフロード / 坂道", style_eco: "エコ（滑らか）", style_normal: "ノーマル", style_sport: "スポーツ（アグレッシブ）", about_title: "私たちについて", about_p1: "Scooter Compareです。愛好家によって作成されました。", about_p2: "150以上のモデルのデータを1つの表にまとめました。", about_p3: "完璧なキックボード選びをサポートします。", footer: "© 2026 Scooter Compare. ライダーのために心を込めて。", custom_battery: "-- カスタムバッテリー --", recommendation: "おすすめ", rec_text: "ベストチョイスは", rec_text2: "高速と良好な航続距離を兼ね備えています。", max_alert: "最大4台までです。" },
-            ko: { modal_title: "언어 선택", modal_subtitle: "선호하는 언어를 선택하세요", nav_compare: "비교", nav_sim: "SIM 비교", nav_calculator: "계산기", nav_about: "회사 소개", main_title: "전동 킥보드 비교", main_subtitle: "24개 인기 브랜드의 150개 이상의 모델", filter_all: "모든 브랜드", th_model: "모델", th_motor: "모터", th_battery: "배터리", th_speed: "최고 속도", th_range: "주행 거리", th_weight: "무게", th_charger: "충전기 (A)", th_action: "작업", note_specs: "* 사양은 제조사 데이터를 기반으로 합니다.", btn_compare: "선택 항목 비교", btn_add_compare: "+ 비교", btn_added_compare: "✓ 선택됨", btn_clear: "지우기", sim_result_title: "비교 결과", calc_title: "주행 거리 계산기", calc_subtitle: "카탈로그에서 모델을 선택하거나 직접 입력", calc_select_label: "카탈로그에서 선택:", calc_weight: "라이더 체중:", calc_scooter_weight: "킥보드 무게:", calc_speed: "평균 속도:", calc_battery: "배터리 용량:", calc_temp: "온도:", calc_terrain: "노면:", calc_style: "주행 스타일:", calc_price: "kWh당 가격:", calc_charger: "충전기 암페어:", calc_result: "예상 주행 거리", calc_cost: "충전 비용:", calc_charge_time: "충전 시간:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "시간", unit_currency: "루블", terrain_smooth: "평평한 아스팔트", terrain_city: "도심 (신호등)", terrain_offroad: "비포장 / 언덕", style_eco: "에코 (부드럽게)", style_normal: "일반", style_sport: "스포츠 (공격적)", about_title: "회사 소개", about_p1: "Scooter Compare입니다. 매니아들이 만들었습니다.", about_p2: "150개 이상의 모델 데이터를 수집했습니다.", about_p3: "완벽한 킥보드를 선택하도록 돕습니다.", footer: "© 2026 Scooter Compare. 라이더를 위해 제작.", custom_battery: "-- 사용자 지정 배터리 --", recommendation: "추천", rec_text: "최고의 선택은", rec_text2: "높은 속도와 좋은 주행 거리를 결합했습니다.", max_alert: "최대 4개까지 선택 가능합니다." },
-            tr: { modal_title: "Dil Seçin", modal_subtitle: "Devam etmek için dilinizi seçin", nav_compare: "Karşılaştırma", nav_sim: "SIM Karşılaştır", nav_calculator: "Hesaplayıcı", nav_about: "Hakkımızda", main_title: "Elektrikli Scooter Karşılaştırması", main_subtitle: "24 popüler markadan 150'den fazla model", filter_all: "Tüm Markalar", th_model: "Model", th_motor: "Motor", th_battery: "Batarya", th_speed: "Maks. Hız", th_range: "Menzil", th_weight: "Ağırlık", th_charger: "Şarj Cihazı (A)", th_action: "İşlem", note_specs: "* Özellikler üretici verilerine dayanmaktadır.", btn_compare: "Seçilenleri Karşılaştır", btn_add_compare: "+ Karşılaştır", btn_added_compare: "✓ Seçildi", btn_clear: "Temizle", sim_result_title: "Karşılaştırma Sonucu", calc_title: "Menzil Hesaplayıcı", calc_subtitle: "Katalogdan model seçin veya manuel girin", calc_select_label: "Model seçin:", calc_weight: "Sürücü Ağırlığı:", calc_scooter_weight: "Scooter Ağırlığı:", calc_speed: "Ortalama Hız:", calc_battery: "Batarya Kapasitesi:", calc_temp: "Sıcaklık:", calc_terrain: "Zemin:", calc_style: "Sürüş Tarzı:", calc_price: "kWh Başına Fiyat:", calc_charger: "Şarj Cihazı Amperi:", calc_result: "Tahmini Menzil", calc_cost: "Şarj Maliyeti:", calc_charge_time: "Şarj Süresi:", unit_kg: "kg", unit_kmh: "km/s", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "sa", unit_currency: "rub", terrain_smooth: "Düz Asfalt", terrain_city: "Şehir (dur-kalk)", terrain_offroad: "Arazi / Yokuş", style_eco: "Eko (yumuşak)", style_normal: "Normal", style_sport: "Spor (agresif)", about_title: "Hakkımızda", about_p1: "Biz Scooter Compare'iz.", about_p2: "150'den fazla modelin verilerini topladık.", about_p3: "Mükemmel scooter'ı seçmenize yardımcı oluyoruz.", footer: "© 2026 Scooter Compare. Sürücüler için yapıldı.", custom_battery: "-- Özel Batarya --", recommendation: "Öneri", rec_text: "En iyi seçim", rec_text2: "Yüksek hız ve iyi menzili birleştirir.", max_alert: "Maksimum 4 scooter." },
-            ar: { modal_title: "اختر اللغة", modal_subtitle: "اختر لغتك المفضلة", nav_compare: "مقارنة", nav_sim: "مقارنة السكوترات", nav_calculator: "حاسبة", nav_about: "من نحن", main_title: "مقارنة السكوترات الكهربائية", main_subtitle: "أكثر من 150 طرازًا من 24 علامة تجارية", filter_all: "جميع العلامات التجارية", th_model: "الطراز", th_motor: "المحرك", th_battery: "البطارية", th_speed: "السرعة القصوى", th_range: "المدى", th_weight: "الوزن", th_charger: "الشاحن (أمبير)", th_action: "إجراء", note_specs: "* المواصفات مبنية على بيانات الشركة المصنعة.", btn_compare: "مقارنة المحدد", btn_add_compare: "+ مقارنة", btn_added_compare: "✓ محدد", btn_clear: "مسح", sim_result_title: "نتيجة المقارنة", calc_title: "حاسبة المدى", calc_subtitle: "اختر طرازًا أو أدخل المعلمات يدويًا", calc_select_label: "اختر طرازًا:", calc_weight: "وزن الراكب:", calc_scooter_weight: "وزن السكوتر:", calc_speed: "متوسط السرعة:", calc_battery: "سعة البطارية:", calc_temp: "درجة الحرارة:", calc_terrain: "التضاريس:", calc_style: "أسلوب القيادة:", calc_price: "السعر لكل كيلوواط ساعة:", calc_charger: "أمبير الشاحن:", calc_result: "المدى التقديري", calc_cost: "تكلفة الشحن:", calc_charge_time: "وقت الشحن:", unit_kg: "كجم", unit_kmh: "كم/س", unit_wh: "واط/ساعة", unit_km: "كم", unit_c: "°C", unit_hours: "ساعة", unit_currency: "روب", terrain_smooth: "أسفلت أملس", terrain_city: "المدينة (توقف وانطلاق)", terrain_offroad: "وعر / تلال", style_eco: "اقتصادي (ناعم)", style_normal: "عادي", style_sport: "رياضي (عدواني)", about_title: "من نحن", about_p1: "نحن Scooter Compare.", about_p2: "جمعنا بيانات أكثر من 150 طرازًا.", about_p3: "هدفنا مساعدتك في اختيار السكوتر المثالي.", footer: "© 2026 Scooter Compare. صنع للراكبين.", custom_battery: "-- بطارية مخصصة --", recommendation: "توصية", rec_text: "أفضل خيار هو", rec_text2: "يجمع بين السرعة العالية والمدى الجيد.", max_alert: "الحد الأقصى 4 سكوترات." },
-            pl: { modal_title: "Wybierz język", modal_subtitle: "Wybierz preferowany język", nav_compare: "Porównanie", nav_sim: "Porównaj SIM", nav_calculator: "Kalkulator", nav_about: "O nas", main_title: "Porównanie hulajnóg", main_subtitle: "Ponad 150 modeli od 24 popularnych marek", filter_all: "Wszystkie marki", th_model: "Model", th_motor: "Silnik", th_battery: "Bateria", th_speed: "Maks. prędkość", th_range: "Zasięg", th_weight: "Waga", th_charger: "Ładowarka (A)", th_action: "Akcja", note_specs: "* Specyfikacje na podstawie danych producenta.", btn_compare: "Porównaj wybrane", btn_add_compare: "+ Porównaj", btn_added_compare: "✓ Wybrano", btn_clear: "Wyczyść", sim_result_title: "Wynik porównania", calc_title: "Kalkulator zasięgu", calc_subtitle: "Wybierz model lub wprowadź parametry", calc_select_label: "Wybierz model:", calc_weight: "Waga kierowcy:", calc_scooter_weight: "Waga hulajnogi:", calc_speed: "Średnia prędkość:", calc_battery: "Pojemność baterii:", calc_temp: "Temperatura:", calc_terrain: "Nawierzchnia:", calc_style: "Styl jazdy:", calc_price: "Cena za kWh:", calc_charger: "Ampery ładowarki:", calc_result: "Szacowany zasięg", calc_cost: "Koszt ładowania:", calc_charge_time: "Czas ładowania:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "godz", unit_currency: "rub", terrain_smooth: "Gładki asfalt", terrain_city: "Miasto (światła)", terrain_offroad: "Bezdroża / Wzgórza", style_eco: "Eko (płynnie)", style_normal: "Normalny", style_sport: "Sport (agresywnie)", about_title: "O nas", about_p1: "Jesteśmy Scooter Compare.", about_p2: "Zebraliśmy dane ponad 150 modeli.", about_p3: "Pomagamy wybrać idealną hulajnogę.", footer: "© 2026 Scooter Compare. Zrobione z duszą.", custom_battery: "-- Własna bateria --", recommendation: "Rekomendacja", rec_text: "Najlepszy wybór to", rec_text2: "Łączy prędkość i zasięg.", max_alert: "Maksymalnie 4 hulajnogi." },
-            nl: { modal_title: "Selecteer taal", modal_subtitle: "Kies je voorkeurstaal", nav_compare: "Vergelijking", nav_sim: "SIM vergelijken", nav_calculator: "Calculator", nav_about: "Over ons", main_title: "E-scooter vergelijking", main_subtitle: "Meer dan 150 modellen van 24 merken", filter_all: "Alle merken", th_model: "Model", th_motor: "Motor", th_battery: "Accu", th_speed: "Max. snelheid", th_range: "Bereik", th_weight: "Gewicht", th_charger: "Oplader (A)", th_action: "Actie", note_specs: "* Specificaties gebaseerd op fabrieksgegevens.", btn_compare: "Vergelijk geselecteerde", btn_add_compare: "+ Vergelijk", btn_added_compare: "✓ Geselecteerd", btn_clear: "Wissen", sim_result_title: "Vergelijkingsresultaat", calc_title: "Bereik calculator", calc_subtitle: "Selecteer een model of voer parameters in", calc_select_label: "Selecteer een model:", calc_weight: "Gewicht bestuurder:", calc_scooter_weight: "Gewicht scooter:", calc_speed: "Gemiddelde snelheid:", calc_battery: "Accucapaciteit:", calc_temp: "Temperatuur:", calc_terrain: "Ondergrond:", calc_style: "Rijstijl:", calc_price: "Prijs per kWh:", calc_charger: "Ampère oplader:", calc_result: "Geschat bereik", calc_cost: "Oplaadkosten:", calc_charge_time: "Oplaadtijd:", unit_kg: "kg", unit_kmh: "km/u", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "uur", unit_currency: "wrijf", terrain_smooth: "Glad asfalt", terrain_city: "Stad (stoppen)", terrain_offroad: "Off-road / Heuvels", style_eco: "Eco (vloeiend)", style_normal: "Normaal", style_sport: "Sport (agressief)", about_title: "Over ons", about_p1: "Wij zijn Scooter Compare.", about_p2: "We hebben gegevens van meer dan 150 modellen.", about_p3: "We helpen je de perfecte scooter te kiezen.", footer: "© 2026 Scooter Compare. Met liefde gemaakt.", custom_battery: "-- Eigen accu --", recommendation: "Aanbeveling", rec_text: "De beste keuze is", rec_text2: "Combineert snelheid en bereik.", max_alert: "Maximaal 4 scooters." },
-            uk: { modal_title: "Оберіть мову", modal_subtitle: "Виберіть бажану мову", nav_compare: "Порівняння", nav_sim: "Порівняти СІМ", nav_calculator: "Калькулятор", nav_about: "Про нас", main_title: "Порівняння електросамокатів", main_subtitle: "Понад 150 моделей від 24 брендів", filter_all: "Усі бренди", th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Макс. швидкість", th_range: "Запас ходу", th_weight: "Вага", th_charger: "Зарядка (А)", th_action: "Дія", note_specs: "* Характеристики за даними виробників.", btn_compare: "Порівняти вибрані", btn_add_compare: "+ Порівняти", btn_added_compare: "✓ Обрано", btn_clear: "Очистити", sim_result_title: "Результат порівняння", calc_title: "Калькулятор запасу ходу", calc_subtitle: "Виберіть модель або введіть параметри", calc_select_label: "Виберіть модель:", calc_weight: "Вага райдера:", calc_scooter_weight: "Вага самоката:", calc_speed: "Середня швидкість:", calc_battery: "Ємність батареї:", calc_temp: "Температура:", calc_terrain: "Покриття:", calc_style: "Стиль їзди:", calc_price: "Ціна за 1 кВт·год:", calc_charger: "Зарядний пристрій (А):", calc_result: "Приблизний запас ходу", calc_cost: "Вартість зарядки:", calc_charge_time: "Час зарядки:", unit_kg: "кг", unit_kmh: "км/год", unit_wh: "Вт·год", unit_km: "км", unit_c: "°C", unit_hours: "год", unit_currency: "руб", terrain_smooth: "Рівний асфальт", terrain_city: "Місто (світлофори)", terrain_offroad: "Бездоріжжя / Гори", style_eco: "Еко (плавно)", style_normal: "Звичайний", style_sport: "Спорт (різко)", about_title: "Про нас", about_p1: "Ми — Scooter Compare.", about_p2: "Ми зібрали дані понад 150 моделей.", about_p3: "Наша мета — допомогти вибрати ідеальний самокат.", footer: "© 2026 Scooter Compare. Зроблено з душею.", custom_battery: "-- Свій акумулятор --", recommendation: "Рекомендація", rec_text: "Найкращий вибір —", rec_text2: "Поєднує швидкість і запас ходу.", max_alert: "Максимум 4 самокати." }
+            en: { modal_title: "Select Language", modal_subtitle: "Choose your preferred language to continue", nav_compare: "Comparison", nav_matcher: "Matcher", nav_calculator: "Calculator", nav_faq: "FAQ", main_title: "Electric Scooter Comparison", main_subtitle: "Over 200 models from 28 popular brands", filter_all: "All Brands", th_model: "Model", th_motor: "Motor", th_battery: "Battery", th_speed: "Max Speed", th_range: "Range", th_weight: "Weight", th_load: "Max Load", th_tire: "Tires", th_charger: "Charger (A)", th_action: "Action", note_specs: "* Specifications based on manufacturer data.", btn_compare: "Compare Selected", btn_add_compare: "+ Compare", btn_added_compare: "✓ Selected", btn_clear: "Clear", btn_print: "Print / Save PDF", sim_result_title: "Comparison Result", matcher_title: "Smart Matcher", matcher_subtitle: "Find the perfect scooter based on your needs", matcher_budget: "Max Budget ($):", matcher_speed: "Min Speed (km/h):", matcher_load: "Your Weight (kg):", matcher_result_title: "Top 3 Matches:", calc_title: "Range Calculator", calc_subtitle: "Select a model from the catalog or enter parameters manually", calc_select_label: "Select a model from the catalog:", calc_weight: "Rider Weight:", calc_scooter_weight: "Scooter Weight:", calc_speed: "Average Speed:", calc_battery: "Battery Capacity:", calc_temp: "Temperature:", calc_regen: "Regen Braking:", calc_health: "Battery Health:", calc_terrain: "Terrain:", calc_style: "Riding Style:", calc_price: "Price per kWh:", calc_charger: "Charger Amps:", calc_daily_dist: "Daily Distance (km):", calc_result: "Estimated Range", calc_cost: "Charging Cost:", calc_charge_time: "Charging Time:", calc_cost_km: "Cost per 1 km:", calc_monthly_cost: "Monthly Cost:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Smooth Asphalt", terrain_city: "City (stop & go)", terrain_offroad: "Off-road / Hills", style_eco: "Eco (smooth)", style_normal: "Normal", style_sport: "Sport (aggressive)", faq_title: "Knowledge Base", faq_subtitle: "Frequently Asked Questions", faq_q1: "How to extend battery life?", faq_a1: "Don't charge to 100% if not planning a trip. Avoid extreme temperatures. Calibrate once in a while.", faq_q2: "What is regenerative braking?", faq_a2: "It converts kinetic energy back into electricity during braking, slightly increasing range.", faq_q3: "How to choose scooter by weight?", faq_a3: "Always leave a margin. If you weigh 80kg, choose a scooter with max load 100-120kg.", faq_q4: "Why is real range lower?", faq_a4: "Manufacturers test in ideal conditions. Real range depends on your weight, terrain, wind, and speed.", about_title: "About Us", about_p1: "We are Scooter Compare. This project was created by enthusiasts for fellow electric scooter lovers.", about_p2: "We gathered data on 200+ models into one convenient table, added filters, smart matcher, and an advanced calculator.", about_p3: "Our goal is to help you choose the perfect scooter. We don't sell scooters, we just provide honest information.", footer: "© 2026 Scooter Compare. Made with soul for riders.", custom_battery: "-- Custom Battery --", recommendation: "Recommendation", rec_text: "The best choice among the selected is", rec_text2: "It combines high speed and good range.", max_alert: "You can select up to 4 scooters.", theme_light: "Light Theme", theme_dark: "Dark Theme" },
+            ru: { modal_title: "Выберите язык", modal_subtitle: "Выберите предпочитаемый язык для продолжения", nav_compare: "Сравнение", nav_matcher: "Подбор", nav_calculator: "Калькулятор", nav_faq: "FAQ", main_title: "Сравнение электросамокатов", main_subtitle: "Более 200 моделей от 28 популярных брендов", filter_all: "Все бренды", th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Макс. скорость", th_range: "Запас хода", th_weight: "Вес", th_load: "Нагрузка", th_tire: "Колёса", th_charger: "Зарядка (А)", th_action: "Действие", note_specs: "* Характеристики указаны по данным производителей.", btn_compare: "Сравнить выбранные", btn_add_compare: "+ Сравнить", btn_added_compare: "✓ Выбрано", btn_clear: "Очистить", btn_print: "Скачать PDF / Печать", sim_result_title: "Результат сравнения", matcher_title: "Умный подбор", matcher_subtitle: "Найдите идеальный самокат по вашим параметрам", matcher_budget: "Бюджет (до):", matcher_speed: "Мин. скорость:", matcher_load: "Ваш вес:", matcher_result_title: "Топ 3 совпадения:", calc_title: "Калькулятор запаса хода", calc_subtitle: "Выберите модель из каталога или укажите параметры вручную", calc_select_label: "Выберите модель из каталога:", calc_weight: "Вес райдера:", calc_scooter_weight: "Вес самоката:", calc_speed: "Средняя скорость:", calc_battery: "Ёмкость батареи:", calc_temp: "Температура:", calc_regen: "Рекуперация:", calc_health: "Износ батареи:", calc_terrain: "Покрытие:", calc_style: "Стиль езды:", calc_price: "Цена за 1 кВт·ч:", calc_charger: "Зарядное устройство (А):", calc_daily_dist: "Пробег в день (км):", calc_result: "Примерный запас хода", calc_cost: "Стоимость зарядки:", calc_charge_time: "Время зарядки:", calc_cost_km: "Цена за 1 км:", calc_monthly_cost: "Стоимость в месяц:", unit_kg: "кг", unit_kmh: "км/ч", unit_wh: "Вт·ч", unit_km: "км", unit_c: "°C", unit_hours: "ч", unit_currency: "руб", terrain_smooth: "Ровный асфальт", terrain_city: "Город (светофоры)", terrain_offroad: "Бездорожье / Горы", style_eco: "Эко (плавно)", style_normal: "Обычный", style_sport: "Спорт (резко)", faq_title: "База знаний", faq_subtitle: "Ответы на частые вопросы", faq_q1: "Как продлить жизнь батарее?", faq_a1: "Не заряжайте до 100% без нужды. Избегайте крайних температур. Проводите калибровку.", faq_q2: "Что такое рекуперация?", faq_a2: "Система возврата энергии при торможении обратно в батарею.", faq_q3: "Как выбрать самокат по весу?", faq_a3: "Всегда оставляйте запас. Если ваш вес 80 кг, выбирайте нагрузку 100-120 кг.", faq_q4: "Почему реальный пробег меньше?", faq_a4: "Заводские тесты идеальны. В реальности влияют вес, рельеф, ветер и скорость.", about_title: "О нас", about_p1: "Мы — Scooter Compare. Этот проект создан энтузиастами.", about_p2: "Мы собрали данные по 200+ моделям, добавили подбор и продвинутый калькулятор.", about_p3: "Наша цель — помочь вам выбрать идеальный самокат. Мы даем честную информацию.", footer: "© 2026 Scooter Compare. Сделано с душой для райдеров.", custom_battery: "-- Свой аккумулятор --", recommendation: "Рекомендация", rec_text: "Лучший выбор среди выбранных —", rec_text2: "Он сочетает высокую скорость и хороший запас хода.", max_alert: "Можно выбрать не более 4 самокатов.", theme_light: "Светлая тема", theme_dark: "Темная тема" },
+            es: { modal_title: "Seleccionar idioma", modal_subtitle: "Elige tu idioma preferido", nav_compare: "Comparación", nav_matcher: "Buscador", nav_calculator: "Calculadora", nav_faq: "FAQ", main_title: "Comparación de patinetes eléctricos", main_subtitle: "Más de 200 modelos de 28 marcas populares", filter_all: "Todas las marcas", th_model: "Modelo", th_motor: "Motor", th_battery: "Batería", th_speed: "Velocidad máx.", th_range: "Autonomía", th_weight: "Peso", th_load: "Carga máx.", th_tire: "Neumáticos", th_charger: "Cargador (A)", th_action: "Acción", note_specs: "* Especificaciones del fabricante.", btn_compare: "Comparar seleccionados", btn_add_compare: "+ Comparar", btn_added_compare: "✓ Seleccionado", btn_clear: "Limpiar", btn_print: "Imprimir / PDF", sim_result_title: "Resultado", matcher_title: "Buscador inteligente", matcher_subtitle: "Encuentra el patinete perfecto", matcher_budget: "Presupuesto:", matcher_speed: "Velocidad mín.:", matcher_load: "Tu peso:", matcher_result_title: "Top 3:", calc_title: "Calculadora de autonomía", calc_subtitle: "Selecciona un modelo o introduce parámetros", calc_select_label: "Selecciona un modelo:", calc_weight: "Peso del piloto:", calc_scooter_weight: "Peso del patinete:", calc_speed: "Velocidad media:", calc_battery: "Capacidad de la batería:", calc_temp: "Temperatura:", calc_regen: "Frenado regenerativo:", calc_health: "Salud de la batería:", calc_terrain: "Terreno:", calc_style: "Estilo de conducción:", calc_price: "Precio por kWh:", calc_charger: "Amperios del cargador:", calc_daily_dist: "Distancia diaria:", calc_result: "Autonomía estimada", calc_cost: "Coste de carga:", calc_charge_time: "Tiempo de carga:", calc_cost_km: "Coste por 1 km:", calc_monthly_cost: "Coste mensual:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto liso", terrain_city: "Ciudad (paradas)", terrain_offroad: "Todo terreno / Colinas", style_eco: "Eco (suave)", style_normal: "Normal", style_sport: "Deportivo (agresivo)", faq_title: "Base de conocimiento", faq_subtitle: "Preguntas frecuentes", faq_q1: "¿Cómo prolongar la batería?", faq_a1: "No cargues al 100% sin necesidad. Evita temperaturas extremas.", faq_q2: "¿Qué es el frenado regenerativo?", faq_a2: "Convierte la energía cinética en electricidad al frenar.", faq_q3: "¿Cómo elegir por peso?", faq_a3: "Deja margen. Si pesas 80 kg, elige carga máxima 100-120 kg.", faq_q4: "¿Por qué la autonomía real es menor?", faq_a4: "Los test son ideales. Influyen peso, terreno, viento y velocidad.", about_title: "Sobre nosotros", about_p1: "Somos Scooter Compare.", about_p2: "Recopilamos datos de 200+ modelos y añadimos herramientas.", about_p3: "Nuestro objetivo es ayudarte a elegir.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Batería personalizada --", recommendation: "Recomendación", rec_text: "La mejor opción es", rec_text2: "Combina velocidad y autonomía.", max_alert: "Máximo 4 patinetes.", theme_light: "Tema Claro", theme_dark: "Tema Oscuro" },
+            de: { modal_title: "Sprache auswählen", modal_subtitle: "Wähle deine bevorzugte Sprache", nav_compare: "Vergleich", nav_matcher: "Sucher", nav_calculator: "Rechner", nav_faq: "FAQ", main_title: "E-Scooter Vergleich", main_subtitle: "Über 200 Modelle von 28 Marken", filter_all: "Alle Marken", th_model: "Modell", th_motor: "Motor", th_battery: "Akku", th_speed: "Max. Geschw.", th_range: "Reichweite", th_weight: "Gewicht", th_load: "Max. Last", th_tire: "Reifen", th_charger: "Ladegerät (A)", th_action: "Aktion", note_specs: "* Herstellerangaben.", btn_compare: "Vergleichen", btn_add_compare: "+ Vergleichen", btn_added_compare: "✓ Ausgewählt", btn_clear: "Löschen", btn_print: "Drucken / PDF", sim_result_title: "Ergebnis", matcher_title: "Intelligenter Sucher", matcher_subtitle: "Finde den perfekten Roller", matcher_budget: "Budget:", matcher_speed: "Min. Geschw.:", matcher_load: "Dein Gewicht:", matcher_result_title: "Top 3:", calc_title: "Reichweitenrechner", calc_subtitle: "Wähle ein Modell oder gib Parameter ein", calc_select_label: "Wähle ein Modell:", calc_weight: "Fahrergewicht:", calc_scooter_weight: "Rollergewicht:", calc_speed: "Durchschnittsgeschw.:", calc_battery: "Akkukapazität:", calc_temp: "Temperatur:", calc_regen: "Rekuperation:", calc_health: "Akkuzustand:", calc_terrain: "Gelände:", calc_style: "Fahrstil:", calc_price: "Preis pro kWh:", calc_charger: "Ladegerät-Ampere:", calc_daily_dist: "Tägliche Distanz:", calc_result: "Geschätzte Reichweite", calc_cost: "Ladekosten:", calc_charge_time: "Ladezeit:", calc_cost_km: "Kosten pro 1 km:", calc_monthly_cost: "Monatliche Kosten:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "Std", unit_currency: "rub", terrain_smooth: "Asphalt", terrain_city: "Stadt", terrain_offroad: "Offroad", style_eco: "Eco", style_normal: "Normal", style_sport: "Sport", faq_title: "Wissensdatenbank", faq_subtitle: "Häufige Fragen", faq_q1: "Wie verlängere ich die Akkulebensdauer?", faq_a1: "Lade nicht immer auf 100%. Vermeide extreme Temperaturen.", faq_q2: "Was ist Rekuperation?", faq_a2: "Energierückgewinnung beim Bremsen.", faq_q3: "Wie wähle ich nach Gewicht?", faq_a3: "Lass Luft nach oben. Bei 80 kg wähle 100-120 kg Last.", faq_q4: "Warum ist die Reichweite geringer?", faq_a4: "Hersteller testen ideal. Realität: Gewicht, Gelände, Wind.", about_title: "Über uns", about_p1: "Wir sind Scooter Compare.", about_p2: "Daten von 200+ Modellen, Sucher und Rechner.", about_p3: "Wir helfen dir bei der Auswahl.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Eigener Akku --", recommendation: "Empfehlung", rec_text: "Beste Wahl:", rec_text2: "Gute Geschwindigkeit und Reichweite.", max_alert: "Maximal 4 Roller.", theme_light: "Helles Design", theme_dark: "Dunkles Design" },
+            fr: { modal_title: "Choisir la langue", modal_subtitle: "Choisissez votre langue", nav_compare: "Comparaison", nav_matcher: "Trouver", nav_calculator: "Calculateur", nav_faq: "FAQ", main_title: "Comparaison de trottinettes", main_subtitle: "Plus de 200 modèles de 28 marques", filter_all: "Toutes les marques", th_model: "Modèle", th_motor: "Moteur", th_battery: "Batterie", th_speed: "Vitesse max", th_range: "Autonomie", th_weight: "Poids", th_load: "Charge max", th_tire: "Pneus", th_charger: "Chargeur (A)", th_action: "Action", note_specs: "* Données fabricant.", btn_compare: "Comparer", btn_add_compare: "+ Comparer", btn_added_compare: "✓ Sélectionné", btn_clear: "Effacer", btn_print: "Imprimer / PDF", sim_result_title: "Résultat", matcher_title: "Trouvaille intelligente", matcher_subtitle: "Trouvez la trottinette parfaite", matcher_budget: "Budget:", matcher_speed: "Vitesse min:", matcher_load: "Votre poids:", matcher_result_title: "Top 3:", calc_title: "Calculateur d'autonomie", calc_subtitle: "Sélectionnez un modèle ou entrez les paramètres", calc_select_label: "Sélectionnez un modèle:", calc_weight: "Poids du pilote:", calc_scooter_weight: "Poids de la trottinette:", calc_speed: "Vitesse moyenne:", calc_battery: "Capacité batterie:", calc_temp: "Température:", calc_regen: "Freinage régénératif:", calc_health: "Santé de la batterie:", calc_terrain: "Terrain:", calc_style: "Style de conduite:", calc_price: "Prix par kWh:", calc_charger: "Ampères du chargeur:", calc_daily_dist: "Distance quotidienne:", calc_result: "Autonomie estimée", calc_cost: "Coût de charge:", calc_charge_time: "Temps de charge:", calc_cost_km: "Coût par 1 km:", calc_monthly_cost: "Coût mensuel:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asphalte lisse", terrain_city: "Ville", terrain_offroad: "Tout-terrain", style_eco: "Éco", style_normal: "Normal", style_sport: "Sport", faq_title: "Base de connaissances", faq_subtitle: "Questions fréquentes", faq_q1: "Comment prolonger la batterie?", faq_a1: "Ne chargez pas à 100% sans raison. Évitez les extrêmes.", faq_q2: "Qu'est-ce que le freinage régénératif?", faq_a2: "Récupère l'énergie au freinage.", faq_q3: "Comment choisir selon le poids?", faq_a3: "Gardez une marge. Si 80 kg, choisissez 100-120 kg max.", faq_q4: "Pourquoi l'autonomie réelle est-elle plus faible?", faq_a4: "Les tests sont idéaux. Poids, terrain et vent comptent.", about_title: "À propos", about_p1: "Nous sommes Scooter Compare.", about_p2: "Données de 200+ modèles et outils avancés.", about_p3: "Nous aidons à choisir.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Batterie personnalisée --", recommendation: "Recommandation", rec_text: "Le meilleur choix:", rec_text2: "Bon équilibre vitesse/autonomie.", max_alert: "Maximum 4 trottinettes.", theme_light: "Thème Clair", theme_dark: "Thème Sombre" },
+            it: { modal_title: "Seleziona lingua", modal_subtitle: "Scegli la tua lingua", nav_compare: "Confronto", nav_matcher: "Trova", nav_calculator: "Calcolatore", nav_faq: "FAQ", main_title: "Confronto monopattini", main_subtitle: "Oltre 200 modelli di 28 marchi", filter_all: "Tutti i marchi", th_model: "Modello", th_motor: "Motore", th_battery: "Batteria", th_speed: "Velocità max", th_range: "Autonomia", th_weight: "Peso", th_load: "Carico max", th_tire: "Pneumatici", th_charger: "Caricatore (A)", th_action: "Azione", note_specs: "* Dati produttore.", btn_compare: "Confronta", btn_add_compare: "+ Confronta", btn_added_compare: "✓ Selezionato", btn_clear: "Pulisci", btn_print: "Stampa / PDF", sim_result_title: "Risultato", matcher_title: "Trova intelligente", matcher_subtitle: "Trova il monopattino perfetto", matcher_budget: "Budget:", matcher_speed: "Velocità min:", matcher_load: "Il tuo peso:", matcher_result_title: "Top 3:", calc_title: "Calcolatore autonomia", calc_subtitle: "Seleziona un modello o inserisci i parametri", calc_select_label: "Seleziona un modello:", calc_weight: "Peso pilota:", calc_scooter_weight: "Peso monopattino:", calc_speed: "Velocità media:", calc_battery: "Capacità batteria:", calc_temp: "Temperatura:", calc_regen: "Frenata rigenerativa:", calc_health: "Salute batteria:", calc_terrain: "Terreno:", calc_style: "Stile di guida:", calc_price: "Prezzo per kWh:", calc_charger: "Ampere caricatore:", calc_daily_dist: "Distanza giornaliera:", calc_result: "Autonomia stimata", calc_cost: "Costo ricarica:", calc_charge_time: "Tempo di ricarica:", calc_cost_km: "Costo per 1 km:", calc_monthly_cost: "Costo mensile:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto", terrain_city: "Città", terrain_offroad: "Sterrato", style_eco: "Eco", style_normal: "Normale", style_sport: "Sport", faq_title: "Base di conoscenza", faq_subtitle: "Domande frequenti", faq_q1: "Come prolungare la batteria?", faq_a1: "Non caricare al 100% sempre. Evita temperature estreme.", faq_q2: "Cos'è la frenata rigenerativa?", faq_a2: "Recupera energia in frenata.", faq_q3: "Come scegliere in base al peso?", faq_a3: "Lascia margine. Se pesi 80 kg, scegli 100-120 kg max.", faq_q4: "Perché l'autonomia reale è inferiore?", faq_a4: "I test sono ideali. Peso, terreno e vento contano.", about_title: "Chi siamo", about_p1: "Siamo Scooter Compare.", about_p2: "Dati su 200+ modelli e strumenti avanzati.", about_p3: "Aiutiamo nella scelta.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Batteria personalizzata --", recommendation: "Raccomandazione", rec_text: "Migliore scelta:", rec_text2: "Buon equilibrio velocità/autonomia.", max_alert: "Massimo 4 monopattini.", theme_light: "Tema Chiaro", theme_dark: "Tema Scuro" },
+            pt: { modal_title: "Selecionar idioma", modal_subtitle: "Escolha seu idioma", nav_compare: "Comparação", nav_matcher: "Encontrar", nav_calculator: "Calculadora", nav_faq: "FAQ", main_title: "Comparação de patinetes", main_subtitle: "Mais de 200 modelos de 28 marcas", filter_all: "Todas as marcas", th_model: "Modelo", th_motor: "Motor", th_battery: "Bateria", th_speed: "Velocidade máx", th_range: "Autonomia", th_weight: "Peso", th_load: "Carga máx", th_tire: "Pneus", th_charger: "Carregador (A)", th_action: "Ação", note_specs: "* Dados do fabricante.", btn_compare: "Comparar", btn_add_compare: "+ Comparar", btn_added_compare: "✓ Selecionado", btn_clear: "Limpar", btn_print: "Imprimir / PDF", sim_result_title: "Resultado", matcher_title: "Busca inteligente", matcher_subtitle: "Encontre o patinete perfeito", matcher_budget: "Orçamento:", matcher_speed: "Velocidade mín:", matcher_load: "Seu peso:", matcher_result_title: "Top 3:", calc_title: "Calculadora de autonomia", calc_subtitle: "Selecione um modelo ou insira parâmetros", calc_select_label: "Selecione um modelo:", calc_weight: "Peso do piloto:", calc_scooter_weight: "Peso do patinete:", calc_speed: "Velocidade média:", calc_battery: "Capacidade da bateria:", calc_temp: "Temperatura:", calc_regen: "Freio regenerativo:", calc_health: "Saúde da bateria:", calc_terrain: "Terreno:", calc_style: "Estilo de condução:", calc_price: "Preço por kWh:", calc_charger: "Amperagem do carregador:", calc_daily_dist: "Distância diária:", calc_result: "Autonomia estimada", calc_cost: "Custo de recarga:", calc_charge_time: "Tempo de recarga:", calc_cost_km: "Custo por 1 km:", calc_monthly_cost: "Custo mensal:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto", terrain_city: "Cidade", terrain_offroad: "Off-road", style_eco: "Eco", style_normal: "Normal", style_sport: "Esportivo", faq_title: "Base de conhecimento", faq_subtitle: "Perguntas frequentes", faq_q1: "Como prolongar a bateria?", faq_a1: "Não carregue a 100% sempre. Evite temperaturas extremas.", faq_q2: "O que é freio regenerativo?", faq_a2: "Recupera energia ao frear.", faq_q3: "Como escolher pelo peso?", faq_a3: "Deixe margem. Se 80 kg, escolha 100-120 kg max.", faq_q4: "Por que a autonomia real é menor?", faq_a4: "Testes são ideais. Peso, terreno e vento contam.", about_title: "Sobre nós", about_p1: "Somos Scooter Compare.", about_p2: "Dados de 200+ modelos e ferramentas avançadas.", about_p3: "Ajudamos na escolha.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Bateria personalizada --", recommendation: "Recomendação", rec_text: "Melhor escolha:", rec_text2: "Bom equilíbrio velocidade/autonomia.", max_alert: "Máximo 4 patinetes.", theme_light: "Tema Claro", theme_dark: "Tema Escuro" },
+            zh: { modal_title: "选择语言", modal_subtitle: "选择您的首选语言", nav_compare: "比较", nav_matcher: "查找", nav_calculator: "计算器", nav_faq: "FAQ", main_title: "电动滑板车比较", main_subtitle: "来自28个热门品牌的200多款车型", filter_all: "所有品牌", th_model: "型号", th_motor: "电机", th_battery: "电池", th_speed: "最高速度", th_range: "续航", th_weight: "重量", th_load: "最大载重", th_tire: "轮胎", th_charger: "充电器(A)", th_action: "操作", note_specs: "* 数据来自制造商。", btn_compare: "比较所选", btn_add_compare: "+ 比较", btn_added_compare: "✓ 已选", btn_clear: "清除", btn_print: "打印 / PDF", sim_result_title: "比较结果", matcher_title: "智能匹配", matcher_subtitle: "找到完美的滑板车", matcher_budget: "预算上限:", matcher_speed: "最低速度:", matcher_load: "您的体重:", matcher_result_title: "前3名:", calc_title: "续航计算器", calc_subtitle: "从目录中选择车型或手动输入", calc_select_label: "选择车型:", calc_weight: "骑手体重:", calc_scooter_weight: "滑板车重量:", calc_speed: "平均速度:", calc_battery: "电池容量:", calc_temp: "温度:", calc_regen: "动能回收:", calc_health: "电池健康度:", calc_terrain: "路面:", calc_style: "骑行风格:", calc_price: "每千瓦时价格:", calc_charger: "充电器安培:", calc_daily_dist: "每日距离(公里):", calc_result: "预计续航", calc_cost: "充电费用:", calc_charge_time: "充电时间:", calc_cost_km: "每公里成本:", calc_monthly_cost: "每月成本:", unit_kg: "公斤", unit_kmh: "公里/小时", unit_wh: "瓦时", unit_km: "公里", unit_c: "°C", unit_hours: "小时", unit_currency: "卢布", terrain_smooth: "平坦柏油路", terrain_city: "城市道路", terrain_offroad: "越野/坡道", style_eco: "节能", style_normal: "普通", style_sport: "运动", faq_title: "知识库", faq_subtitle: "常见问题", faq_q1: "如何延长电池寿命？", faq_a1: "不要总是充满到100%。避免极端温度。", faq_q2: "什么是动能回收？", faq_a2: "在刹车时将动能转化为电能。", faq_q3: "如何按体重选择？", faq_a3: "留有余量。如果您重80公斤，请选择100-120公斤载重。", faq_q4: "为什么实际续航更低？", faq_a4: "测试是理想的。实际受体重、地形和风速影响。", about_title: "关于我们", about_p1: "我们是Scooter Compare。", about_p2: "收集了200多款车型的数据和工具。", about_p3: "帮助您做出选择。", footer: "© 2026 Scooter Compare.", custom_battery: "-- 自定义电池 --", recommendation: "推荐", rec_text: "最佳选择是", rec_text2: "兼顾速度和续航。", max_alert: "最多选择4辆滑板车。", theme_light: "浅色主题", theme_dark: "深色主题" },
+            ja: { modal_title: "言語を選択", modal_subtitle: "希望の言語を選択してください", nav_compare: "比較", nav_matcher: "検索", nav_calculator: "計算機", nav_faq: "FAQ", main_title: "電動キックボード比較", main_subtitle: "28の人気ブランドから200以上のモデル", filter_all: "すべてのブランド", th_model: "モデル", th_motor: "モーター", th_battery: "バッテリー", th_speed: "最高速度", th_range: "航続距離", th_weight: "重量", th_load: "最大積載量", th_tire: "タイヤ", th_charger: "充電器 (A)", th_action: "アクション", note_specs: "* メーカーデータ。", btn_compare: "比較", btn_add_compare: "+ 比較", btn_added_compare: "✓ 選択済み", btn_clear: "クリア", btn_print: "印刷 / PDF", sim_result_title: "比較結果", matcher_title: "スマートマッチ", matcher_subtitle: "完璧なキックボードを見つける", matcher_budget: "予算上限:", matcher_speed: "最低速度:", matcher_load: "あなたの体重:", matcher_result_title: "トップ3:", calc_title: "航続距離計算機", calc_subtitle: "モデルを選択するか手動で入力", calc_select_label: "モデルを選択：", calc_weight: "ライダーの体重：", calc_scooter_weight: "キックボードの重量：", calc_speed: "平均速度：", calc_battery: "バッテリー容量：", calc_temp: "気温：", calc_regen: "回生ブレーキ:", calc_health: "バッテリー状態:", calc_terrain: "路面：", calc_style: "走行スタイル：", calc_price: "1kWhあたりの価格：", calc_charger: "充電器のアンペア数：", calc_daily_dist: "1日の走行距離:", calc_result: "推定航続距離", calc_cost: "充電コスト：", calc_charge_time: "充電時間：", calc_cost_km: "1kmあたりのコスト:", calc_monthly_cost: "月額コスト:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "時間", unit_currency: "ルーブル", terrain_smooth: "舗装路", terrain_city: "市街地", terrain_offroad: "オフロード", style_eco: "エコ", style_normal: "ノーマル", style_sport: "スポーツ", faq_title: "知識ベース", faq_subtitle: "よくある質問", faq_q1: "バッテリー寿命を延ばすには？", faq_a1: "必要な時以外は100%充電を避け、極端な温度を避けます。", faq_q2: "回生ブレーキとは？", faq_a2: "ブレーキ時に運動エネルギーを電気に変えて回収します。", faq_q3: "体重で選ぶには？", faq_a3: "余裕を持たせます。80kgなら100-120kgの耐荷重を選びます。", faq_q4: "なぜ実際の航続距離は短い？", faq_a4: "テストは理想的です。体重、地形、風の影響を受けます。", about_title: "私たちについて", about_p1: "Scooter Compareです。", about_p2: "200以上のモデルデータとツールを提供。", about_p3: "選択をサポートします。", footer: "© 2026 Scooter Compare.", custom_battery: "-- カスタムバッテリー --", recommendation: "おすすめ", rec_text: "ベストチョイス:", rec_text2: "速度と航続距離のバランス。", max_alert: "最大4台まで。", theme_light: "ライトテーマ", theme_dark: "ダークテーマ" },
+            ko: { modal_title: "언어 선택", modal_subtitle: "선호하는 언어를 선택하세요", nav_compare: "비교", nav_matcher: "검색", nav_calculator: "계산기", nav_faq: "FAQ", main_title: "전동 킥보드 비교", main_subtitle: "28개 인기 브랜드의 200개 이상의 모델", filter_all: "모든 브랜드", th_model: "모델", th_motor: "모터", th_battery: "배터리", th_speed: "최고 속도", th_range: "주행 거리", th_weight: "무게", th_load: "최대 하중", th_tire: "타이어", th_charger: "충전기 (A)", th_action: "작업", note_specs: "* 제조사 데이터.", btn_compare: "비교", btn_add_compare: "+ 비교", btn_added_compare: "✓ 선택됨", btn_clear: "지우기", btn_print: "인쇄 / PDF", sim_result_title: "비교 결과", matcher_title: "스마트 매처", matcher_subtitle: "완벽한 킥보드 찾기", matcher_budget: "예산:", matcher_speed: "최소 속도:", matcher_load: "당신의 체중:", matcher_result_title: "탑 3:", calc_title: "주행 거리 계산기", calc_subtitle: "카탈로그에서 모델을 선택하거나 직접 입력", calc_select_label: "카탈로그에서 선택:", calc_weight: "라이더 체중:", calc_scooter_weight: "킥보드 무게:", calc_speed: "평균 속도:", calc_battery: "배터리 용량:", calc_temp: "온도:", calc_regen: "회생 제동:", calc_health: "배터리 상태:", calc_terrain: "노면:", calc_style: "주행 스타일:", calc_price: "kWh당 가격:", calc_charger: "충전기 암페어:", calc_daily_dist: "일일 거리:", calc_result: "예상 주행 거리", calc_cost: "충전 비용:", calc_charge_time: "충전 시간:", calc_cost_km: "1km당 비용:", calc_monthly_cost: "월간 비용:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "시간", unit_currency: "루블", terrain_smooth: "아스팔트", terrain_city: "도심", terrain_offroad: "비포장", style_eco: "에코", style_normal: "일반", style_sport: "스포츠", faq_title: "지식 베이스", faq_subtitle: "자주 묻는 질문", faq_q1: "배터리 수명을 늘리려면?", faq_a1: "필요 없으면 100% 충전을 피하고 극한 온도를 피하세요.", faq_q2: "회생 제동이란?", faq_a2: "제동 시 운동 에너지를 전기로 회수합니다.", faq_q3: "체중으로 선택하려면?", faq_a3: "여유를 두세요. 80kg이면 100-120kg 하중을 선택하세요.", faq_q4: "실제 주행 거리가 짧은 이유?", faq_a4: "테스트는 이상적입니다. 체중, 지형, 바람의 영향을 받습니다.", about_title: "회사 소개", about_p1: "Scooter Compare입니다.", about_p2: "200개 이상의 모델 데이터와 도구를 제공합니다.", about_p3: "선택을 돕습니다.", footer: "© 2026 Scooter Compare.", custom_battery: "-- 사용자 지정 배터리 --", recommendation: "추천", rec_text: "최고의 선택:", rec_text2: "속도와 주행 거리의 균형.", max_alert: "최대 4개.", theme_light: "라이트 테마", theme_dark: "다크 테마" },
+            tr: { modal_title: "Dil Seçin", modal_subtitle: "Dilinizi seçin", nav_compare: "Karşılaştırma", nav_matcher: "Bulucu", nav_calculator: "Hesaplayıcı", nav_faq: "SSS", main_title: "Elektrikli Scooter Karşılaştırması", main_subtitle: "28 popüler markadan 200'den fazla model", filter_all: "Tüm Markalar", th_model: "Model", th_motor: "Motor", th_battery: "Batarya", th_speed: "Maks. Hız", th_range: "Menzil", th_weight: "Ağırlık", th_load: "Maks. Yük", th_tire: "Lastikler", th_charger: "Şarj (A)", th_action: "İşlem", note_specs: "* Üretici verileri.", btn_compare: "Karşılaştır", btn_add_compare: "+ Karşılaştır", btn_added_compare: "✓ Seçildi", btn_clear: "Temizle", btn_print: "Yazdır / PDF", sim_result_title: "Sonuç", matcher_title: "Akıllı Bulucu", matcher_subtitle: "Mükemmel scooter'ı bulun", matcher_budget: "Bütçe:", matcher_speed: "Min. Hız:", matcher_load: "Kilonuz:", matcher_result_title: "İlk 3:", calc_title: "Menzil Hesaplayıcı", calc_subtitle: "Model seçin veya manuel girin", calc_select_label: "Model seçin:", calc_weight: "Sürücü Ağırlığı:", calc_scooter_weight: "Scooter Ağırlığı:", calc_speed: "Ortalama Hız:", calc_battery: "Batarya Kapasitesi:", calc_temp: "Sıcaklık:", calc_regen: "Rejeneratif Fren:", calc_health: "Batarya Sağlığı:", calc_terrain: "Zemin:", calc_style: "Sürüş Tarzı:", calc_price: "kWh Fiyatı:", calc_charger: "Şarj Amperi:", calc_daily_dist: "Günlük Mesafe:", calc_result: "Tahmini Menzil", calc_cost: "Şarj Maliyeti:", calc_charge_time: "Şarj Süresi:", calc_cost_km: "1 km Maliyeti:", calc_monthly_cost: "Aylık Maliyet:", unit_kg: "kg", unit_kmh: "km/s", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "sa", unit_currency: "rub", terrain_smooth: "Asfalt", terrain_city: "Şehir", terrain_offroad: "Arazi", style_eco: "Eko", style_normal: "Normal", style_sport: "Spor", faq_title: "Bilgi Bankası", faq_subtitle: "Sık Sorulan Sorular", faq_q1: "Batarya ömrü nasıl uzatılır?", faq_a1: "Gereksizse %100 şarj etmeyin. Aşırı sıcaklıklardan kaçının.", faq_q2: "Rejeneratif fren nedir?", faq_a2: "Fren yaparken enerjiyi geri kazanır.", faq_q3: "Kiloya göre nasıl seçilir?", faq_a3: "Pay bırakın. 80 kg iseniz 100-120 kg yük seçin.", faq_q4: "Gerçek menzil neden az?", faq_a4: "Testler idealdir. Ağırlık, arazi ve rüzgar etkiler.", about_title: "Hakkımızda", about_p1: "Biz Scooter Compare'iz.", about_p2: "200+ model verisi ve araçlar sunduk.", about_p3: "Seçime yardımcı oluyoruz.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Özel Batarya --", recommendation: "Öneri", rec_text: "En iyi seçim:", rec_text2: "Hız ve menzil dengesi.", max_alert: "Maksimum 4 scooter.", theme_light: "Açık Tema", theme_dark: "Koyu Tema" },
+            ar: { modal_title: "اختر اللغة", modal_subtitle: "اختر لغتك المفضلة", nav_compare: "مقارنة", nav_matcher: "الباحث", nav_calculator: "حاسبة", nav_faq: "الأسئلة", main_title: "مقارنة السكوترات", main_subtitle: "أكثر من 200 طراز من 28 علامة تجارية", filter_all: "جميع العلامات", th_model: "الطراز", th_motor: "المحرك", th_battery: "البطارية", th_speed: "السرعة القصوى", th_range: "المدى", th_weight: "الوزن", th_load: "الحمل الأقصى", th_tire: "الإطارات", th_charger: "الشاحن (أمبير)", th_action: "إجراء", note_specs: "* بيانات الشركة المصنعة.", btn_compare: "مقارنة", btn_add_compare: "+ مقارنة", btn_added_compare: "✓ محدد", btn_clear: "مسح", btn_print: "طباعة / PDF", sim_result_title: "النتيجة", matcher_title: "الباحث الذكي", matcher_subtitle: "اعثر على السكوتر المثالي", matcher_budget: "الميزانية:", matcher_speed: "أدنى سرعة:", matcher_load: "وزنك:", matcher_result_title: "أفضل 3:", calc_title: "حاسبة المدى", calc_subtitle: "اختر طرازًا أو أدخل المعلمات", calc_select_label: "اختر طرازًا:", calc_weight: "وزن الراكب:", calc_scooter_weight: "وزن السكوتر:", calc_speed: "متوسط السرعة:", calc_battery: "سعة البطارية:", calc_temp: "درجة الحرارة:", calc_regen: "الفرملة التجديدية:", calc_health: "صحة البطارية:", calc_terrain: "التضاريس:", calc_style: "أسلوب القيادة:", calc_price: "السعر لكل كيلوواط ساعة:", calc_charger: "أمبير الشاحن:", calc_daily_dist: "المسافة اليومية:", calc_result: "المدى التقديري", calc_cost: "تكلفة الشحن:", calc_charge_time: "وقت الشحن:", calc_cost_km: "تكلفة الكيلومتر:", calc_monthly_cost: "التكلفة الشهرية:", unit_kg: "كجم", unit_kmh: "كم/س", unit_wh: "واط/ساعة", unit_km: "كم", unit_c: "°C", unit_hours: "ساعة", unit_currency: "روب", terrain_smooth: "أسفلت", terrain_city: "مدينة", terrain_offroad: "وعر", style_eco: "اقتصادي", style_normal: "عادي", style_sport: "رياضي", faq_title: "قاعدة المعرفة", faq_subtitle: "الأسئلة الشائعة", faq_q1: "كيف تطيل عمر البطارية؟", faq_a1: "لا تشحن إلى 100% دائمًا. تجنب الحرارة الشديدة.", faq_q2: "ما هي الفرملة التجديدية؟", faq_a2: "تستعيد الطاقة أثناء الفرملة.", faq_q3: "كيف تختار حسب الوزن؟", faq_a3: "اترك هامشًا. إذا كان وزنك 80 كجم، اختر 100-120 كجم.", faq_q4: "لماذا المدى الحقيقي أقل؟", faq_a4: "الاختبارات مثالية. الوزن والتضاريس والرياح تؤثر.", about_title: "من نحن", about_p1: "نحن Scooter Compare.", about_p2: "جمعنا بيانات 200+ طراز وأدوات.", about_p3: "نساعدك في الاختيار.", footer: "© 2026 Scooter Compare.", custom_battery: "-- بطارية مخصصة --", recommendation: "توصية", rec_text: "أفضل خيار:", rec_text2: "توازن بين السرعة والمدى.", max_alert: "الحد الأقصى 4.", theme_light: "مظهر فاتح", theme_dark: "مظهر داكن" },
+            pl: { modal_title: "Wybierz język", modal_subtitle: "Wybierz preferowany język", nav_compare: "Porównanie", nav_matcher: "Wyszukiwarka", nav_calculator: "Kalkulator", nav_faq: "FAQ", main_title: "Porównanie hulajnóg", main_subtitle: "Ponad 200 modeli od 28 marek", filter_all: "Wszystkie marki", th_model: "Model", th_motor: "Silnik", th_battery: "Bateria", th_speed: "Maks. prędkość", th_range: "Zasięg", th_weight: "Waga", th_load: "Maks. obciążenie", th_tire: "Opony", th_charger: "Ładowarka (A)", th_action: "Akcja", note_specs: "* Dane producenta.", btn_compare: "Porównaj", btn_add_compare: "+ Porównaj", btn_added_compare: "✓ Wybrano", btn_clear: "Wyczyść", btn_print: "Drukuj / PDF", sim_result_title: "Wynik", matcher_title: "Inteligentna wyszukiwarka", matcher_subtitle: "Znajdź idealną hulajnogę", matcher_budget: "Budżet:", matcher_speed: "Min. prędkość:", matcher_load: "Twoja waga:", matcher_result_title: "Top 3:", calc_title: "Kalkulator zasięgu", calc_subtitle: "Wybierz model lub wprowadź parametry", calc_select_label: "Wybierz model:", calc_weight: "Waga kierowcy:", calc_scooter_weight: "Waga hulajnogi:", calc_speed: "Średnia prędkość:", calc_battery: "Pojemność baterii:", calc_temp: "Temperatura:", calc_regen: "Rekuperacja:", calc_health: "Stan baterii:", calc_terrain: "Nawierzchnia:", calc_style: "Styl jazdy:", calc_price: "Cena za kWh:", calc_charger: "Ampery ładowarki:", calc_daily_dist: "Dzienny dystans:", calc_result: "Szacowany zasięg", calc_cost: "Koszt ładowania:", calc_charge_time: "Czas ładowania:", calc_cost_km: "Koszt za 1 km:", calc_monthly_cost: "Koszt miesięczny:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "godz", unit_currency: "rub", terrain_smooth: "Asfalt", terrain_city: "Miasto", terrain_offroad: "Bezdroża", style_eco: "Eko", style_normal: "Normalny", style_sport: "Sport", faq_title: "Baza wiedzy", faq_subtitle: "Częste pytania", faq_q1: "Jak wydłużyć życie baterii?", faq_a1: "Nie ładuj do 100% bez potrzeby. Unikaj ekstremalnych temperatur.", faq_q2: "Co to rekuperacja?", faq_a2: "Odzyskiwanie energii podczas hamowania.", faq_q3: "Jak wybrać według wagi?", faq_a3: "Zostaw margines. Przy 80 kg wybierz 100-120 kg.", faq_q4: "Dlaczego rzeczywisty zasięg jest mniejszy?", faq_a4: "Testy są idealne. Waga, teren i wiatr mają znaczenie.", about_title: "O nas", about_p1: "Jesteśmy Scooter Compare.", about_p2: "Dane o 200+ modelach i zaawansowane narzędzia.", about_p3: "Pomagamy w wyborze.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Własna bateria --", recommendation: "Rekomendacja", rec_text: "Najlepszy wybór:", rec_text2: "Balans prędkości i zasięgu.", max_alert: "Maksymalnie 4.", theme_light: "Jasny motyw", theme_dark: "Ciemny motyw" },
+            nl: { modal_title: "Selecteer taal", modal_subtitle: "Kies je voorkeurstaal", nav_compare: "Vergelijking", nav_matcher: "Zoeker", nav_calculator: "Calculator", nav_faq: "FAQ", main_title: "E-scooter vergelijking", main_subtitle: "Meer dan 200 modellen van 28 merken", filter_all: "Alle merken", th_model: "Model", th_motor: "Motor", th_battery: "Accu", th_speed: "Max. snelheid", th_range: "Bereik", th_weight: "Gewicht", th_load: "Max. belasting", th_tire: "Banden", th_charger: "Oplader (A)", th_action: "Actie", note_specs: "* Fabrieksgegevens.", btn_compare: "Vergelijk", btn_add_compare: "+ Vergelijk", btn_added_compare: "✓ Geselecteerd", btn_clear: "Wissen", btn_print: "Afdrukken / PDF", sim_result_title: "Resultaat", matcher_title: "Slimme zoeker", matcher_subtitle: "Vind de perfecte scooter", matcher_budget: "Budget:", matcher_speed: "Min. snelheid:", matcher_load: "Jouw gewicht:", matcher_result_title: "Top 3:", calc_title: "Bereik calculator", calc_subtitle: "Selecteer een model of voer parameters in", calc_select_label: "Selecteer een model:", calc_weight: "Gewicht bestuurder:", calc_scooter_weight: "Gewicht scooter:", calc_speed: "Gemiddelde snelheid:", calc_battery: "Accucapaciteit:", calc_temp: "Temperatuur:", calc_regen: "Regeneratief remmen:", calc_health: "Accuconditie:", calc_terrain: "Ondergrond:", calc_style: "Rijstijl:", calc_price: "Prijs per kWh:", calc_charger: "Oplader Ampère:", calc_daily_dist: "Dagelijkse afstand:", calc_result: "Geschat bereik", calc_cost: "Oplaadkosten:", calc_charge_time: "Oplaadtijd:", calc_cost_km: "Kosten per 1 km:", calc_monthly_cost: "Maandelijkse kosten:", unit_kg: "kg", unit_kmh: "km/u", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "uur", unit_currency: "wrijf", terrain_smooth: "Asfalt", terrain_city: "Stad", terrain_offroad: "Off-road", style_eco: "Eco", style_normal: "Normaal", style_sport: "Sport", faq_title: "Kennisbank", faq_subtitle: "Veelgestelde vragen", faq_q1: "Hoe verleng ik de levensduur van de accu?", faq_a1: "Laad niet altijd tot 100%. Vermijd extreme temperaturen.", faq_q2: "Wat is regeneratief remmen?", faq_a2: "Herwint energie tijdens het remmen.", faq_q3: "Hoe kies ik op gewicht?", faq_a3: "Laat marge. Bij 80 kg, kies 100-120 kg max.", faq_q4: "Waarom is het echte bereik lager?", faq_a4: "Tests zijn ideaal. Gewicht, terrein en wind tellen mee.", about_title: "Over ons", about_p1: "Wij zijn Scooter Compare.", about_p2: "Gegevens van 200+ modellen en tools.", about_p3: "Wij helpen bij de keuze.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Eigen accu --", recommendation: "Aanbeveling", rec_text: "Beste keuze:", rec_text2: "Balans snelheid en bereik.", max_alert: "Maximaal 4.", theme_light: "Licht thema", theme_dark: "Donker thema" },
+            uk: { modal_title: "Оберіть мову", modal_subtitle: "Виберіть бажану мову", nav_compare: "Порівняння", nav_matcher: "Підбір", nav_calculator: "Калькулятор", nav_faq: "FAQ", main_title: "Порівняння електросамокатів", main_subtitle: "Понад 200 моделей від 28 брендів", filter_all: "Усі бренди", th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Макс. швидкість", th_range: "Запас ходу", th_weight: "Вага", th_load: "Навантаження", th_tire: "Колеса", th_charger: "Зарядка (А)", th_action: "Дія", note_specs: "* Дані виробників.", btn_compare: "Порівняти", btn_add_compare: "+ Порівняти", btn_added_compare: "✓ Обрано", btn_clear: "Очистити", btn_print: "Друк / PDF", sim_result_title: "Результат", matcher_title: "Розумний підбір", matcher_subtitle: "Знайдіть ідеальний самокат", matcher_budget: "Бюджет:", matcher_speed: "Мін. швидкість:", matcher_load: "Ваша вага:", matcher_result_title: "Топ 3:", calc_title: "Калькулятор запасу ходу", calc_subtitle: "Виберіть модель або введіть параметри", calc_select_label: "Виберіть модель:", calc_weight: "Вага райдера:", calc_scooter_weight: "Вага самоката:", calc_speed: "Середня швидкість:", calc_battery: "Ємність батареї:", calc_temp: "Температура:", calc_regen: "Рекуперація:", calc_health: "Знос батареї:", calc_terrain: "Покриття:", calc_style: "Стиль їзди:", calc_price: "Ціна за 1 кВт·год:", calc_charger: "Зарядний пристрій (А):", calc_daily_dist: "Пробіг на день:", calc_result: "Приблизний запас ходу", calc_cost: "Вартість зарядки:", calc_charge_time: "Час зарядки:", calc_cost_km: "Ціна за 1 км:", calc_monthly_cost: "Вартість на місяць:", unit_kg: "кг", unit_kmh: "км/год", unit_wh: "Вт·год", unit_km: "км", unit_c: "°C", unit_hours: "год", unit_currency: "руб", terrain_smooth: "Асфальт", terrain_city: "Місто", terrain_offroad: "Бездоріжжя", style_eco: "Еко", style_normal: "Звичайний", style_sport: "Спорт", faq_title: "База знань", faq_subtitle: "Часті питання", faq_q1: "Як продовжити життя батареї?", faq_a1: "Не заряджайте до 100% без потреби. Уникайте екстремальних температур.", faq_q2: "Що таке рекуперація?", faq_a2: "Повернення енергії при гальмуванні.", faq_q3: "Як вибрати за вагою?", faq_a3: "Залишайте запас. При 80 кг обирайте 100-120 кг.", faq_q4: "Чому реальний пробіг менший?", faq_a4: "Тести ідеальні. Вага, рельєф і вітер впливають.", about_title: "Про нас", about_p1: "Ми — Scooter Compare.", about_p2: "Дані про 200+ моделей та інструменти.", about_p3: "Допомагаємо з вибором.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Свій акумулятор --", recommendation: "Рекомендація", rec_text: "Найкращий вибір:", rec_text2: "Баланс швидкості та запасу ходу.", max_alert: "Максимум 4.", theme_light: "Світла тема", theme_dark: "Темна тема" }
         };
 
         let currentLang = 'en';
         let currentFilter = 'all';
         let compareList = [];
         let currentVoltage = 48;
+        let currentTheme = localStorage.getItem('theme') || 'dark';
 
         const scooters = [
-            { id: 1, brand: "KuKirin", model: "G2", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 26, charger: 2 },
-            { id: 2, brand: "KuKirin", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 22, charger: 2 },
-            { id: 3, brand: "KuKirin", model: "G2 Max", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "75", weight: 30, charger: 2 },
-            { id: 4, brand: "KuKirin", model: "G2 Master", motor: "2×1000 W", battery: "52 V 20.8 Ah", speed: "60", range: "70", weight: 30, charger: 2 },
-            { id: 5, brand: "KuKirin", model: "G2 Ultra", motor: "2×800 W", battery: "48 V 18 Ah", speed: "50", range: "55", weight: 28, charger: 2 },
-            { id: 6, brand: "KuKirin", model: "G3", motor: "1200 W", battery: "52 V 23 Ah", speed: "65", range: "70", weight: 31, charger: 2 },
-            { id: 7, brand: "KuKirin", model: "G3 Pro", motor: "1200 W", battery: "52 V 23 Ah", speed: "65", range: "70", weight: 31, charger: 2 },
-            { id: 8, brand: "KuKirin", model: "G4", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3 },
-            { id: 9, brand: "KuKirin", model: "G4 Pro", motor: "2000 W", battery: "60 V 24 Ah", speed: "70", range: "85", weight: 38, charger: 3 },
-            { id: 10, brand: "KuKirin", model: "G100", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3 },
-            { id: 11, brand: "KuKirin", model: "M4", motor: "500 W", battery: "48 V 15 Ah", speed: "45", range: "50", weight: 22, charger: 2 },
-            { id: 12, brand: "KuKirin", model: "M4 Pro", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "64", weight: 24, charger: 2 },
-            { id: 13, brand: "KuKirin", model: "A1", motor: "800 W", battery: "48 V 13 Ah", speed: "45", range: "45", weight: 22, charger: 2 },
-            { id: 14, brand: "KuKirin", model: "S1 Max", motor: "350 W", battery: "36 V 10.4 Ah", speed: "25", range: "30", weight: 16, charger: 2 },
-            { id: 15, brand: "KuKirin", model: "T3", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "58", weight: 23, charger: 2 },
-            { id: 16, brand: "KuKirin", model: "X1", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "65", weight: 26, charger: 2 },
-            { id: 17, brand: "Kugoo", model: "G1", motor: "2×1000 W", battery: "52 V 18.2 Ah", speed: "60", range: "70", weight: 35, charger: 2 },
-            { id: 18, brand: "Kugoo", model: "G1 Pro", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "40", weight: 14, charger: 2 },
-            { id: 19, brand: "Kugoo", model: "G2", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "60", weight: 22, charger: 2 },
-            { id: 20, brand: "Kugoo", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 31, charger: 2 },
-            { id: 21, brand: "Kugoo", model: "G3", motor: "1000 W", battery: "48 V 18 Ah", speed: "55", range: "70", weight: 28, charger: 2 },
-            { id: 22, brand: "Kugoo", model: "S1", motor: "350 W", battery: "36 V 6 Ah", speed: "25", range: "20", weight: 11, charger: 1.5 },
-            { id: 23, brand: "Kugoo", model: "S1 Pro", motor: "350 W", battery: "36 V 7.5 Ah", speed: "30", range: "30", weight: 12, charger: 1.5 },
-            { id: 24, brand: "Kugoo", model: "S2", motor: "1100 W", battery: "48 V 15 Ah", speed: "55", range: "60", weight: 26, charger: 2 },
-            { id: 25, brand: "Kugoo", model: "S3", motor: "350 W", battery: "36 V 6 Ah", speed: "28", range: "25", weight: 11, charger: 1.5 },
-            { id: 26, brand: "Kugoo", model: "S3 Pro", motor: "500 W", battery: "48 V 10 Ah", speed: "40", range: "40", weight: 16, charger: 2 },
-            { id: 27, brand: "Kugoo", model: "M2 Pro", motor: "350 W", battery: "36 V 7.5 Ah", speed: "25", range: "30", weight: 13, charger: 1.5 },
-            { id: 28, brand: "Kugoo", model: "M4", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "50", weight: 20, charger: 2 },
-            { id: 29, brand: "Kugoo", model: "M4 Pro", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "60", weight: 22, charger: 2 },
-            { id: 30, brand: "Kugoo", model: "M5", motor: "800 W", battery: "48 V 18 Ah", speed: "50", range: "70", weight: 26, charger: 2 },
-            { id: 31, brand: "Kugoo", model: "F1", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "35", weight: 14, charger: 2 },
-            { id: 32, brand: "Kugoo", model: "Max Speed", motor: "600 W", battery: "48 V 11.1 Ah", speed: "45", range: "40", weight: 18, charger: 2 },
-            { id: 33, brand: "Kugoo", model: "G-Booster", motor: "1600 W", battery: "60 V 20 Ah", speed: "65", range: "70", weight: 33, charger: 2 },
-            { id: 34, brand: "Kugoo", model: "Kirin", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "70", weight: 47, charger: 2 },
-            { id: 35, brand: "Kugoo", model: "X1", motor: "500 W", battery: "48 V 12.5 Ah", speed: "30", range: "50", weight: 29.4, charger: 2 },
-            { id: 36, brand: "Kugoo", model: "X2", motor: "1000 W", battery: "48 V 16 Ah", speed: "50", range: "60", weight: 31, charger: 2 },
-            { id: 37, brand: "Kugoo", model: "X3", motor: "500 W", battery: "48 V 12.5 Ah", speed: "30", range: "50", weight: 29.4, charger: 2 },
-            { id: 38, brand: "Ninebot", model: "Max G30", motor: "350 W", battery: "36 V 15.3 Ah", speed: "25", range: "65", weight: 19, charger: 2 },
-            { id: 39, brand: "Ninebot", model: "Max G2", motor: "900 W", battery: "36 V 15.3 Ah", speed: "25", range: "70", weight: 24.3, charger: 2 },
-            { id: 40, brand: "Ninebot", model: "F40", motor: "350 W", battery: "36 V 10.2 Ah", speed: "30", range: "40", weight: 17.1, charger: 2 },
-            { id: 41, brand: "Ninebot", model: "F30", motor: "350 W", battery: "36 V 7.65 Ah", speed: "25", range: "30", weight: 16, charger: 2 },
-            { id: 42, brand: "Ninebot", model: "E3 Pro", motor: "800 W", battery: "367 Wh", speed: "20", range: "55", weight: 17.5, charger: 2 },
-            { id: 43, brand: "Ninebot", model: "F3 Pro", motor: "450 W", battery: "477 Wh", speed: "20", range: "70", weight: 18.6, charger: 2 },
-            { id: 44, brand: "Ninebot", model: "E22", motor: "300 W", battery: "36 V 5.1 Ah", speed: "20", range: "22", weight: 13, charger: 1.5 },
-            { id: 45, brand: "Ninebot", model: "D18U", motor: "300 W", battery: "36 V 7.8 Ah", speed: "25", range: "18", weight: 14.9, charger: 1.5 },
-            { id: 46, brand: "Ninebot", model: "Air T15", motor: "300 W", battery: "36 V 5.1 Ah", speed: "20", range: "15", weight: 10.5, charger: 1.5 },
-            { id: 47, brand: "Ninebot", model: "F25I", motor: "300 W", battery: "36 V 7.65 Ah", speed: "25", range: "25", weight: 16, charger: 2 },
-            { id: 48, brand: "Ninebot", model: "G65", motor: "500 W", battery: "36 V 10.2 Ah", speed: "25", range: "40", weight: 19, charger: 2 },
-            { id: 49, brand: "Xiaomi", model: "Electric Scooter 6 Ultra", motor: "500 W", battery: "~600 Wh", speed: "20", range: "75", weight: 33.7, charger: 2 },
-            { id: 50, brand: "Xiaomi", model: "Electric Scooter 6 Max", motor: "450 W", battery: "~550 Wh", speed: "20", range: "70", weight: 28, charger: 2 },
-            { id: 51, brand: "Xiaomi", model: "Electric Scooter 6 Pro", motor: "400 W", battery: "~477 Wh", speed: "20", range: "70", weight: 27.3, charger: 2 },
-            { id: 52, brand: "Xiaomi", model: "Electric Scooter 6", motor: "400 W", battery: "~400 Wh", speed: "20", range: "60", weight: 25, charger: 2 },
-            { id: 53, brand: "Xiaomi", model: "Electric Scooter 6 Lite", motor: "300 W", battery: "~300 Wh", speed: "20", range: "45", weight: 22, charger: 2 },
-            { id: 54, brand: "Xiaomi", model: "Electric Scooter 5 Max", motor: "1000 W", battery: "477 Wh", speed: "20", range: "60", weight: 22.3, charger: 2 },
-            { id: 55, brand: "Xiaomi", model: "Electric Scooter 4 Pro", motor: "350 W", battery: "446 Wh", speed: "25", range: "55", weight: 17, charger: 1.5 },
-            { id: 56, brand: "Xiaomi", model: "Mi Electric Scooter 3", motor: "300 W", battery: "260 Wh", speed: "25", range: "30", weight: 13.2, charger: 1.5 },
-            { id: 57, brand: "Xiaomi", model: "Mi Electric Scooter Essential", motor: "250 W", battery: "183 Wh", speed: "20", range: "20", weight: 12, charger: 1.5 },
-            { id: 58, brand: "Xiaomi", model: "Mi Electric Scooter Pro 2", motor: "300 W", battery: "446 Wh", speed: "25", range: "45", weight: 14.2, charger: 1.5 },
-            { id: 59, brand: "Joyor", model: "S5", motor: "500 W", battery: "48 V 13 Ah", speed: "25", range: "55", weight: 22, charger: 2 },
-            { id: 60, brand: "Joyor", model: "S10-S", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "65", range: "85", weight: 27, charger: 2 },
-            { id: 61, brand: "Joyor", model: "F5", motor: "500 W", battery: "48 V 10.4 Ah", speed: "25", range: "38", weight: 14.3, charger: 2 },
-            { id: 62, brand: "Joyor", model: "T6", motor: "600 W", battery: "48 V 18 Ah", speed: "25", range: "70", weight: 24, charger: 2 },
-            { id: 63, brand: "Joyor", model: "T10", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "60", range: "75", weight: 32.5, charger: 2 },
-            { id: 64, brand: "Joyor", model: "S8", motor: "600 W", battery: "48 V 26 Ah", speed: "25", range: "90", weight: 28, charger: 2 },
-            { id: 65, brand: "Joyor", model: "Y8-S", motor: "500 W", battery: "48 V 26 Ah", speed: "20", range: "90", weight: 30, charger: 2 },
-            { id: 66, brand: "Joyor", model: "C10E", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "40", weight: 16, charger: 2 },
-            { id: 67, brand: "Joyor", model: "E6-S", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "60", weight: 22, charger: 2 },
-            { id: 68, brand: "Joyor", model: "T-PRO", motor: "1000 W", battery: "60 V 20 Ah", speed: "60", range: "80", weight: 34, charger: 2 },
-            { id: 69, brand: "Ausom", model: "L1", motor: "500 W", battery: "48 V 15.6 Ah", speed: "25", range: "70", weight: 29.2, charger: 2 },
-            { id: 70, brand: "Ausom", model: "L2 Max", motor: "2×1000 W", battery: "48 V 20.8 Ah", speed: "64", range: "90", weight: 33, charger: 2 },
-            { id: 71, brand: "Ausom", model: "Leopard", motor: "1000 W", battery: "48 V 20.8 Ah", speed: "50", range: "75", weight: 30, charger: 2 },
-            { id: 72, brand: "Ausom", model: "Gosoul 2 Pro", motor: "2×1400 W", battery: "60 V 20 Ah", speed: "55", range: "80", weight: 35, charger: 2 },
-            { id: 73, brand: "Ausom", model: "Laluz 2 Pro", motor: "2×1400 W", battery: "60 V 20 Ah", speed: "55", range: "90", weight: 36, charger: 2 },
-            { id: 74, brand: "Ausom", model: "DT2 Pro", motor: "2×1000 W", battery: "52 V 20 Ah", speed: "50", range: "70", weight: 32, charger: 2 },
-            { id: 75, brand: "Ausom", model: "K20 Pro", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "50", range: "70", weight: 31, charger: 2 },
-            { id: 76, brand: "Ausom", model: "F1 Max", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "50", range: "65", weight: 30, charger: 2 },
-            { id: 77, brand: "Ausom", model: "L2", motor: "500 W", battery: "48 V 15.6 Ah", speed: "45", range: "70", weight: 29, charger: 2 },
-            { id: 78, brand: "Ausom", model: "DT2", motor: "2×800 W", battery: "48 V 18 Ah", speed: "45", range: "65", weight: 30, charger: 2 },
-            { id: 79, brand: "Dualtron", model: "City 2.0", motor: "2×2000 W", battery: "60 V 25 Ah", speed: "70", range: "80", weight: 35, charger: 4 },
-            { id: 80, brand: "Dualtron", model: "Spider 2", motor: "2×2000 W", battery: "60 V 30 Ah", speed: "64", range: "80", weight: 26, charger: 4 },
-            { id: 81, brand: "Dualtron", model: "Compact", motor: "2×1700 W", battery: "60 V 30 Ah", speed: "61", range: "105", weight: 34, charger: 4 },
-            { id: 82, brand: "Dualtron", model: "Forever", motor: "2×900 W", battery: "60 V 18-30 Ah", speed: "50", range: "50", weight: 38, charger: 4 },
-            { id: 83, brand: "Dualtron", model: "Victor Luxury Plus", motor: "2×1450 W", battery: "60 V 30 Ah", speed: "80", range: "100", weight: 40, charger: 5 },
-            { id: 84, brand: "Dualtron", model: "Achilleus Limited", motor: "2×2000 W", battery: "72 V 40 Ah", speed: "100", range: "120", weight: 50, charger: 5 },
-            { id: 85, brand: "Dualtron", model: "X Limited", motor: "2×2500 W", battery: "72 V 40 Ah", speed: "110", range: "130", weight: 55, charger: 5 },
-            { id: 86, brand: "Dualtron", model: "Storm Limited", motor: "2×2500 W", battery: "72 V 40 Ah", speed: "100", range: "120", weight: 52, charger: 5 },
-            { id: 87, brand: "Dualtron", model: "Sonic Model N", motor: "2×350 W", battery: "36 V 10.2 Ah", speed: "30", range: "30", weight: 14.7, charger: 2 },
-            { id: 88, brand: "Dualtron", model: "Thunder 3", motor: "2×2500 W", battery: "72 V 45 Ah", speed: "100", range: "150", weight: 58, charger: 5 },
-            { id: 89, brand: "Kaabo", model: "Wolf Warrior X GT", motor: "2×1100 W", battery: "60 V 29 Ah", speed: "70", range: "110", weight: 38, charger: 4 },
-            { id: 90, brand: "Kaabo", model: "Wolf King GTR Max", motor: "~13.4 кВт", battery: "72 V 40 Ah", speed: "105", range: "200", weight: 67, charger: 5 },
-            { id: 91, brand: "Kaabo", model: "Mantis King Pro", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "60", range: "80", weight: 34, charger: 2 },
-            { id: 92, brand: "Kaabo", model: "Wolf Warrior X Plus", motor: "2×1100 W", battery: "60 V 24 Ah", speed: "70", range: "70", weight: 36, charger: 4 },
-            { id: 93, brand: "Kaabo", model: "Wolf Warrior 11 Max", motor: "2×1500 W", battery: "60 V 35 Ah", speed: "80", range: "150", weight: 45, charger: 5 },
-            { id: 94, brand: "Kaabo", model: "Mantis 8 Lite", motor: "2×500 W", battery: "48 V 13 Ah", speed: "45", range: "40", weight: 22, charger: 2 },
-            { id: 95, brand: "Kaabo", model: "Mantis 10 Lite", motor: "2×500 W", battery: "48 V 18 Ah", speed: "50", range: "60", weight: 28, charger: 2 },
-            { id: 96, brand: "Kaabo", model: "Mantis X Plus", motor: "2×500 W", battery: "48 V 18 Ah", speed: "50", range: "75", weight: 30, charger: 2 },
-            { id: 97, brand: "Kaabo", model: "Urban", motor: "500 W", battery: "48 V 15 Ah", speed: "45", range: "40", weight: 23, charger: 2 },
-            { id: 98, brand: "Kaabo", model: "Wolf WariorGT Pro", motor: "2×1200 W", battery: "60 V 30 Ah", speed: "80", range: "90", weight: 42, charger: 4 },
-            { id: 99, brand: "Vsett", model: "8+", motor: "600 W", battery: "48 V 16 Ah", speed: "45", range: "90", weight: 24, charger: 2 },
-            { id: 100, brand: "Vsett", model: "9+", motor: "2×650 W", battery: "48 V 19.2 Ah", speed: "50", range: "70", weight: 23, charger: 2 },
-            { id: 101, brand: "Vsett", model: "10+", motor: "2×1400 W", battery: "60 V 24 Ah", speed: "65", range: "100", weight: 32, charger: 3 },
-            { id: 102, brand: "Vsett", model: "8 Apex", motor: "600 W", battery: "48 V 16 Ah", speed: "60", range: "70", weight: 24, charger: 2 },
-            { id: 103, brand: "Vsett", model: "9 Apex", motor: "2×650 W", battery: "48 V 19.2 Ah", speed: "60", range: "70", weight: 23, charger: 2 },
-            { id: 104, brand: "Vsett", model: "10 Apex", motor: "2×1400 W", battery: "60 V 28 Ah", speed: "80", range: "110", weight: 35, charger: 3 },
-            { id: 105, brand: "Vsett", model: "10 Apex+", motor: "2×1400 W", battery: "60 V 28 Ah", speed: "80", range: "110", weight: 35, charger: 3 },
-            { id: 106, brand: "Inmotion", model: "RS", motor: "2×2000 W", battery: "72 V 40 Ah", speed: "80", range: "120", weight: 56, charger: 5 },
-            { id: 107, brand: "Inmotion", model: "RS Jet", motor: "2×1200 W", battery: "72 V 25 Ah", speed: "80", range: "90", weight: 46.5, charger: 4 },
-            { id: 108, brand: "Inmotion", model: "RS Midnight", motor: "8400 W", battery: "72 V 40 Ah", speed: "96", range: "96", weight: 58, charger: 5 },
-            { id: 109, brand: "Inmotion", model: "RS 3.0", motor: "8400 W", battery: "72 V 40 Ah", speed: "100", range: "100", weight: 58, charger: 5 },
-            { id: 110, brand: "Inmotion", model: "V12HT", motor: "2800 W", battery: "1750 Wh", speed: "60", range: "150", weight: 29, charger: 4 },
-            { id: 111, brand: "Inmotion", model: "Air Pro", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "40", weight: 21, charger: 2 },
-            { id: 112, brand: "Inmotion", model: "Climber", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "40", weight: 22, charger: 2 },
-            { id: 113, brand: "Nami", model: "Burn-e 2", motor: "2×1000 W", battery: "72 V 30 Ah", speed: "72", range: "150", weight: 47, charger: 5 },
-            { id: 114, brand: "Nami", model: "Burn-e Max", motor: "2×1500 W", battery: "72 V 40 Ah", speed: "96", range: "185", weight: 50, charger: 5 },
-            { id: 115, brand: "Nami", model: "Klima Max", motor: "2×1000 W", battery: "60 V 30 Ah", speed: "67", range: "96", weight: 36, charger: 4 },
-            { id: 116, brand: "Nami", model: "Stellar", motor: "1000 W", battery: "52 V 15.6 Ah", speed: "50", range: "50", weight: 28, charger: 2 },
-            { id: 117, brand: "Nami", model: "Blast", motor: "2000 W", battery: "60 V 21 Ah", speed: "80", range: "100", weight: 45, charger: 4 },
-            { id: 118, brand: "Nami", model: "Viper", motor: "2×1000 W", battery: "60 V 25 Ah", speed: "70", range: "90", weight: 38, charger: 4 },
-            { id: 119, brand: "Nami", model: "Klima", motor: "2×1000 W", battery: "52 V 23.4 Ah", speed: "75", range: "80", weight: 29, charger: 4 },
-            { id: 120, brand: "Hiboy", model: "Titan Pro", motor: "2×750 W", battery: "48 V 36 Ah", speed: "53", range: "128", weight: 47, charger: 3 },
-            { id: 121, brand: "Hiboy", model: "DM2", motor: "2×1000 W", battery: "48 V 27 Ah", speed: "59", range: "70", weight: 38, charger: 3 },
-            { id: 122, brand: "Hiboy", model: "S2", motor: "350 W", battery: "270 Wh", speed: "30", range: "27", weight: 13, charger: 1.5 },
-            { id: 123, brand: "Hiboy", model: "Titan", motor: "2×500 W", battery: "48 V 18 Ah", speed: "40", range: "74", weight: 35, charger: 2 },
-            { id: 124, brand: "Hiboy", model: "S2 Nova", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "32", weight: 14, charger: 2 },
-            { id: 125, brand: "Hiboy", model: "X300", motor: "500 W", battery: "48 V 15 Ah", speed: "37", range: "60", weight: 22, charger: 2 },
-            { id: 126, brand: "Hiboy", model: "S3", motor: "350 W", battery: "36 V 7.5 Ah", speed: "30", range: "27", weight: 13, charger: 1.5 },
-            { id: 127, brand: "Hiboy", model: "S2 Pro", motor: "500 W", battery: "48 V 10 Ah", speed: "30", range: "40", weight: 15, charger: 2 },
-            { id: 128, brand: "Hiboy", model: "S2 Max", motor: "500 W", battery: "48 V 15 Ah", speed: "30", range: "65", weight: 17, charger: 2 },
-            { id: 129, brand: "Hiboy", model: "X5", motor: "500 W", battery: "36 V 15.6 Ah", speed: "30", range: "45", weight: 20, charger: 2 },
-            { id: 130, brand: "Segway", model: "Ninebot MAX G3 Plus", motor: "2200 W", battery: "36 V 20 Ah", speed: "45", range: "90", weight: 25.4, charger: 4 },
-            { id: 131, brand: "Apollo", model: "City 2.0", motor: "1200 W", battery: "48 V 18 Ah", speed: "51", range: "64", weight: 32.7, charger: 3 },
-            { id: 132, brand: "Mercane", model: "WideWheel Pro", motor: "2×500 W", battery: "48 V 15 Ah", speed: "40", range: "70", weight: 22, charger: 2 },
-            { id: 133, brand: "Zero", model: "10X", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "65", range: "80", weight: 35, charger: 2 },
-            { id: 134, brand: "NAVEE", model: "XT5 Pro", motor: "700 W", battery: "46.8 V 12.75 Ah", speed: "50", range: "75", weight: 34.8, charger: 5 },
-            { id: 135, brand: "Teverun", model: "Fighter Supreme 7260R", motor: "8000 W", battery: "72 V 60 Ah", speed: "100", range: "200", weight: 64, charger: 6 },
-            { id: 136, brand: "Hiper", model: "Stark DX801", motor: "300 W", battery: "36 V 5.2 Ah", speed: "24", range: "24", weight: 11, charger: 1 },
-            { id: 137, brand: "Kugoo", model: "G30 Max Pro", motor: "600 W", battery: "36 V 18 Ah", speed: "35", range: "50", weight: 19.5, charger: 2 },
-            { id: 138, brand: "Xiaomi", model: "Mi Electric Scooter 4 Ultra", motor: "500 W", battery: "48 V 12 Ah", speed: "25", range: "70", weight: 24.5, charger: 2 },
-            { id: 139, brand: "VMAX", model: "VX2", motor: "500 W", battery: "48 V 13 Ah", speed: "25", range: "45", weight: 22.5, charger: 3 },
-            { id: 140, brand: "TurboAnt", model: "R9", motor: "500 W", battery: "48 V 12.5 Ah", speed: "45", range: "56", weight: 25, charger: 2 },
-            { id: 141, brand: "Gotrax", model: "G3 Max", motor: "350 W", battery: "48 V 10.2 Ah", speed: "29", range: "60", weight: 16.8, charger: 2 },
-            { id: 142, brand: "NIU", model: "KQi3 Max", motor: "450 W", battery: "48 V 13 Ah", speed: "32", range: "65", weight: 21, charger: 2 },
-            { id: 143, brand: "Kugoo", model: "F3 Pro Max", motor: "2200 W", battery: "48 V 23.4 Ah", speed: "70", range: "80", weight: 35, charger: 2 },
-            { id: 144, brand: "Apollo", model: "Explore", motor: "2×500 W", battery: "52 V 18 Ah", speed: "50", range: "70", weight: 30, charger: 2 },
-            { id: 145, brand: "Zero", model: "11X", motor: "2×1500 W", battery: "72 V 32 Ah", speed: "80", range: "100", weight: 45, charger: 5 },
-            { id: 146, brand: "Segway", model: "GT2", motor: "2×1500 W", battery: "72 V 30 Ah", speed: "70", range: "90", weight: 52, charger: 5 },
-            { id: 147, brand: "Hiper", model: "Stark DX650", motor: "350 W", battery: "36 V 10.4 Ah", speed: "25", range: "35", weight: 14, charger: 2 },
-            { id: 148, brand: "VMAX", model: "VX4", motor: "2×1000 W", battery: "60 V 20 Ah", speed: "50", range: "70", weight: 30, charger: 4 },
-            { id: 149, brand: "TurboAnt", model: "X7 Max", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "30", weight: 15, charger: 2 },
-            { id: 150, brand: "Gotrax", model: "XR Elite", motor: "300 W", battery: "36 V 7.5 Ah", speed: "25", range: "25", weight: 14, charger: 1.5 },
-            { id: 151, brand: "NIU", model: "KQi2 Pro", motor: "300 W", battery: "48 V 10 Ah", speed: "25", range: "40", weight: 18, charger: 2 }
+            { id: 1, brand: "KuKirin", model: "G2", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 26, charger: 2, price: 650, maxLoad: 120, tire: "10\"" },
+            { id: 2, brand: "KuKirin", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 22, charger: 2, price: 550, maxLoad: 120, tire: "10\"" },
+            { id: 3, brand: "KuKirin", model: "G2 Max", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "75", weight: 30, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 4, brand: "KuKirin", model: "G2 Master", motor: "2×1000 W", battery: "52 V 20.8 Ah", speed: "60", range: "70", weight: 30, charger: 2, price: 1100, maxLoad: 120, tire: "10\"" },
+            { id: 5, brand: "KuKirin", model: "G2 Ultra", motor: "2×800 W", battery: "48 V 18 Ah", speed: "50", range: "55", weight: 28, charger: 2, price: 900, maxLoad: 120, tire: "10\"" },
+            { id: 6, brand: "KuKirin", model: "G3", motor: "1200 W", battery: "52 V 23 Ah", speed: "65", range: "70", weight: 31, charger: 2, price: 1200, maxLoad: 120, tire: "10\"" },
+            { id: 7, brand: "KuKirin", model: "G3 Pro", motor: "1200 W", battery: "52 V 23 Ah", speed: "65", range: "70", weight: 31, charger: 2, price: 1350, maxLoad: 120, tire: "10\"" },
+            { id: 8, brand: "KuKirin", model: "G4", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3, price: 1800, maxLoad: 150, tire: "11\"" },
+            { id: 9, brand: "KuKirin", model: "G4 Pro", motor: "2000 W", battery: "60 V 24 Ah", speed: "70", range: "85", weight: 38, charger: 3, price: 2100, maxLoad: 150, tire: "11\"" },
+            { id: 10, brand: "KuKirin", model: "G100", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3, price: 1800, maxLoad: 150, tire: "11\"" },
+            { id: 11, brand: "KuKirin", model: "M4", motor: "500 W", battery: "48 V 15 Ah", speed: "45", range: "50", weight: 22, charger: 2, price: 500, maxLoad: 100, tire: "10\"" },
+            { id: 12, brand: "KuKirin", model: "M4 Pro", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "64", weight: 24, charger: 2, price: 700, maxLoad: 100, tire: "10\"" },
+            { id: 13, brand: "KuKirin", model: "A1", motor: "800 W", battery: "48 V 13 Ah", speed: "45", range: "45", weight: 22, charger: 2, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 14, brand: "KuKirin", model: "S1 Max", motor: "350 W", battery: "36 V 10.4 Ah", speed: "25", range: "30", weight: 16, charger: 2, price: 350, maxLoad: 100, tire: "8.5\"" },
+            { id: 15, brand: "KuKirin", model: "T3", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "58", weight: 23, charger: 2, price: 600, maxLoad: 120, tire: "10\"" },
+            { id: 16, brand: "KuKirin", model: "X1", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "65", weight: 26, charger: 2, price: 850, maxLoad: 120, tire: "10\"" },
+            { id: 17, brand: "Kugoo", model: "G1", motor: "2×1000 W", battery: "52 V 18.2 Ah", speed: "60", range: "70", weight: 35, charger: 2, price: 1000, maxLoad: 120, tire: "10\"" },
+            { id: 18, brand: "Kugoo", model: "G1 Pro", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "40", weight: 14, charger: 2, price: 400, maxLoad: 100, tire: "8.5\"" },
+            { id: 19, brand: "Kugoo", model: "G2", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "60", weight: 22, charger: 2, price: 550, maxLoad: 120, tire: "10\"" },
+            { id: 20, brand: "Kugoo", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 31, charger: 2, price: 650, maxLoad: 120, tire: "10\"" },
+            { id: 21, brand: "Kugoo", model: "G3", motor: "1000 W", battery: "48 V 18 Ah", speed: "55", range: "70", weight: 28, charger: 2, price: 850, maxLoad: 120, tire: "10\"" },
+            { id: 22, brand: "Kugoo", model: "S1", motor: "350 W", battery: "36 V 6 Ah", speed: "25", range: "20", weight: 11, charger: 1.5, price: 250, maxLoad: 100, tire: "8.5\"" },
+            { id: 23, brand: "Kugoo", model: "S1 Pro", motor: "350 W", battery: "36 V 7.5 Ah", speed: "30", range: "30", weight: 12, charger: 1.5, price: 300, maxLoad: 100, tire: "8.5\"" },
+            { id: 24, brand: "Kugoo", model: "S2", motor: "1100 W", battery: "48 V 15 Ah", speed: "55", range: "60", weight: 26, charger: 2, price: 750, maxLoad: 120, tire: "10\"" },
+            { id: 25, brand: "Kugoo", model: "S3", motor: "350 W", battery: "36 V 6 Ah", speed: "28", range: "25", weight: 11, charger: 1.5, price: 260, maxLoad: 100, tire: "8.5\"" },
+            { id: 26, brand: "Kugoo", model: "S3 Pro", motor: "500 W", battery: "48 V 10 Ah", speed: "40", range: "40", weight: 16, charger: 2, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 27, brand: "Kugoo", model: "M2 Pro", motor: "350 W", battery: "36 V 7.5 Ah", speed: "25", range: "30", weight: 13, charger: 1.5, price: 320, maxLoad: 100, tire: "8.5\"" },
+            { id: 28, brand: "Kugoo", model: "M4", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "50", weight: 20, charger: 2, price: 520, maxLoad: 120, tire: "10\"" },
+            { id: 29, brand: "Kugoo", model: "M4 Pro", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "60", weight: 22, charger: 2, price: 600, maxLoad: 120, tire: "10\"" },
+            { id: 30, brand: "Kugoo", model: "M5", motor: "800 W", battery: "48 V 18 Ah", speed: "50", range: "70", weight: 26, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 31, brand: "Kugoo", model: "F1", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "35", weight: 14, charger: 2, price: 380, maxLoad: 100, tire: "8.5\"" },
+            { id: 32, brand: "Kugoo", model: "Max Speed", motor: "600 W", battery: "48 V 11.1 Ah", speed: "45", range: "40", weight: 18, charger: 2, price: 500, maxLoad: 100, tire: "10\"" },
+            { id: 33, brand: "Kugoo", model: "G-Booster", motor: "1600 W", battery: "60 V 20 Ah", speed: "65", range: "70", weight: 33, charger: 2, price: 1400, maxLoad: 150, tire: "11\"" },
+            { id: 34, brand: "Kugoo", model: "Kirin", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "70", weight: 47, charger: 2, price: 900, maxLoad: 150, tire: "10\"" },
+            { id: 35, brand: "Kugoo", model: "X1", motor: "500 W", battery: "48 V 12.5 Ah", speed: "30", range: "50", weight: 29.4, charger: 2, price: 650, maxLoad: 120, tire: "10\"" },
+            { id: 36, brand: "Kugoo", model: "X2", motor: "1000 W", battery: "48 V 16 Ah", speed: "50", range: "60", weight: 31, charger: 2, price: 850, maxLoad: 120, tire: "10\"" },
+            { id: 37, brand: "Kugoo", model: "X3", motor: "500 W", battery: "48 V 12.5 Ah", speed: "30", range: "50", weight: 29.4, charger: 2, price: 620, maxLoad: 120, tire: "10\"" },
+            { id: 38, brand: "Ninebot", model: "Max G30", motor: "350 W", battery: "36 V 15.3 Ah", speed: "25", range: "65", weight: 19, charger: 2, price: 800, maxLoad: 100, tire: "10\"" },
+            { id: 39, brand: "Ninebot", model: "Max G2", motor: "900 W", battery: "36 V 15.3 Ah", speed: "25", range: "70", weight: 24.3, charger: 2, price: 1000, maxLoad: 120, tire: "10\"" },
+            { id: 40, brand: "Ninebot", model: "F40", motor: "350 W", battery: "36 V 10.2 Ah", speed: "30", range: "40", weight: 17.1, charger: 2, price: 600, maxLoad: 100, tire: "10\"" },
+            { id: 41, brand: "Ninebot", model: "F30", motor: "350 W", battery: "36 V 7.65 Ah", speed: "25", range: "30", weight: 16, charger: 2, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 42, brand: "Ninebot", model: "E3 Pro", motor: "800 W", battery: "367 Wh", speed: "20", range: "55", weight: 17.5, charger: 2, price: 550, maxLoad: 100, tire: "9\"" },
+            { id: 43, brand: "Ninebot", model: "F3 Pro", motor: "450 W", battery: "477 Wh", speed: "20", range: "70", weight: 18.6, charger: 2, price: 700, maxLoad: 100, tire: "10\"" },
+            { id: 44, brand: "Ninebot", model: "E22", motor: "300 W", battery: "36 V 5.1 Ah", speed: "20", range: "22", weight: 13, charger: 1.5, price: 350, maxLoad: 90, tire: "9\"" },
+            { id: 45, brand: "Ninebot", model: "D18U", motor: "300 W", battery: "36 V 7.8 Ah", speed: "25", range: "18", weight: 14.9, charger: 1.5, price: 380, maxLoad: 100, tire: "10\"" },
+            { id: 46, brand: "Ninebot", model: "Air T15", motor: "300 W", battery: "36 V 5.1 Ah", speed: "20", range: "15", weight: 10.5, charger: 1.5, price: 300, maxLoad: 90, tire: "7.5\"" },
+            { id: 47, brand: "Ninebot", model: "F25I", motor: "300 W", battery: "36 V 7.65 Ah", speed: "25", range: "25", weight: 16, charger: 2, price: 400, maxLoad: 100, tire: "10\"" },
+            { id: 48, brand: "Ninebot", model: "G65", motor: "500 W", battery: "36 V 10.2 Ah", speed: "25", range: "40", weight: 19, charger: 2, price: 600, maxLoad: 100, tire: "10\"" },
+            { id: 49, brand: "Xiaomi", model: "Electric Scooter 6 Ultra", motor: "500 W", battery: "~600 Wh", speed: "20", range: "75", weight: 33.7, charger: 2, price: 900, maxLoad: 120, tire: "10\"" },
+            { id: 50, brand: "Xiaomi", model: "Electric Scooter 6 Max", motor: "450 W", battery: "~550 Wh", speed: "20", range: "70", weight: 28, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 51, brand: "Xiaomi", model: "Electric Scooter 6 Pro", motor: "400 W", battery: "~477 Wh", speed: "20", range: "70", weight: 27.3, charger: 2, price: 600, maxLoad: 120, tire: "10\"" },
+            { id: 52, brand: "Xiaomi", model: "Electric Scooter 6", motor: "400 W", battery: "~400 Wh", speed: "20", range: "60", weight: 25, charger: 2, price: 500, maxLoad: 120, tire: "10\"" },
+            { id: 53, brand: "Xiaomi", model: "Electric Scooter 6 Lite", motor: "300 W", battery: "~300 Wh", speed: "20", range: "45", weight: 22, charger: 2, price: 400, maxLoad: 100, tire: "10\"" },
+            { id: 54, brand: "Xiaomi", model: "Electric Scooter 5 Max", motor: "1000 W", battery: "477 Wh", speed: "20", range: "60", weight: 22.3, charger: 2, price: 550, maxLoad: 100, tire: "10\"" },
+            { id: 55, brand: "Xiaomi", model: "Electric Scooter 4 Pro", motor: "350 W", battery: "446 Wh", speed: "25", range: "55", weight: 17, charger: 1.5, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 56, brand: "Xiaomi", model: "Mi Electric Scooter 3", motor: "300 W", battery: "260 Wh", speed: "25", range: "30", weight: 13.2, charger: 1.5, price: 350, maxLoad: 100, tire: "8.5\"" },
+            { id: 57, brand: "Xiaomi", model: "Mi Electric Scooter Essential", motor: "250 W", battery: "183 Wh", speed: "20", range: "20", weight: 12, charger: 1.5, price: 250, maxLoad: 100, tire: "8.5\"" },
+            { id: 58, brand: "Xiaomi", model: "Mi Electric Scooter Pro 2", motor: "300 W", battery: "446 Wh", speed: "25", range: "45", weight: 14.2, charger: 1.5, price: 400, maxLoad: 100, tire: "8.5\"" },
+            { id: 59, brand: "Joyor", model: "S5", motor: "500 W", battery: "48 V 13 Ah", speed: "25", range: "55", weight: 22, charger: 2, price: 550, maxLoad: 120, tire: "10\"" },
+            { id: 60, brand: "Joyor", model: "S10-S", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "65", range: "85", weight: 27, charger: 2, price: 1300, maxLoad: 150, tire: "10\"" },
+            { id: 61, brand: "Joyor", model: "F5", motor: "500 W", battery: "48 V 10.4 Ah", speed: "25", range: "38", weight: 14.3, charger: 2, price: 450, maxLoad: 100, tire: "8.5\"" },
+            { id: 62, brand: "Joyor", model: "T6", motor: "600 W", battery: "48 V 18 Ah", speed: "25", range: "70", weight: 24, charger: 2, price: 650, maxLoad: 120, tire: "10\"" },
+            { id: 63, brand: "Joyor", model: "T10", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "60", range: "75", weight: 32.5, charger: 2, price: 1200, maxLoad: 150, tire: "10\"" },
+            { id: 64, brand: "Joyor", model: "S8", motor: "600 W", battery: "48 V 26 Ah", speed: "25", range: "90", weight: 28, charger: 2, price: 750, maxLoad: 120, tire: "10\"" },
+            { id: 65, brand: "Joyor", model: "Y8-S", motor: "500 W", battery: "48 V 26 Ah", speed: "20", range: "90", weight: 30, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 66, brand: "Joyor", model: "C10E", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "40", weight: 16, charger: 2, price: 400, maxLoad: 100, tire: "8.5\"" },
+            { id: 67, brand: "Joyor", model: "E6-S", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "60", weight: 22, charger: 2, price: 550, maxLoad: 120, tire: "10\"" },
+            { id: 68, brand: "Joyor", model: "T-PRO", motor: "1000 W", battery: "60 V 20 Ah", speed: "60", range: "80", weight: 34, charger: 2, price: 1100, maxLoad: 150, tire: "10\"" },
+            { id: 69, brand: "Ausom", model: "L1", motor: "500 W", battery: "48 V 15.6 Ah", speed: "25", range: "70", weight: 29.2, charger: 2, price: 600, maxLoad: 120, tire: "10\"" },
+            { id: 70, brand: "Ausom", model: "L2 Max", motor: "2×1000 W", battery: "48 V 20.8 Ah", speed: "64", range: "90", weight: 33, charger: 2, price: 1300, maxLoad: 150, tire: "10\"" },
+            { id: 71, brand: "Ausom", model: "Leopard", motor: "1000 W", battery: "48 V 20.8 Ah", speed: "50", range: "75", weight: 30, charger: 2, price: 900, maxLoad: 150, tire: "10\"" },
+            { id: 72, brand: "Ausom", model: "Gosoul 2 Pro", motor: "2×1400 W", battery: "60 V 20 Ah", speed: "55", range: "80", weight: 35, charger: 2, price: 1500, maxLoad: 150, tire: "11\"" },
+            { id: 73, brand: "Ausom", model: "Laluz 2 Pro", motor: "2×1400 W", battery: "60 V 20 Ah", speed: "55", range: "90", weight: 36, charger: 2, price: 1600, maxLoad: 150, tire: "11\"" },
+            { id: 74, brand: "Ausom", model: "DT2 Pro", motor: "2×1000 W", battery: "52 V 20 Ah", speed: "50", range: "70", weight: 32, charger: 2, price: 1200, maxLoad: 150, tire: "10\"" },
+            { id: 75, brand: "Ausom", model: "K20 Pro", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "50", range: "70", weight: 31, charger: 2, price: 1100, maxLoad: 150, tire: "10\"" },
+            { id: 76, brand: "Ausom", model: "F1 Max", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "50", range: "65", weight: 30, charger: 2, price: 1000, maxLoad: 150, tire: "10\"" },
+            { id: 77, brand: "Ausom", model: "L2", motor: "500 W", battery: "48 V 15.6 Ah", speed: "45", range: "70", weight: 29, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 78, brand: "Ausom", model: "DT2", motor: "2×800 W", battery: "48 V 18 Ah", speed: "45", range: "65", weight: 30, charger: 2, price: 900, maxLoad: 150, tire: "10\"" },
+            { id: 79, brand: "Dualtron", model: "City 2.0", motor: "2×2000 W", battery: "60 V 25 Ah", speed: "70", range: "80", weight: 35, charger: 4, price: 2200, maxLoad: 120, tire: "10\"" },
+            { id: 80, brand: "Dualtron", model: "Spider 2", motor: "2×2000 W", battery: "60 V 30 Ah", speed: "64", range: "80", weight: 26, charger: 4, price: 2500, maxLoad: 120, tire: "10\"" },
+            { id: 81, brand: "Dualtron", model: "Compact", motor: "2×1700 W", battery: "60 V 30 Ah", speed: "61", range: "105", weight: 34, charger: 4, price: 2800, maxLoad: 120, tire: "10\"" },
+            { id: 82, brand: "Dualtron", model: "Forever", motor: "2×900 W", battery: "60 V 18-30 Ah", speed: "50", range: "50", weight: 38, charger: 4, price: 1800, maxLoad: 120, tire: "10\"" },
+            { id: 83, brand: "Dualtron", model: "Victor Luxury Plus", motor: "2×1450 W", battery: "60 V 30 Ah", speed: "80", range: "100", weight: 40, charger: 5, price: 3500, maxLoad: 150, tire: "11\"" },
+            { id: 84, brand: "Dualtron", model: "Achilleus Limited", motor: "2×2000 W", battery: "72 V 40 Ah", speed: "100", range: "120", weight: 50, charger: 5, price: 4500, maxLoad: 150, tire: "11\"" },
+            { id: 85, brand: "Dualtron", model: "X Limited", motor: "2×2500 W", battery: "72 V 40 Ah", speed: "110", range: "130", weight: 55, charger: 5, price: 5000, maxLoad: 150, tire: "11\"" },
+            { id: 86, brand: "Dualtron", model: "Storm Limited", motor: "2×2500 W", battery: "72 V 40 Ah", speed: "100", range: "120", weight: 52, charger: 5, price: 4800, maxLoad: 150, tire: "11\"" },
+            { id: 87, brand: "Dualtron", model: "Sonic Model N", motor: "2×350 W", battery: "36 V 10.2 Ah", speed: "30", range: "30", weight: 14.7, charger: 2, price: 1000, maxLoad: 100, tire: "8.5\"" },
+            { id: 88, brand: "Dualtron", model: "Thunder 3", motor: "2×2500 W", battery: "72 V 45 Ah", speed: "100", range: "150", weight: 58, charger: 5, price: 5500, maxLoad: 150, tire: "11\"" },
+            { id: 89, brand: "Kaabo", model: "Wolf Warrior X GT", motor: "2×1100 W", battery: "60 V 29 Ah", speed: "70", range: "110", weight: 38, charger: 4, price: 2500, maxLoad: 150, tire: "11\"" },
+            { id: 90, brand: "Kaabo", model: "Wolf King GTR Max", motor: "~13.4 кВт", battery: "72 V 40 Ah", speed: "105", range: "200", weight: 67, charger: 5, price: 6000, maxLoad: 150, tire: "13\"" },
+            { id: 91, brand: "Kaabo", model: "Mantis King Pro", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "60", range: "80", weight: 34, charger: 2, price: 1800, maxLoad: 120, tire: "10\"" },
+            { id: 92, brand: "Kaabo", model: "Wolf Warrior X Plus", motor: "2×1100 W", battery: "60 V 24 Ah", speed: "70", range: "70", weight: 36, charger: 4, price: 2200, maxLoad: 150, tire: "11\"" },
+            { id: 93, brand: "Kaabo", model: "Wolf Warrior 11 Max", motor: "2×1500 W", battery: "60 V 35 Ah", speed: "80", range: "150", weight: 45, charger: 5, price: 3200, maxLoad: 150, tire: "11\"" },
+            { id: 94, brand: "Kaabo", model: "Mantis 8 Lite", motor: "2×500 W", battery: "48 V 13 Ah", speed: "45", range: "40", weight: 22, charger: 2, price: 1100, maxLoad: 120, tire: "8\"" },
+            { id: 95, brand: "Kaabo", model: "Mantis 10 Lite", motor: "2×500 W", battery: "48 V 18 Ah", speed: "50", range: "60", weight: 28, charger: 2, price: 1400, maxLoad: 120, tire: "10\"" },
+            { id: 96, brand: "Kaabo", model: "Mantis X Plus", motor: "2×500 W", battery: "48 V 18 Ah", speed: "50", range: "75", weight: 30, charger: 2, price: 1600, maxLoad: 120, tire: "10\"" },
+            { id: 97, brand: "Kaabo", model: "Urban", motor: "500 W", battery: "48 V 15 Ah", speed: "45", range: "40", weight: 23, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 98, brand: "Kaabo", model: "Wolf WariorGT Pro", motor: "2×1200 W", battery: "60 V 30 Ah", speed: "80", range: "90", weight: 42, charger: 4, price: 3000, maxLoad: 150, tire: "11\"" },
+            { id: 99, brand: "Vsett", model: "8+", motor: "600 W", battery: "48 V 16 Ah", speed: "45", range: "90", weight: 24, charger: 2, price: 1100, maxLoad: 120, tire: "8.5\"" },
+            { id: 100, brand: "Vsett", model: "9+", motor: "2×650 W", battery: "48 V 19.2 Ah", speed: "50", range: "70", weight: 23, charger: 2, price: 1400, maxLoad: 120, tire: "8.5\"" },
+            { id: 101, brand: "Vsett", model: "10+", motor: "2×1400 W", battery: "60 V 24 Ah", speed: "65", range: "100", weight: 32, charger: 3, price: 2200, maxLoad: 150, tire: "10\"" },
+            { id: 102, brand: "Vsett", model: "8 Apex", motor: "600 W", battery: "48 V 16 Ah", speed: "60", range: "70", weight: 24, charger: 2, price: 1300, maxLoad: 120, tire: "8.5\"" },
+            { id: 103, brand: "Vsett", model: "9 Apex", motor: "2×650 W", battery: "48 V 19.2 Ah", speed: "60", range: "70", weight: 23, charger: 2, price: 1600, maxLoad: 120, tire: "8.5\"" },
+            { id: 104, brand: "Vsett", model: "10 Apex", motor: "2×1400 W", battery: "60 V 28 Ah", speed: "80", range: "110", weight: 35, charger: 3, price: 2600, maxLoad: 150, tire: "10\"" },
+            { id: 105, brand: "Vsett", model: "10 Apex+", motor: "2×1400 W", battery: "60 V 28 Ah", speed: "80", range: "110", weight: 35, charger: 3, price: 2800, maxLoad: 150, tire: "10\"" },
+            { id: 106, brand: "Inmotion", model: "RS", motor: "2×2000 W", battery: "72 V 40 Ah", speed: "80", range: "120", weight: 56, charger: 5, price: 3500, maxLoad: 150, tire: "10\"" },
+            { id: 107, brand: "Inmotion", model: "RS Jet", motor: "2×1200 W", battery: "72 V 25 Ah", speed: "80", range: "90", weight: 46.5, charger: 4, price: 2800, maxLoad: 150, tire: "10\"" },
+            { id: 108, brand: "Inmotion", model: "RS Midnight", motor: "8400 W", battery: "72 V 40 Ah", speed: "96", range: "96", weight: 58, charger: 5, price: 4000, maxLoad: 150, tire: "10\"" },
+            { id: 109, brand: "Inmotion", model: "RS 3.0", motor: "8400 W", battery: "72 V 40 Ah", speed: "100", range: "100", weight: 58, charger: 5, price: 4200, maxLoad: 150, tire: "10\"" },
+            { id: 110, brand: "Inmotion", model: "V12HT", motor: "2800 W", battery: "1750 Wh", speed: "60", range: "150", weight: 29, charger: 4, price: 2500, maxLoad: 120, tire: "16\"" },
+            { id: 111, brand: "Inmotion", model: "Air Pro", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "40", weight: 21, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 112, brand: "Inmotion", model: "Climber", motor: "500 W", battery: "48 V 15 Ah", speed: "25", range: "40", weight: 22, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 113, brand: "Nami", model: "Burn-e 2", motor: "2×1000 W", battery: "72 V 30 Ah", speed: "72", range: "150", weight: 47, charger: 5, price: 3200, maxLoad: 150, tire: "11\"" },
+            { id: 114, brand: "Nami", model: "Burn-e Max", motor: "2×1500 W", battery: "72 V 40 Ah", speed: "96", range: "185", weight: 50, charger: 5, price: 4500, maxLoad: 150, tire: "11\"" },
+            { id: 115, brand: "Nami", model: "Klima Max", motor: "2×1000 W", battery: "60 V 30 Ah", speed: "67", range: "96", weight: 36, charger: 4, price: 2600, maxLoad: 150, tire: "10\"" },
+            { id: 116, brand: "Nami", model: "Stellar", motor: "1000 W", battery: "52 V 15.6 Ah", speed: "50", range: "50", weight: 28, charger: 2, price: 1500, maxLoad: 120, tire: "10\"" },
+            { id: 117, brand: "Nami", model: "Blast", motor: "2000 W", battery: "60 V 21 Ah", speed: "80", range: "100", weight: 45, charger: 4, price: 2800, maxLoad: 150, tire: "11\"" },
+            { id: 118, brand: "Nami", model: "Viper", motor: "2×1000 W", battery: "60 V 25 Ah", speed: "70", range: "90", weight: 38, charger: 4, price: 2400, maxLoad: 150, tire: "11\"" },
+            { id: 119, brand: "Nami", model: "Klima", motor: "2×1000 W", battery: "52 V 23.4 Ah", speed: "75", range: "80", weight: 29, charger: 4, price: 2200, maxLoad: 120, tire: "10\"" },
+            { id: 120, brand: "Hiboy", model: "Titan Pro", motor: "2×750 W", battery: "48 V 36 Ah", speed: "53", range: "128", weight: 47, charger: 3, price: 1400, maxLoad: 150, tire: "10\"" },
+            { id: 121, brand: "Hiboy", model: "DM2", motor: "2×1000 W", battery: "48 V 27 Ah", speed: "59", range: "70", weight: 38, charger: 3, price: 1200, maxLoad: 150, tire: "10\"" },
+            { id: 122, brand: "Hiboy", model: "S2", motor: "350 W", battery: "270 Wh", speed: "30", range: "27", weight: 13, charger: 1.5, price: 350, maxLoad: 100, tire: "8.5\"" },
+            { id: 123, brand: "Hiboy", model: "Titan", motor: "2×500 W", battery: "48 V 18 Ah", speed: "40", range: "74", weight: 35, charger: 2, price: 900, maxLoad: 150, tire: "10\"" },
+            { id: 124, brand: "Hiboy", model: "S2 Nova", motor: "350 W", battery: "36 V 10 Ah", speed: "30", range: "32", weight: 14, charger: 2, price: 400, maxLoad: 100, tire: "8.5\"" },
+            { id: 125, brand: "Hiboy", model: "X300", motor: "500 W", battery: "48 V 15 Ah", speed: "37", range: "60", weight: 22, charger: 2, price: 650, maxLoad: 120, tire: "10\"" },
+            { id: 126, brand: "Hiboy", model: "S3", motor: "350 W", battery: "36 V 7.5 Ah", speed: "30", range: "27", weight: 13, charger: 1.5, price: 320, maxLoad: 100, tire: "8.5\"" },
+            { id: 127, brand: "Hiboy", model: "S2 Pro", motor: "500 W", battery: "48 V 10 Ah", speed: "30", range: "40", weight: 15, charger: 2, price: 450, maxLoad: 100, tire: "8.5\"" },
+            { id: 128, brand: "Hiboy", model: "S2 Max", motor: "500 W", battery: "48 V 15 Ah", speed: "30", range: "65", weight: 17, charger: 2, price: 550, maxLoad: 100, tire: "8.5\"" },
+            { id: 129, brand: "Hiboy", model: "X5", motor: "500 W", battery: "36 V 15.6 Ah", speed: "30", range: "45", weight: 20, charger: 2, price: 500, maxLoad: 120, tire: "10\"" },
+            { id: 130, brand: "Segway", model: "Ninebot MAX G3 Plus", motor: "2200 W", battery: "36 V 20 Ah", speed: "45", range: "90", weight: 25.4, charger: 4, price: 1500, maxLoad: 120, tire: "10\"" },
+            { id: 131, brand: "Apollo", model: "City 2.0", motor: "1200 W", battery: "48 V 18 Ah", speed: "51", range: "64", weight: 32.7, charger: 3, price: 1200, maxLoad: 120, tire: "10\"" },
+            { id: 132, brand: "Mercane", model: "WideWheel Pro", motor: "2×500 W", battery: "48 V 15 Ah", speed: "40", range: "70", weight: 22, charger: 2, price: 1000, maxLoad: 100, tire: "8\"" },
+            { id: 133, brand: "Zero", model: "10X", motor: "2×1000 W", battery: "52 V 18 Ah", speed: "65", range: "80", weight: 35, charger: 2, price: 1600, maxLoad: 120, tire: "10\"" },
+            { id: 134, brand: "NAVEE", model: "XT5 Pro", motor: "700 W", battery: "46.8 V 12.75 Ah", speed: "50", range: "75", weight: 34.8, charger: 5, price: 1300, maxLoad: 120, tire: "10\"" },
+            { id: 135, brand: "Teverun", model: "Fighter Supreme 7260R", motor: "8000 W", battery: "72 V 60 Ah", speed: "100", range: "200", weight: 64, charger: 6, price: 5500, maxLoad: 150, tire: "13\"" },
+            { id: 136, brand: "Hiper", model: "Stark DX801", motor: "300 W", battery: "36 V 5.2 Ah", speed: "24", range: "24", weight: 11, charger: 1, price: 300, maxLoad: 90, tire: "8\"" },
+            { id: 137, brand: "Kugoo", model: "G30 Max Pro", motor: "600 W", battery: "36 V 18 Ah", speed: "35", range: "50", weight: 19.5, charger: 2, price: 700, maxLoad: 100, tire: "10\"" },
+            { id: 138, brand: "Xiaomi", model: "Mi Electric Scooter 4 Ultra", motor: "500 W", battery: "48 V 12 Ah", speed: "25", range: "70", weight: 24.5, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 139, brand: "VMAX", model: "VX2", motor: "500 W", battery: "48 V 13 Ah", speed: "25", range: "45", weight: 22.5, charger: 3, price: 650, maxLoad: 110, tire: "10\"" },
+            { id: 140, brand: "TurboAnt", model: "R9", motor: "500 W", battery: "48 V 12.5 Ah", speed: "45", range: "56", weight: 25, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 141, brand: "Gotrax", model: "G3 Max", motor: "350 W", battery: "48 V 10.2 Ah", speed: "29", range: "60", weight: 16.8, charger: 2, price: 500, maxLoad: 100, tire: "10\"" },
+            { id: 142, brand: "NIU", model: "KQi3 Max", motor: "450 W", battery: "48 V 13 Ah", speed: "32", range: "65", weight: 21, charger: 2, price: 700, maxLoad: 100, tire: "9.5\"" },
+            { id: 143, brand: "Kugoo", model: "F3 Pro Max", motor: "2200 W", battery: "48 V 23.4 Ah", speed: "70", range: "80", weight: 35, charger: 2, price: 1500, maxLoad: 150, tire: "10\"" },
+            { id: 144, brand: "Apollo", model: "Explore", motor: "2×500 W", battery: "52 V 18 Ah", speed: "50", range: "70", weight: 30, charger: 2, price: 1400, maxLoad: 120, tire: "10\"" },
+            { id: 145, brand: "Zero", model: "11X", motor: "2×1500 W", battery: "72 V 32 Ah", speed: "80", range: "100", weight: 45, charger: 5, price: 2800, maxLoad: 150, tire: "11\"" },
+            { id: 146, brand: "Segway", model: "GT2", motor: "2×1500 W", battery: "72 V 30 Ah", speed: "70", range: "90", weight: 52, charger: 5, price: 4000, maxLoad: 150, tire: "11\"" },
+            { id: 147, brand: "Hiper", model: "Stark DX650", motor: "350 W", battery: "36 V 10.4 Ah", speed: "25", range: "35", weight: 14, charger: 2, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 148, brand: "VMAX", model: "VX4", motor: "2×1000 W", battery: "60 V 20 Ah", speed: "50", range: "70", weight: 30, charger: 4, price: 1600, maxLoad: 150, tire: "10\"" },
+            { id: 149, brand: "TurboAnt", model: "X7 Max", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "30", weight: 15, charger: 2, price: 400, maxLoad: 100, tire: "10\"" },
+            { id: 150, brand: "Gotrax", model: "XR Elite", motor: "300 W", battery: "36 V 7.5 Ah", speed: "25", range: "25", weight: 14, charger: 1.5, price: 350, maxLoad: 100, tire: "8.5\"" },
+            { id: 151, brand: "NIU", model: "KQi2 Pro", motor: "300 W", battery: "48 V 10 Ah", speed: "25", range: "40", weight: 18, charger: 2, price: 500, maxLoad: 100, tire: "9.5\"" },
+            { id: 152, brand: "Inokim", model: "Light 2 Super", motor: "250 W", battery: "36 V 10.4 Ah", speed: "25", range: "35", weight: 12, charger: 2, price: 600, maxLoad: 100, tire: "8.5\"" },
+            { id: 153, brand: "Inokim", model: "Quick 4 Super", motor: "1000 W", battery: "52 V 18 Ah", speed: "50", range: "70", weight: 26, charger: 3, price: 1600, maxLoad: 120, tire: "10\"" },
+            { id: 154, brand: "Inokim", model: "OX", motor: "1000 W", battery: "52 V 18 Ah", speed: "50", range: "80", weight: 24, charger: 3, price: 1800, maxLoad: 120, tire: "10\"" },
+            { id: 155, brand: "SoFlow", model: "SO4 Pro Gen 2", motor: "500 W", battery: "48 V 14.5 Ah", speed: "22", range: "50", weight: 21.5, charger: 3, price: 900, maxLoad: 120, tire: "10\"" },
+            { id: 156, brand: "SoFlow", model: "SO3", motor: "350 W", battery: "36 V 7.8 Ah", speed: "20", range: "30", weight: 14, charger: 2, price: 500, maxLoad: 100, tire: "8.5\"" },
+            { id: 157, brand: "SoFlow", model: "SO2 Air", motor: "350 W", battery: "36 V 7.5 Ah", speed: "20", range: "25", weight: 13.5, charger: 2, price: 450, maxLoad: 100, tire: "8.5\"" },
+            { id: 158, brand: "ePowerFun", model: "ePF-2 XT 835", motor: "450 W", battery: "48 V 14.7 Ah", speed: "22", range: "60", weight: 22.6, charger: 3, price: 1000, maxLoad: 120, tire: "10\"" },
+            { id: 159, brand: "ePowerFun", model: "ePF-1 Pro", motor: "350 W", battery: "36 V 10.4 Ah", speed: "20", range: "40", weight: 17, charger: 2, price: 600, maxLoad: 110, tire: "8.5\"" },
+            { id: 160, brand: "Bronco", model: "Extreme 11", motor: "2×1500 W", battery: "60 V 35 Ah", speed: "85", range: "120", weight: 48, charger: 5, price: 3000, maxLoad: 150, tire: "11\"" },
+            { id: 161, brand: "Bronco", model: "X7", motor: "2×1000 W", battery: "52 V 20 Ah", speed: "60", range: "80", weight: 32, charger: 3, price: 1500, maxLoad: 150, tire: "10\"" },
+            { id: 162, brand: "Segway", model: "P100S", motor: "650 W", battery: "48 V 23 Ah", speed: "30", range: "100", weight: 31.5, charger: 4, price: 1800, maxLoad: 120, tire: "10.5\"" },
+            { id: 163, brand: "Segway", model: "P65", motor: "500 W", battery: "48 V 20.8 Ah", speed: "25", range: "65", weight: 24, charger: 3, price: 1300, maxLoad: 120, tire: "10.5\"" },
+            { id: 164, brand: "Apollo", model: "Ghost", motor: "2×1000 W", battery: "52 V 23.4 Ah", speed: "65", range: "80", weight: 35, charger: 3, price: 1900, maxLoad: 150, tire: "10\"" },
+            { id: 165, brand: "Apollo", model: "Phantom 2.0", motor: "2×1200 W", battery: "60 V 30 Ah", speed: "75", range: "90", weight: 43, charger: 4, price: 2800, maxLoad: 150, tire: "11\"" },
+            { id: 166, brand: "NIU", model: "KQi Air", motor: "500 W", battery: "48 V 20 Ah", speed: "32", range: "80", weight: 19, charger: 3, price: 1200, maxLoad: 120, tire: "10\"" },
+            { id: 167, brand: "KuKirin", model: "M5 Pro", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "70", weight: 28, charger: 2, price: 950, maxLoad: 120, tire: "10\"" },
+            { id: 168, brand: "Kugoo", model: "S4 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "50", range: "65", weight: 20, charger: 2, price: 700, maxLoad: 120, tire: "10\"" },
+            { id: 169, brand: "Ninebot", model: "Max G30LP", motor: "350 W", battery: "36 V 10.2 Ah", speed: "25", range: "40", weight: 17.5, charger: 2, price: 650, maxLoad: 100, tire: "10\"" },
+            { id: 170, brand: "Xiaomi", model: "Mi Electric Scooter 4 Go", motor: "300 W", battery: "36 V 5.1 Ah", speed: "20", range: "18", weight: 11.5, charger: 1.5, price: 300, maxLoad: 90, tire: "8.5\"" },
+            { id: 171, brand: "Dualtron", model: "Mini", motor: "2×350 W", battery: "52 V 12.8 Ah", speed: "45", range: "50", weight: 18.5, charger: 2, price: 1400, maxLoad: 100, tire: "8\"" },
+            { id: 172, brand: "Kaabo", model: "Skyhawk", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "50", weight: 24, charger: 2, price: 900, maxLoad: 120, tire: "10\"" },
+            { id: 173, brand: "Vsett", model: "11+", motor: "2×1500 W", battery: "72 V 28 Ah", speed: "85", range: "120", weight: 43, charger: 4, price: 3000, maxLoad: 150, tire: "11\"" },
+            { id: 174, brand: "Inmotion", model: "L9", motor: "500 W", battery: "48 V 13 Ah", speed: "30", range: "55", weight: 22, charger: 2, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 175, brand: "Nami", model: "Burn-e 2 Max", motor: "2×1200 W", battery: "72 V 35 Ah", speed: "85", range: "160", weight: 48, charger: 5, price: 3800, maxLoad: 150, tire: "11\"" },
+            { id: 176, brand: "Hiboy", model: "S2 Lite", motor: "300 W", battery: "36 V 7.5 Ah", speed: "25", range: "25", weight: 13, charger: 1.5, price: 300, maxLoad: 100, tire: "8.5\"" },
+            { id: 177, brand: "Joyor", model: "S10-R", motor: "2×800 W", battery: "60 V 15 Ah", speed: "55", range: "65", weight: 25, charger: 2, price: 1000, maxLoad: 120, tire: "10\"" },
+            { id: 178, brand: "Ausom", model: "Gallop", motor: "2×1200 W", battery: "60 V 24 Ah", speed: "65", range: "85", weight: 38, charger: 3, price: 1800, maxLoad: 150, tire: "11\"" },
+            { id: 179, brand: "Zero", model: "8X", motor: "2×800 W", battery: "48 V 16 Ah", speed: "50", range: "60", weight: 28, charger: 2, price: 1200, maxLoad: 120, tire: "10\"" },
+            { id: 180, brand: "Teverun", model: "Blade GT", motor: "2×1500 W", battery: "60 V 25 Ah", speed: "80", range: "100", weight: 36, charger: 4, price: 2500, maxLoad: 150, tire: "10\"" },
+            { id: 181, brand: "NAVEE", model: "S65", motor: "500 W", battery: "48 V 13 Ah", speed: "35", range: "55", weight: 22, charger: 3, price: 800, maxLoad: 120, tire: "10\"" },
+            { id: 182, brand: "Hiper", model: "Stark DX900", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "30", weight: 13.5, charger: 2, price: 400, maxLoad: 100, tire: "10\"" },
+            { id: 183, brand: "VMAX", model: "VX5 Pro", motor: "1000 W", battery: "52 V 20 Ah", speed: "50", range: "65", weight: 26, charger: 3, price: 1400, maxLoad: 120, tire: "10\"" },
+            { id: 184, brand: "TurboAnt", model: "X7 Pro", motor: "350 W", battery: "36 V 10 Ah", speed: "25", range: "35", weight: 15, charger: 2, price: 450, maxLoad: 100, tire: "10\"" },
+            { id: 185, brand: "Gotrax", model: "G4", motor: "500 W", battery: "48 V 15 Ah", speed: "32", range: "70", weight: 20, charger: 2, price: 600, maxLoad: 120, tire: "10\"" },
+            { id: 186, brand: "NIU", model: "KQi3 Pro", motor: "350 W", battery: "48 V 10.5 Ah", speed: "32", range: "50", weight: 20, charger: 2, price: 600, maxLoad: 100, tire: "9.5\"" },
+            { id: 187, brand: "Inokim", model: "OXO", motor: "1000 W", battery: "52 V 22 Ah", speed: "55", range: "90", weight: 27, charger: 3, price: 2000, maxLoad: 120, tire: "10\"" },
+            { id: 188, brand: "SoFlow", model: "SO4 Pro", motor: "500 W", battery: "48 V 14.5 Ah", speed: "22", range: "45", weight: 21, charger: 3, price: 850, maxLoad: 120, tire: "10\"" },
+            { id: 189, brand: "ePowerFun", model: "ePF-1 Pro Max", motor: "500 W", battery: "48 V 10.4 Ah", speed: "22", range: "45", weight: 19, charger: 2, price: 750, maxLoad: 110, tire: "10\"" },
+            { id: 190, brand: "Bronco", model: "Extreme 9", motor: "2×1000 W", battery: "52 V 24 Ah", speed: "70", range: "90", weight: 38, charger: 4, price: 2200, maxLoad: 150, tire: "10\"" },
+            { id: 191, brand: "Segway", model: "F2 Pro", motor: "400 W", battery: "36 V 12.8 Ah", speed: "25", range: "55", weight: 18, charger: 2, price: 700, maxLoad: 100, tire: "10\"" },
+            { id: 192, brand: "Segway", model: "F2 Plus", motor: "400 W", battery: "36 V 10.2 Ah", speed: "25", range: "45", weight: 17, charger: 2, price: 600, maxLoad: 100, tire: "10\"" },
+            { id: 193, brand: "Apollo", model: "Air", motor: "350 W", battery: "36 V 7.8 Ah", speed: "25", range: "35", weight: 14, charger: 2, price: 500, maxLoad: 100, tire: "8.5\"" },
+            { id: 194, brand: "NIU", model: "KQi1 Sport", motor: "250 W", battery: "48 V 8 Ah", speed: "25", range: "30", weight: 16, charger: 2, price: 400, maxLoad: 100, tire: "9.5\"" },
+            { id: 195, brand: "KuKirin", model: "G4 Max", motor: "2000 W", battery: "60 V 28 Ah", speed: "75", range: "95", weight: 40, charger: 4, price: 2400, maxLoad: 150, tire: "11\"" },
+            { id: 196, brand: "Kugoo", model: "G4 Pro", motor: "2×1200 W", battery: "60 V 24 Ah", speed: "65", range: "75", weight: 34, charger: 3, price: 1600, maxLoad: 150, tire: "11\"" },
+            { id: 197, brand: "Dualtron", model: "Popular", motor: "2×350 W", battery: "36 V 10.5 Ah", speed: "35", range: "40", weight: 14, charger: 2, price: 1100, maxLoad: 100, tire: "8\"" },
+            { id: 198, brand: "Kaabo", model: "Skyhawk Pro", motor: "800 W", battery: "48 V 18 Ah", speed: "55", range: "60", weight: 26, charger: 2, price: 1200, maxLoad: 120, tire: "10\"" },
+            { id: 199, brand: "Vsett", model: "9 Apex Pro", motor: "2×1000 W", battery: "52 V 23.4 Ah", speed: "65", range: "80", weight: 25, charger: 3, price: 1800, maxLoad: 120, tire: "9\"" },
+            { id: 200, brand: "Inmotion", model: "S1", motor: "500 W", battery: "48 V 10 Ah", speed: "30", range: "40", weight: 16, charger: 2, price: 600, maxLoad: 100, tire: "8.5\"" }
         ];
 
         const tableBody = document.getElementById('tableBody');
@@ -998,9 +1245,18 @@
         const compareResult = document.getElementById('compareResult');
         const compareTable = document.getElementById('compareTable');
         const recommendationBox = document.getElementById('recommendationBox');
+        const matcherResult = document.getElementById('matcherResult');
+        const themeBtn = document.getElementById('themeBtn');
 
         function t(key) {
             return translations[currentLang][key] || translations['en'][key] || key;
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            themeBtn.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
         }
 
         function applyTranslations() {
@@ -1019,6 +1275,7 @@
                 showComparison();
             }
             calculateRange();
+            runMatcher();
         }
 
         function setLanguage(lang) {
@@ -1043,6 +1300,10 @@
                     langSelect.value = userLang;
                 }
             }
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '☀️';
+            }
             applyTranslations();
         });
 
@@ -1065,6 +1326,8 @@
                         <td class="spec-value">${s.speed} ${t('unit_kmh')}</td>
                         <td class="spec-value">${s.range} ${t('unit_km')}</td>
                         <td class="spec-value"><strong>${s.weight} ${t('unit_kg')}</strong></td>
+                        <td class="spec-value">${s.maxLoad} ${t('unit_kg')}</td>
+                        <td class="spec-value">${s.tire}</td>
                         <td class="spec-value">${s.charger} A</td>
                         <td><button class="${btnClass}" onclick="toggleCompare(${s.id})">${btnText}</button></td>
                     `;
@@ -1151,6 +1414,8 @@
                 { label: t('th_speed'), key: 'speed', unit: 'unit_kmh' },
                 { label: t('th_range'), key: 'range', unit: 'unit_km' },
                 { label: t('th_weight'), key: 'weight', unit: 'unit_kg' },
+                { label: t('th_load'), key: 'maxLoad', unit: 'unit_kg' },
+                { label: t('th_tire'), key: 'tire' },
                 { label: t('th_charger'), key: 'charger', unit: 'unit_amp' }
             ];
 
@@ -1165,9 +1430,11 @@
                             val += ' ' + t(spec.unit);
                         }
                     }
-                    if (spec.key === 'weight') {
-                        const minWeight = Math.min(...selectedScooters.map(x => x.weight));
-                        if (s.weight === minWeight) val = `<span class="best">${val}</span>`;
+                    if (spec.key === 'weight' || spec.key === 'maxLoad') {
+                        const minVal = Math.min(...selectedScooters.map(x => x[spec.key]));
+                        const maxVal = Math.max(...selectedScooters.map(x => x[spec.key]));
+                        if (s[spec.key] === minVal && spec.key === 'weight') val = `<span class="best">${val}</span>`;
+                        if (s[spec.key] === maxVal && spec.key === 'maxLoad') val = `<span class="best">${val}</span>`;
                     }
                     html += `<td>${val}</td>`;
                 });
@@ -1192,6 +1459,41 @@
 
             compareResult.classList.add('active');
             compareResult.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runMatcher() {
+            const budget = parseFloat(document.getElementById('matcherBudget').value);
+            const minSpeed = parseFloat(document.getElementById('matcherSpeed').value);
+            const userWeight = parseFloat(document.getElementById('matcherWeight').value);
+
+            document.getElementById('budgetVal').textContent = budget;
+            document.getElementById('minSpeedVal').textContent = minSpeed;
+            document.getElementById('userWeightVal').textContent = userWeight;
+
+            const matches = scooters.filter(s => 
+                s.price <= budget && 
+                parseFloat(s.speed) >= minSpeed && 
+                s.maxLoad >= userWeight
+            ).sort((a, b) => parseFloat(b.speed) - parseFloat(a.speed)).slice(0, 3);
+
+            matcherResult.innerHTML = '';
+            if (matches.length === 0) {
+                matcherResult.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Нет подходящих моделей. Попробуйте изменить параметры.</p>';
+                return;
+            }
+
+            matches.forEach(m => {
+                const div = document.createElement('div');
+                div.className = 'matcher-card';
+                div.innerHTML = `
+                    <div>
+                        <h4>${m.brand} ${m.model}</h4>
+                        <span>${m.speed} км/ч | ${m.range} км | Нагрузка ${m.maxLoad} кг</span>
+                    </div>
+                    <div style="font-weight:800; color:var(--accent);">${m.price} $</div>
+                `;
+                matcherResult.appendChild(div);
+            });
         }
 
         function parseBatteryWh(batteryStr) {
@@ -1250,37 +1552,54 @@
         const speedInput = document.getElementById('speed');
         const batteryInput = document.getElementById('battery');
         const tempInput = document.getElementById('temp');
+        const regenInput = document.getElementById('regen');
+        const healthInput = document.getElementById('health');
         const terrainSelect = document.getElementById('terrain');
         const styleSelect = document.getElementById('style');
         const priceInput = document.getElementById('price');
         const chargerInput = document.getElementById('charger');
+        const dailyDistInput = document.getElementById('dailyDist');
         
         const weightVal = document.getElementById('weightVal');
         const scooterWeightVal = document.getElementById('scooterWeightVal');
         const speedVal = document.getElementById('speedVal');
         const batteryVal = document.getElementById('batteryVal');
         const tempVal = document.getElementById('tempVal');
+        const regenVal = document.getElementById('regenVal');
+        const healthVal = document.getElementById('healthVal');
         const rangeResult = document.getElementById('rangeResult');
         const costResult = document.getElementById('costResult');
         const timeResult = document.getElementById('timeResult');
+        const costKmResult = document.getElementById('costKmResult');
+        const monthlyCostResult = document.getElementById('monthlyCostResult');
+
+        document.getElementById('matcherBudget').addEventListener('input', runMatcher);
+        document.getElementById('matcherSpeed').addEventListener('input', runMatcher);
+        document.getElementById('matcherWeight').addEventListener('input', runMatcher);
 
         function calculateRange() {
             const riderWeight = parseFloat(weightInput.value);
             const scooterWeight = parseFloat(scooterWeightInput.value);
             const speed = parseFloat(speedInput.value);
-            const battery = parseFloat(batteryInput.value);
+            const nominalBattery = parseFloat(batteryInput.value);
             const temp = parseFloat(tempInput.value);
+            const regen = parseFloat(regenInput.value) / 100;
+            const health = parseFloat(healthInput.value) / 100;
             const terrain = parseFloat(terrainSelect.value);
             const style = parseFloat(styleSelect.value);
             const price = parseFloat(priceInput.value);
             const charger = parseFloat(chargerInput.value);
+            const dailyDist = parseFloat(dailyDistInput.value);
 
             weightVal.textContent = riderWeight;
             scooterWeightVal.textContent = scooterWeight;
             speedVal.textContent = speed;
-            batteryVal.textContent = battery;
+            batteryVal.textContent = nominalBattery;
             tempVal.textContent = temp;
+            regenVal.textContent = (regen * 100).toFixed(0);
+            healthVal.textContent = (health * 100).toFixed(0);
 
+            const effectiveBattery = nominalBattery * health;
             const totalWeight = riderWeight + scooterWeight;
             let consumptionPerKm = 16;
 
@@ -1298,18 +1617,25 @@
 
             consumptionPerKm *= terrain;
             consumptionPerKm *= style;
+            consumptionPerKm *= (1 - regen * 0.15);
 
             if (consumptionPerKm <= 5) consumptionPerKm = 5;
 
-            const estimatedRange = battery / consumptionPerKm;
+            const estimatedRange = effectiveBattery / consumptionPerKm;
             rangeResult.textContent = Math.round(estimatedRange);
 
-            const cost = (battery / 1000) * price;
+            const cost = (effectiveBattery / 1000) * price;
             costResult.textContent = cost.toFixed(2);
 
             const chargerPower = currentVoltage * charger;
-            const chargeTime = (battery / chargerPower) * 1.15;
+            const chargeTime = (effectiveBattery / chargerPower) * 1.15;
             timeResult.textContent = chargeTime.toFixed(1);
+
+            const costPerKm = (consumptionPerKm / 1000) * price;
+            costKmResult.textContent = costPerKm.toFixed(2);
+
+            const monthlyCost = dailyDist * 30 * costPerKm;
+            monthlyCostResult.textContent = monthlyCost.toFixed(2);
         }
 
         weightInput.addEventListener('input', calculateRange);
@@ -1317,10 +1643,13 @@
         speedInput.addEventListener('input', calculateRange);
         batteryInput.addEventListener('input', calculateRange);
         tempInput.addEventListener('input', calculateRange);
+        regenInput.addEventListener('input', calculateRange);
+        healthInput.addEventListener('input', calculateRange);
         terrainSelect.addEventListener('change', calculateRange);
         styleSelect.addEventListener('change', calculateRange);
         priceInput.addEventListener('input', calculateRange);
         chargerInput.addEventListener('input', calculateRange);
+        dailyDistInput.addEventListener('input', calculateRange);
     </script>
 </body>
 </html>
