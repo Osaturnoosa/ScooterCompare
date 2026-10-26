@@ -698,7 +698,7 @@
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_weight">Вес райдера:</span> <span class="value-display" id="weightVal">75</span> <span data-i18n="unit_kg">кг</span></label>
-                    <input type="range" id="weight" min="40" max="120" value="75" step="1">
+                    <input type="range" id="weight" min="30" max="120" value="75" step="1">
                 </div>
                 <div class="calc-group">
                     <label><span data-i18n="calc_speed">Средняя скорость:</span> <span class="value-display" id="speedVal">25</span> <span data-i18n="unit_kmh">км/ч</span></label>
@@ -1091,6 +1091,18 @@
             compareResult.scrollIntoView({ behavior: 'smooth' });
         }
 
+        function parseBatteryWh(batteryStr) {
+            if (!batteryStr) return 200;
+            if (batteryStr.includes('Wh')) {
+                return parseInt(batteryStr.replace(/[^0-9]/g, '')) || 200;
+            }
+            let match = batteryStr.match(/(\d+(?:\.\d+)?)\s*V\s*(\d+(?:\.\d+)?)\s*Ah/i);
+            if (match) {
+                return Math.round(parseFloat(match[1]) * parseFloat(match[2]));
+            }
+            return 200;
+        }
+
         modelSelect.addEventListener('change', (e) => {
             const val = e.target.value;
             if (val === 'custom') {
@@ -1099,7 +1111,7 @@
                 updateBatteryDisplay(750);
             } else {
                 const s = JSON.parse(val);
-                const batteryCapacity = parseFloat(s.battery) || 750;
+                const batteryCapacity = parseBatteryWh(s.battery);
                 document.getElementById('battery').disabled = true;
                 document.getElementById('battery').value = batteryCapacity;
                 updateBatteryDisplay(batteryCapacity);
