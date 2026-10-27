@@ -368,7 +368,7 @@
             border: 1px solid var(--border-color);
         }
 
-        .compare-result, .matcher-section, .calculator, .about-section, .faq-section {
+        .compare-result, .matcher-section, .calculator, .about-section, .faq-section, .controllers-section {
             margin-top: 80px;
             background: var(--card-bg);
             border-radius: 24px;
@@ -377,13 +377,8 @@
             transition: background-color 0.3s, border-color 0.3s;
         }
 
-        .compare-result {
-            display: none;
-        }
-
-        .compare-result.active {
-            display: block;
-        }
+        .compare-result { display: none; }
+        .compare-result.active { display: block; }
 
         .compare-table {
             width: 100%;
@@ -404,14 +399,8 @@
             text-transform: uppercase;
         }
 
-        .compare-table td {
-            font-size: 14px;
-        }
-
-        .compare-table .best {
-            color: var(--success);
-            font-weight: 800;
-        }
+        .compare-table td { font-size: 14px; }
+        .compare-table .best { color: var(--success); font-weight: 800; }
 
         .recommendation-box {
             background: rgba(16, 185, 129, 0.1);
@@ -470,9 +459,7 @@
             -webkit-appearance: none;
         }
 
-        [data-theme="light"] .calc-group input[type="range"] {
-            background: #d1d5db;
-        }
+        [data-theme="light"] .calc-group input[type="range"] { background: #d1d5db; }
 
         .calc-group input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -561,10 +548,7 @@
             margin-bottom: 5px;
         }
 
-        .matcher-card span {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
+        .matcher-card span { font-size: 14px; color: var(--text-muted); }
 
         .faq-item {
             background: var(--bg-color);
@@ -584,19 +568,9 @@
             align-items: center;
         }
 
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: '+';
-            font-size: 20px;
-            color: var(--accent);
-        }
-
-        .faq-item[open] summary::after {
-            content: '-';
-        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 20px; color: var(--accent); }
+        .faq-item[open] summary::after { content: '-'; }
 
         .faq-content {
             padding: 0 20px 20px 20px;
@@ -669,9 +643,7 @@
             cursor: pointer;
         }
 
-        .modal-close:hover {
-            color: var(--danger);
-        }
+        .modal-close:hover { color: var(--danger); }
 
         .modal-title {
             font-size: 28px;
@@ -732,47 +704,13 @@
             font-size: 18px;
         }
 
-        .modal-box-list li:last-child {
-            border-bottom: none;
-        }
-
-        @media print {
-            header, footer, .filters, .category-filters, .compare-tray, .calculator, .matcher-section, .faq-section, .btn-compare-row, .controls, .theme-btn {
-                display: none !important;
-            }
-            body {
-                background: white !important;
-                color: black !important;
-                padding: 0;
-            }
-            .container {
-                max-width: 100%;
-                padding: 0;
-            }
-            .table-wrapper, .compare-result {
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                background: white !important;
-            }
-            th, td {
-                border-bottom: 1px solid #ccc !important;
-                color: black !important;
-            }
-            .section-title { color: black !important; }
-        }
+        .modal-box-list li:last-child { border-bottom: none; }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { flex-wrap: wrap; justify-content: center; }
             .section-title { font-size: 28px; }
-            .calculator, .about-section, .matcher-section, .faq-section { padding: 20px; }
+            .calculator, .about-section, .matcher-section, .faq-section, .controllers-section { padding: 20px; }
             .calc-result .range-value { font-size: 42px; }
             .modal-content { padding: 20px; }
             .modal-specs { grid-template-columns: 1fr; }
@@ -786,14 +724,11 @@
 
     <div id="languageModal" class="modal-overlay">
         <div class="modal-content" style="text-align: center;">
-            <h2 data-i18n="modal_title">Select Language</h2>
-            <p data-i18n="modal_subtitle">Choose your preferred language to continue</p>
-            <div class="lang-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:15px;">
-                <button class="lang-btn" onclick="setLanguage('en')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇬🇧 English</button>
-                <button class="lang-btn" onclick="setLanguage('ru')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇷🇺 Русский</button>
-                <button class="lang-btn" onclick="setLanguage('es')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇪🇸 Español</button>
-                <button class="lang-btn" onclick="setLanguage('de')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇩🇪 Deutsch</button>
-                <button class="lang-btn" onclick="setLanguage('fr')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇫🇷 Français</button>
+            <h2>Select Language</h2>
+            <p>Choose your preferred language</p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:15px;">
+                <button onclick="setLanguage('ru')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇷🇺 Русский</button>
+                <button onclick="setLanguage('en')" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-main); padding:12px; border-radius:12px; cursor:pointer;">🇬🇧 English</button>
             </div>
         </div>
     </div>
@@ -802,50 +737,46 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeDetails()">×</button>
             <h2 class="modal-title" id="modalTitle">Model Name</h2>
-            <div class="modal-specs" id="modalSpecs">
-            </div>
-            <h3 class="modal-box-title" data-i18n="modal_box_title">Комплектация в коробке:</h3>
-            <ul class="modal-box-list" id="modalBoxList">
-            </ul>
+            <div class="modal-specs" id="modalSpecs"></div>
+            <h3 class="modal-box-title" id="modalBoxTitle">Комплектация:</h3>
+            <ul class="modal-box-list" id="modalBoxList"></ul>
         </div>
     </div>
 
     <header>
         <a href="#" class="logo">Scooter<span>Compare</span></a>
         <nav>
-            <a href="#compare" data-i18n="nav_compare">Сравнение</a>
-            <a href="#matcher" data-i18n="nav_matcher">Подбор</a>
-            <a href="#calculator" data-i18n="nav_calculator">Калькулятор</a>
-            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+            <a href="#compare">Самокаты</a>
+            <a href="#controllers">Контроллеры</a>
+            <a href="#calculator">Калькулятор</a>
+            <a href="#faq">FAQ</a>
         </nav>
         <div class="controls">
             <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
             <select id="langSelect" class="lang-selector" onchange="setLanguage(this.value)">
-                <option value="en">EN</option>
                 <option value="ru">RU</option>
-                <option value="es">ES</option>
-                <option value="de">DE</option>
-                <option value="fr">FR</option>
+                <option value="en">EN</option>
             </select>
         </div>
     </header>
 
     <div class="container">
+        <!-- РАЗДЕЛ САМОКАТОВ -->
         <section id="compare" style="padding-top: 20px;">
-            <h1 class="section-title" data-i18n="main_title">Сравнение электросамокатов</h1>
-            <p class="section-subtitle" data-i18n="main_subtitle">Более 200 моделей от 28 популярных брендов</p>
+            <h1 class="section-title" id="mainTitle">Сравнение электросамокатов</h1>
+            <p class="section-subtitle" id="mainSubtitle">Полный каталог моделей</p>
 
             <div class="category-filters" id="categoryFilters">
-                <button class="filter-btn active" data-category="all" data-i18n="cat_all">Все категории</button>
-                <button class="filter-btn" data-category="speed" data-i18n="cat_speed">Скорость</button>
-                <button class="filter-btn" data-category="comfort" data-i18n="cat_comfort">Комфорт</button>
-                <button class="filter-btn" data-category="city" data-i18n="cat_city">Город</button>
-                <button class="filter-btn" data-category="offroad" data-i18n="cat_offroad">Бездорожье</button>
-                <button class="filter-btn" data-category="budget" data-i18n="cat_budget">Бюджетный</button>
+                <button class="filter-btn active" data-category="all">Все категории</button>
+                <button class="filter-btn" data-category="speed">Скорость</button>
+                <button class="filter-btn" data-category="comfort">Комфорт</button>
+                <button class="filter-btn" data-category="city">Город</button>
+                <button class="filter-btn" data-category="offroad">Бездорожье</button>
+                <button class="filter-btn" data-category="budget">Бюджетный</button>
             </div>
 
             <div class="filters" id="brandFilters">
-                <button class="filter-btn active" data-brand="all" data-i18n="filter_all">Все бренды</button>
+                <button class="filter-btn active" data-brand="all">Все бренды</button>
                 <button class="filter-btn" data-brand="KuKirin">KuKirin</button>
                 <button class="filter-btn" data-brand="Kugoo">Kugoo</button>
                 <button class="filter-btn" data-brand="Ninebot">Ninebot</button>
@@ -853,252 +784,167 @@
                 <button class="filter-btn" data-brand="Dualtron">Dualtron</button>
                 <button class="filter-btn" data-brand="Kaabo">Kaabo</button>
                 <button class="filter-btn" data-brand="Vsett">Vsett</button>
-                <button class="filter-btn" data-brand="Inmotion">Inmotion</button>
             </div>
 
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th data-i18n="th_model">Модель</th>
-                            <th data-i18n="th_motor">Мотор</th>
-                            <th data-i18n="th_battery">Батарея</th>
-                            <th data-i18n="th_speed">Макс. скорость</th>
-                            <th data-i18n="th_range">Запас хода</th>
-                            <th data-i18n="th_weight">Вес</th>
-                            <th data-i18n="th_load">Нагрузка</th>
-                            <th data-i18n="th_tire">Колёса</th>
-                            <th data-i18n="th_charger">Зарядка (А)</th>
-                            <th data-i18n="th_action">Действие</th>
+                            <th>Модель</th>
+                            <th>Мотор</th>
+                            <th>Батарея</th>
+                            <th>Макс. скорость</th>
+                            <th>Запас хода</th>
+                            <th>Вес</th>
+                            <th>Нагрузка</th>
+                            <th>Колёса</th>
+                            <th>Зарядка (А)</th>
+                            <th>Действие</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
-            <p class="note" data-i18n="note_specs">* Характеристики указаны по данным производителей.</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <button onclick="window.print()" style="background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer;" data-i18n="btn_print">Скачать PDF / Печать</button>
+        </section>
+
+        <!-- РАЗДЕЛ КОНТРОЛЛЕРОВ -->
+        <section id="controllers" class="controllers-section">
+            <h2 class="section-title">Каталог контроллеров</h2>
+            <p class="section-subtitle">Для тюнинга и замены</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Модель</th>
+                            <th>Бренд</th>
+                            <th>Напряжение</th>
+                            <th>Макс. ток</th>
+                            <th>Мощность</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody id="controllersBody"></tbody>
+                </table>
             </div>
         </section>
 
         <div id="compareResult" class="compare-result">
-            <h2 class="section-title" style="font-size: 28px;" data-i18n="sim_result_title">Результат сравнения</h2>
-            <div style="overflow-x: auto;">
-                <table class="compare-table" id="compareTable">
-                </table>
-            </div>
-            <div class="recommendation-box" id="recommendationBox">
-            </div>
+            <h2 class="section-title" style="font-size: 28px;">Результат сравнения</h2>
+            <div style="overflow-x: auto;"><table class="compare-table" id="compareTable"></table></div>
+            <div class="recommendation-box" id="recommendationBox"></div>
         </div>
 
-        <section id="matcher" class="matcher-section">
-            <h2 class="section-title" data-i18n="matcher_title">Умный подбор</h2>
-            <p class="section-subtitle" data-i18n="matcher_subtitle">Найдите идеальный самокат по вашим параметрам</p>
-            <div class="matcher-grid">
-                <div class="calc-group">
-                    <label><span data-i18n="matcher_budget">Бюджет (до):</span> <span class="value-display" id="budgetVal">1500</span> $</label>
-                    <input type="range" id="matcherBudget" min="200" max="5000" value="1500" step="50">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="matcher_speed">Мин. скорость:</span> <span class="value-display" id="minSpeedVal">25</span> км/ч</label>
-                    <input type="range" id="matcherSpeed" min="15" max="100" value="25" step="5">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="matcher_load">Ваш вес (кг):</span> <span class="value-display" id="userWeightVal">80</span> кг</label>
-                    <input type="range" id="matcherWeight" min="40" max="150" value="80" step="5">
-                </div>
-                <div class="matcher-result" id="matcherResult">
-                </div>
-            </div>
-        </section>
-
         <section id="calculator" class="calculator">
-            <h2 class="section-title" data-i18n="calc_title">Калькулятор запаса хода</h2>
-            <p class="section-subtitle" data-i18n="calc_subtitle">Выберите модель из каталога или укажите параметры вручную</p>
-            
+            <h2 class="section-title">Калькулятор запаса хода</h2>
             <div class="calc-grid">
                 <div class="calc-group" style="grid-column: 1 / -1;">
-                    <label data-i18n="calc_select_label">Выберите модель из каталога:</label>
-                    <select id="modelSelect">
-                    </select>
+                    <label>Выберите модель из каталога:</label>
+                    <select id="modelSelect"></select>
                 </div>
+                <div class="calc-group"><label>Вес райдера: <span id="weightVal" class="value-display">75</span> кг</label><input type="range" id="weight" min="30" max="150" value="75" step="1"></div>
+                <div class="calc-group"><label>Вес самоката: <span id="scooterWeightVal" class="value-display">26</span> кг</label><input type="range" id="scooterWeight" min="10" max="70" value="26" step="1"></div>
+                <div class="calc-group"><label>Средняя скорость: <span id="speedVal" class="value-display">25</span> км/ч</label><input type="range" id="speed" min="10" max="100" value="25" step="1"></div>
+                <div class="calc-group"><label>Ёмкость батареи: <span id="batteryVal" class="value-display">750</span> Вт·ч</label><input type="range" id="battery" min="200" max="5000" value="750" step="10"></div>
+                <div class="calc-group"><label>Износ батареи: <span id="healthVal" class="value-display">100</span>%</label><input type="range" id="health" min="50" max="100" value="100" step="1"></div>
                 <div class="calc-group">
-                    <label><span data-i18n="calc_weight">Вес райдера:</span> <span class="value-display" id="weightVal">75</span> <span data-i18n="unit_kg">кг</span></label>
-                    <input type="range" id="weight" min="30" max="150" value="75" step="1">
+                    <label>Покрытие:</label>
+                    <select id="terrain"><option value="1.0">Асфальт</option><option value="1.15">Город/Грунт</option><option value="1.3">Бездорожье</option></select>
                 </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_scooter_weight">Вес самоката:</span> <span class="value-display" id="scooterWeightVal">26</span> <span data-i18n="unit_kg">кг</span></label>
-                    <input type="range" id="scooterWeight" min="10" max="70" value="26" step="1">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_speed">Средняя скорость:</span> <span class="value-display" id="speedVal">25</span> <span data-i18n="unit_kmh">км/ч</span></label>
-                    <input type="range" id="speed" min="10" max="100" value="25" step="1">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_battery">Ёмкость батареи:</span> <span class="value-display" id="batteryVal">750</span> <span data-i18n="unit_wh">Вт·ч</span></label>
-                    <input type="range" id="battery" min="200" max="5000" value="750" step="10">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_temp">Температура:</span> <span class="value-display" id="tempVal">20</span> <span data-i18n="unit_c">°C</span></label>
-                    <input type="range" id="temp" min="-10" max="40" value="20" step="1">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_regen">Рекуперация:</span> <span class="value-display" id="regenVal">20</span>%</label>
-                    <input type="range" id="regen" min="0" max="100" value="20" step="5">
-                </div>
-                <div class="calc-group">
-                    <label><span data-i18n="calc_health">Износ батареи:</span> <span class="value-display" id="healthVal">100</span>%</label>
-                    <input type="range" id="health" min="50" max="100" value="100" step="1">
-                </div>
-                <div class="calc-group">
-                    <label data-i18n="calc_terrain">Покрытие:</label>
-                    <select id="terrain">
-                        <option value="1.0" data-i18n="terrain_smooth">Ровный асфальт</option>
-                        <option value="1.1" data-i18n="terrain_city">Город (светофоры)</option>
-                        <option value="1.25" data-i18n="terrain_offroad">Бездорожье / Горы</option>
-                    </select>
-                </div>
-                <div class="calc-group">
-                    <label data-i18n="calc_style">Стиль езды:</label>
-                    <select id="style">
-                        <option value="0.9" data-i18n="style_eco">Эко (плавно)</option>
-                        <option value="1.0" selected data-i18n="style_normal">Обычный</option>
-                        <option value="1.2" data-i18n="style_sport">Спорт (резко)</option>
-                    </select>
-                </div>
-                <div class="calc-group">
-                    <label data-i18n="calc_price">Цена за 1 кВт·ч:</label>
-                    <input type="number" id="price" value="5" step="0.1" min="0">
-                </div>
-                <div class="calc-group">
-                    <label data-i18n="calc_charger">Зарядное устройство (Амперы):</label>
-                    <input type="number" id="charger" value="2" step="0.5" min="1" max="10">
-                </div>
-                <div class="calc-group">
-                    <label data-i18n="calc_daily_dist">Пробег в день (км):</label>
-                    <input type="number" id="dailyDist" value="10" step="1" min="1">
-                </div>
+                <div class="calc-group"><label>Цена за 1 кВт·ч:</label><input type="number" id="price" value="5" step="0.1" min="0"></div>
+                <div class="calc-group"><label>Зарядное (Амперы):</label><input type="number" id="charger" value="2" step="0.5" min="1" max="10"></div>
 
                 <div class="calc-result">
-                    <h3 data-i18n="calc_result">Примерный запас хода</h3>
-                    <div>
-                        <span class="range-value" id="rangeResult">55</span>
-                        <span class="range-unit" data-i18n="unit_km">км</span>
-                    </div>
+                    <h3>Примерный запас хода</h3>
+                    <div><span id="rangeResult" class="range-value">55</span> <span class="range-unit">км</span></div>
                     <div class="calc-extra-results">
-                        <div class="calc-extra-item">
-                            <span data-i18n="calc_cost">Стоимость зарядки:</span> <strong id="costResult">0.00</strong> <span data-i18n="unit_currency">руб</span>
-                        </div>
-                        <div class="calc-extra-item">
-                            <span data-i18n="calc_charge_time">Время зарядки:</span> <strong id="timeResult">0.0</strong> <span data-i18n="unit_hours">ч</span>
-                        </div>
-                        <div class="calc-extra-item">
-                            <span data-i18n="calc_cost_km">Цена за 1 км:</span> <strong id="costKmResult">0.00</strong> <span data-i18n="unit_currency">руб</span>
-                        </div>
-                        <div class="calc-extra-item">
-                            <span data-i18n="calc_monthly_cost">Стоимость в месяц:</span> <strong id="monthlyCostResult">0.00</strong> <span data-i18n="unit_currency">руб</span>
-                        </div>
+                        <div class="calc-extra-item"><span>Стоимость зарядки:</span> <strong><span id="costResult">0.00</span> руб</strong></div>
+                        <div class="calc-extra-item"><span>Время зарядки:</span> <strong><span id="timeResult">0.0</span> ч</strong></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="faq-section">
-            <h2 class="section-title" data-i18n="faq_title">База знаний</h2>
-            <p class="section-subtitle" data-i18n="faq_subtitle">Ответы на частые вопросы</p>
-            
-            <details class="faq-item">
-                <summary data-i18n="faq_q1">Как продлить жизнь батарее?</summary>
-                <div class="faq-content" data-i18n="faq_a1">Не заряжайте батарею до 100%, если не планируете поездку. Не оставляйте на морозе.</div>
-            </details>
-            <details class="faq-item">
-                <summary data-i18n="faq_q2">Что такое рекуперация?</summary>
-                <div class="faq-content" data-i18n="faq_a2">Система, которая при торможении возвращает энергию в батарею.</div>
-            </details>
-            <details class="faq-item">
-                <summary data-i18n="faq_q3">Как выбрать самокат по весу?</summary>
-                <div class="faq-content" data-i18n="faq_a3">Всегда оставляйте запас по максимальной нагрузке (обычно +20 кг к вашему весу).</div>
-            </details>
-            <details class="faq-item">
-                <summary data-i18n="faq_q4">Почему реальный запас хода меньше заявленного?</summary>
-                <div class="faq-content" data-i18n="faq_a4">Заводские тесты идеальны. В реальности влияют вес, рельеф, ветер и температура.</div>
-            </details>
-        </section>
-
-        <section id="about" class="about-section">
-            <h2 class="section-title" data-i18n="about_title">О нас</h2>
-            <p data-i18n="about_p1">Мы — Scooter Compare. Этот проект создан энтузиастами для таких же любителей электросамокатов.</p>
-            <p data-i18n="about_p2">Мы собрали данные по 200+ моделям в одну удобную таблицу, добавили фильтры, умный подбор и продвинутый калькулятор.</p>
-            <p data-i18n="about_p3">Наша цель — помочь вам выбрать идеальный самокат.</p>
+            <h2 class="section-title">FAQ</h2>
+            <details class="faq-item"><summary>Как продлить жизнь батарее?</summary><div class="faq-content">Не оставляйте на 100% без нужды. Избегайте экстремальных температур.</div></details>
+            <details class="faq-item"><summary>Что такое рекуперация?</summary><div class="faq-content">Возврат энергии в батарею при торможении.</div></details>
         </section>
     </div>
 
     <div id="compareTray" class="compare-tray">
-        <div class="tray-items" id="trayItems">
-        </div>
+        <div class="tray-items" id="trayItems"></div>
         <div class="tray-actions">
-            <button class="btn-tray clear" onclick="clearCompare()" data-i18n="btn_clear">Очистить</button>
-            <button class="btn-tray primary" onclick="showComparison()" data-i18n="btn_compare">Сравнить выбранные</button>
+            <button class="btn-tray clear" onclick="clearCompare()">Очистить</button>
+            <button class="btn-tray primary" onclick="showComparison()">Сравнить выбранные</button>
         </div>
     </div>
 
-    <footer>
-        <p data-i18n="footer">© 2026 Scooter Compare. Сделано с душой для райдеров.</p>
-    </footer>
+    <footer><p>© 2026 Scooter Compare.</p></footer>
 
     <script>
+        // --- ПЕРЕВОДЫ (Сокращены для примера) ---
         const translations = {
-            en: { modal_title: "Select Language", modal_subtitle: "Choose your preferred language to continue", modal_box_title: "Box Contents:", nav_compare: "Comparison", nav_matcher: "Matcher", nav_calculator: "Calculator", nav_faq: "FAQ", main_title: "Electric Scooter Comparison", main_subtitle: "Over 200 models from 28 popular brands", cat_all: "All Categories", cat_speed: "Speed", cat_comfort: "Comfort", cat_city: "City", cat_offroad: "Off-road", cat_budget: "Budget", filter_all: "All Brands", th_model: "Model", th_motor: "Motor", th_battery: "Battery", th_speed: "Max Speed", th_range: "Range", th_weight: "Weight", th_load: "Max Load", th_tire: "Tires", th_charger: "Charger (A)", th_action: "Action", note_specs: "* Specifications based on manufacturer data.", btn_compare: "Compare Selected", btn_add_compare: "+ Compare", btn_added_compare: "✓ Selected", btn_clear: "Clear", btn_print: "Print / Save PDF", sim_result_title: "Comparison Result", matcher_title: "Smart Matcher", matcher_subtitle: "Find the perfect scooter based on your needs", matcher_budget: "Max Budget ($):", matcher_speed: "Min Speed (km/h):", matcher_load: "Your Weight (kg):", calc_title: "Range Calculator", calc_subtitle: "Select a model from the catalog or enter parameters manually", calc_select_label: "Select a model from the catalog:", calc_weight: "Rider Weight:", calc_scooter_weight: "Scooter Weight:", calc_speed: "Average Speed:", calc_battery: "Battery Capacity:", calc_temp: "Temperature:", calc_regen: "Regen Braking:", calc_health: "Battery Health:", calc_terrain: "Terrain:", calc_style: "Riding Style:", calc_price: "Price per kWh:", calc_charger: "Charger Amps:", calc_daily_dist: "Daily Distance (km):", calc_result: "Estimated Range", calc_cost: "Charging Cost:", calc_charge_time: "Charging Time:", calc_cost_km: "Cost per 1 km:", calc_monthly_cost: "Monthly Cost:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Smooth Asphalt", terrain_city: "City (stop & go)", terrain_offroad: "Off-road / Hills", style_eco: "Eco (smooth)", style_normal: "Normal", style_sport: "Sport (aggressive)", faq_title: "Knowledge Base", faq_subtitle: "Frequently Asked Questions", faq_q1: "How to extend battery life?", faq_a1: "Don't charge to 100% if not planning a trip. Avoid extreme temperatures.", faq_q2: "What is regenerative braking?", faq_a2: "It converts kinetic energy back into electricity during braking.", faq_q3: "How to choose scooter by weight?", faq_a3: "Always leave a margin. If you weigh 80kg, choose max load 100-120kg.", faq_q4: "Why is real range lower?", faq_a4: "Manufacturers test in ideal conditions. Real range depends on weight, terrain, wind, and speed.", about_title: "About Us", about_p1: "We are Scooter Compare. This project was created by enthusiasts for fellow electric scooter lovers.", about_p2: "We gathered data on 200+ models into one convenient table, added filters, smart matcher, and an advanced calculator.", about_p3: "Our goal is to help you choose the perfect scooter.", footer: "© 2026 Scooter Compare. Made with soul for riders.", custom_battery: "-- Custom Battery --", recommendation: "Recommendation", rec_text: "The best choice among the selected is", rec_text2: "It combines high speed and good range.", max_alert: "You can select up to 4 scooters." },
-            ru: { modal_title: "Выберите язык", modal_subtitle: "Выберите предпочитаемый язык для продолжения", modal_box_title: "Комплектация в коробке:", nav_compare: "Сравнение", nav_matcher: "Подбор", nav_calculator: "Калькулятор", nav_faq: "FAQ", main_title: "Сравнение электросамокатов", main_subtitle: "Более 200 моделей от 28 популярных брендов", cat_all: "Все категории", cat_speed: "Скорость", cat_comfort: "Комфорт", cat_city: "Город", cat_offroad: "Бездорожье", cat_budget: "Бюджетный", filter_all: "Все бренды", th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Макс. скорость", th_range: "Запас хода", th_weight: "Вес", th_load: "Нагрузка", th_tire: "Колёса", th_charger: "Зарядка (А)", th_action: "Действие", note_specs: "* Характеристики указаны по данным производителей.", btn_compare: "Сравнить выбранные", btn_add_compare: "+ Сравнить", btn_added_compare: "✓ Выбрано", btn_clear: "Очистить", btn_print: "Скачать PDF / Печать", sim_result_title: "Результат сравнения", matcher_title: "Умный подбор", matcher_subtitle: "Найдите идеальный самокат по вашим параметрам", matcher_budget: "Бюджет (до):", matcher_speed: "Мин. скорость:", matcher_load: "Ваш вес:", calc_title: "Калькулятор запаса хода", calc_subtitle: "Выберите модель из каталога или укажите параметры вручную", calc_select_label: "Выберите модель из каталога:", calc_weight: "Вес райдера:", calc_scooter_weight: "Вес самоката:", calc_speed: "Средняя скорость:", calc_battery: "Ёмкость батареи:", calc_temp: "Температура:", calc_regen: "Рекуперация:", calc_health: "Износ батареи:", calc_terrain: "Покрытие:", calc_style: "Стиль езды:", calc_price: "Цена за 1 кВт·ч:", calc_charger: "Зарядное устройство (А):", calc_daily_dist: "Пробег в день (км):", calc_result: "Примерный запас хода", calc_cost: "Стоимость зарядки:", calc_charge_time: "Время зарядки:", calc_cost_km: "Цена за 1 км:", calc_monthly_cost: "Стоимость в месяц:", unit_kg: "кг", unit_kmh: "км/ч", unit_wh: "Вт·ч", unit_km: "км", unit_c: "°C", unit_hours: "ч", unit_currency: "руб", terrain_smooth: "Ровный асфальт", terrain_city: "Город (светофоры)", terrain_offroad: "Бездорожье / Горы", style_eco: "Эко (плавно)", style_normal: "Обычный", style_sport: "Спорт (резко)", faq_title: "База знаний", faq_subtitle: "Ответы на частые вопросы", faq_q1: "Как продлить жизнь батарее?", faq_a1: "Не заряжайте до 100% без нужды. Избегайте крайних температур.", faq_q2: "Что такое рекуперация?", faq_a2: "Система возврата энергии при торможении обратно в батарею.", faq_q3: "Как выбрать самокат по весу?", faq_a3: "Всегда оставляйте запас. Если ваш вес 80 кг, выбирайте нагрузку 100-120 кг.", faq_q4: "Почему реальный пробег меньше?", faq_a4: "Заводские тесты идеальны. В реальности влияют вес, рельеф, ветер и скорость.", about_title: "О нас", about_p1: "Мы — Scooter Compare. Этот проект создан энтузиастами.", about_p2: "Мы собрали данные по 200+ моделям, добавили подбор и продвинутый калькулятор.", about_p3: "Наша цель — помочь вам выбрать идеальный самокат.", footer: "© 2026 Scooter Compare. Сделано с душой для райдеров.", custom_battery: "-- Свой аккумулятор --", recommendation: "Рекомендация", rec_text: "Лучший выбор среди выбранных —", rec_text2: "Он сочетает высокую скорость и хороший запас хода.", max_alert: "Можно выбрать не более 4 самокатов." },
-            es: { modal_title: "Seleccionar idioma", modal_subtitle: "Elige tu idioma preferido", modal_box_title: "Contenido de la caja:", nav_compare: "Comparación", nav_matcher: "Buscador", nav_calculator: "Calculadora", nav_faq: "FAQ", main_title: "Comparación de patinetes eléctricos", main_subtitle: "Más de 200 modelos de 28 marcas populares", cat_all: "Todas", cat_speed: "Velocidad", cat_comfort: "Comodidad", cat_city: "Ciudad", cat_offroad: "Todo terreno", cat_budget: "Económico", filter_all: "Todas las marcas", th_model: "Modelo", th_motor: "Motor", th_battery: "Batería", th_speed: "Velocidad máx.", th_range: "Autonomía", th_weight: "Peso", th_load: "Carga máx.", th_tire: "Neumáticos", th_charger: "Cargador (A)", th_action: "Acción", note_specs: "* Especificaciones del fabricante.", btn_compare: "Comparar", btn_add_compare: "+ Comparar", btn_added_compare: "✓ Seleccionado", btn_clear: "Limpiar", btn_print: "Imprimir / PDF", sim_result_title: "Resultado", matcher_title: "Buscador inteligente", matcher_subtitle: "Encuentra el patinete perfecto", matcher_budget: "Presupuesto:", matcher_speed: "Velocidad mín.:", matcher_load: "Tu peso:", calc_title: "Calculadora de autonomía", calc_subtitle: "Selecciona un modelo o introduce parámetros", calc_select_label: "Selecciona un modelo:", calc_weight: "Peso del piloto:", calc_scooter_weight: "Peso del patinete:", calc_speed: "Velocidad media:", calc_battery: "Capacidad de la batería:", calc_temp: "Temperatura:", calc_regen: "Frenado regenerativo:", calc_health: "Salud de la batería:", calc_terrain: "Terreno:", calc_style: "Estilo de conducción:", calc_price: "Precio por kWh:", calc_charger: "Amperios del cargador:", calc_daily_dist: "Distancia diaria:", calc_result: "Autonomía estimada", calc_cost: "Coste de carga:", calc_charge_time: "Tiempo de carga:", calc_cost_km: "Coste por 1 km:", calc_monthly_cost: "Coste mensual:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asfalto liso", terrain_city: "Ciudad", terrain_offroad: "Todo terreno", style_eco: "Eco", style_normal: "Normal", style_sport: "Deportivo", faq_title: "Base de conocimiento", faq_subtitle: "Preguntas frecuentes", faq_q1: "¿Cómo prolongar la batería?", faq_a1: "No cargues al 100% sin necesidad. Evita temperaturas extremas.", faq_q2: "¿Qué es el frenado regenerativo?", faq_a2: "Convierte la energía cinética en electricidad al frenar.", faq_q3: "¿Cómo elegir por peso?", faq_a3: "Deja margen. Si pesas 80 kg, elige carga máxima 100-120 kg.", faq_q4: "¿Por qué la autonomía real es menor?", faq_a4: "Los test son ideales. Influyen peso, terreno, viento y velocidad.", about_title: "Sobre nosotros", about_p1: "Somos Scooter Compare.", about_p2: "Recopilamos datos de 200+ modelos y añadimos herramientas.", about_p3: "Nuestro objetivo es ayudarte a elegir.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Batería personalizada --", recommendation: "Recomendación", rec_text: "La mejor opción es", rec_text2: "Combina velocidad y autonomía.", max_alert: "Máximo 4 patinetes." },
-            de: { modal_title: "Sprache auswählen", modal_subtitle: "Wähle deine bevorzugte Sprache", modal_box_title: "Lieferumfang:", nav_compare: "Vergleich", nav_matcher: "Sucher", nav_calculator: "Rechner", nav_faq: "FAQ", main_title: "E-Scooter Vergleich", main_subtitle: "Über 200 Modelle von 28 Marken", cat_all: "Alle", cat_speed: "Geschwindigkeit", cat_comfort: "Komfort", cat_city: "Stadt", cat_offroad: "Offroad", cat_budget: "Budget", filter_all: "Alle Marken", th_model: "Modell", th_motor: "Motor", th_battery: "Akku", th_speed: "Max. Geschw.", th_range: "Reichweite", th_weight: "Gewicht", th_load: "Max. Last", th_tire: "Reifen", th_charger: "Ladegerät (A)", th_action: "Aktion", note_specs: "* Herstellerangaben.", btn_compare: "Vergleichen", btn_add_compare: "+ Vergleichen", btn_added_compare: "✓ Ausgewählt", btn_clear: "Löschen", btn_print: "Drucken / PDF", sim_result_title: "Ergebnis", matcher_title: "Intelligenter Sucher", matcher_subtitle: "Finde den perfekten Roller", matcher_budget: "Budget:", matcher_speed: "Min. Geschw.:", matcher_load: "Dein Gewicht:", calc_title: "Reichweitenrechner", calc_subtitle: "Wähle ein Modell oder gib Parameter ein", calc_select_label: "Wähle ein Modell:", calc_weight: "Fahrergewicht:", calc_scooter_weight: "Rollergewicht:", calc_speed: "Durchschnittsgeschw.:", calc_battery: "Akkukapazität:", calc_temp: "Temperatur:", calc_regen: "Rekuperation:", calc_health: "Akkuzustand:", calc_terrain: "Gelände:", calc_style: "Fahrstil:", calc_price: "Preis pro kWh:", calc_charger: "Ladegerät-Ampere:", calc_daily_dist: "Tägliche Distanz:", calc_result: "Geschätzte Reichweite", calc_cost: "Ladekosten:", calc_charge_time: "Ladezeit:", calc_cost_km: "Kosten pro 1 km:", calc_monthly_cost: "Monatliche Kosten:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "Std", unit_currency: "rub", terrain_smooth: "Asphalt", terrain_city: "Stadt", terrain_offroad: "Offroad", style_eco: "Eco", style_normal: "Normal", style_sport: "Sport", faq_title: "Wissensdatenbank", faq_subtitle: "Häufige Fragen", faq_q1: "Wie verlängere ich die Akkulebensdauer?", faq_a1: "Lade nicht immer auf 100%. Vermeide extreme Temperaturen.", faq_q2: "Was ist Rekuperation?", faq_a2: "Energierückgewinnung beim Bremsen.", faq_q3: "Wie wähle ich nach Gewicht?", faq_a3: "Lass Luft nach oben. Bei 80 kg wähle 100-120 kg Last.", faq_q4: "Warum ist die Reichweite geringer?", faq_a4: "Hersteller testen ideal. Realität: Gewicht, Gelände, Wind.", about_title: "Über uns", about_p1: "Wir sind Scooter Compare.", about_p2: "Daten von 200+ Modellen, Sucher und Rechner.", about_p3: "Wir helfen dir bei der Auswahl.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Eigener Akku --", recommendation: "Empfehlung", rec_text: "Beste Wahl:", rec_text2: "Gute Geschwindigkeit und Reichweite.", max_alert: "Maximal 4 Roller." },
-            fr: { modal_title: "Choisir la langue", modal_subtitle: "Choisissez votre langue", modal_box_title: "Contenu de la boîte:", nav_compare: "Comparaison", nav_matcher: "Trouver", nav_calculator: "Calculateur", nav_faq: "FAQ", main_title: "Comparaison de trottinettes", main_subtitle: "Plus de 200 modèles de 28 marques", cat_all: "Toutes", cat_speed: "Vitesse", cat_comfort: "Confort", cat_city: "Ville", cat_offroad: "Tout-terrain", cat_budget: "Économique", filter_all: "Toutes les marques", th_model: "Modèle", th_motor: "Moteur", th_battery: "Batterie", th_speed: "Vitesse max", th_range: "Autonomie", th_weight: "Poids", th_load: "Charge max", th_tire: "Pneus", th_charger: "Chargeur (A)", th_action: "Action", note_specs: "* Données fabricant.", btn_compare: "Comparer", btn_add_compare: "+ Comparer", btn_added_compare: "✓ Sélectionné", btn_clear: "Effacer", btn_print: "Imprimer / PDF", sim_result_title: "Résultat", matcher_title: "Trouvaille intelligente", matcher_subtitle: "Trouvez la trottinette parfaite", matcher_budget: "Budget:", matcher_speed: "Vitesse min:", matcher_load: "Votre poids:", calc_title: "Calculateur d'autonomie", calc_subtitle: "Sélectionnez un modèle ou entrez les paramètres", calc_select_label: "Sélectionnez un modèle:", calc_weight: "Poids du pilote:", calc_scooter_weight: "Poids de la trottinette:", calc_speed: "Vitesse moyenne:", calc_battery: "Capacité batterie:", calc_temp: "Température:", calc_regen: "Freinage régénératif:", calc_health: "Santé de la batterie:", calc_terrain: "Terrain:", calc_style: "Style de conduite:", calc_price: "Prix par kWh:", calc_charger: "Ampères du chargeur:", calc_daily_dist: "Distance quotidienne:", calc_result: "Autonomie estimée", calc_cost: "Coût de charge:", calc_charge_time: "Temps de charge:", calc_cost_km: "Coût par 1 km:", calc_monthly_cost: "Coût mensuel:", unit_kg: "kg", unit_kmh: "km/h", unit_wh: "Wh", unit_km: "km", unit_c: "°C", unit_hours: "h", unit_currency: "rub", terrain_smooth: "Asphalte lisse", terrain_city: "Ville", terrain_offroad: "Tout-terrain", style_eco: "Éco", style_normal: "Normal", style_sport: "Sport", faq_title: "Base de connaissances", faq_subtitle: "Questions fréquentes", faq_q1: "Comment prolonger la batterie?", faq_a1: "Ne chargez pas à 100% sans raison. Évitez les extrêmes.", faq_q2: "Qu'est-ce que le freinage régénératif?", faq_a2: "Récupère l'énergie au freinage.", faq_q3: "Comment choisir selon le poids?", faq_a3: "Gardez une marge. Si 80 kg, choisissez 100-120 kg max.", faq_q4: "Pourquoi l'autonomie réelle est-elle plus faible?", faq_a4: "Les tests sont idéaux. Poids, terrain et vent comptent.", about_title: "À propos", about_p1: "Nous sommes Scooter Compare.", about_p2: "Données de 200+ modèles et outils avancés.", about_p3: "Nous aidons à choisir.", footer: "© 2026 Scooter Compare.", custom_battery: "-- Batterie personnalisée --", recommendation: "Recommandation", rec_text: "Le meilleur choix:", rec_text2: "Bon équilibre vitesse/autonomie.", max_alert: "Maximum 4 trottinettes." }
+            ru: { title: "Сравнение", modal_box: "Комплектация:" },
+            en: { title: "Compare", modal_box: "Box contents:" }
         };
-
         let currentLang = 'ru';
         let currentFilter = 'all';
         let currentCategory = 'all';
         let compareList = [];
-        let currentVoltage = 48;
         let currentTheme = localStorage.getItem('theme') || 'dark';
 
-        const defaultBox = ["Зарядное устройство", "Инструкция по эксплуатации", "Набор инструментов (шестигранники)", "Ключи (если применимо)"];
-        const premiumBox = ["Зарядное устройство", "Инструкция по эксплуатации", "Набор инструментов (шестигранники)", "Пульт дистанционного управления", "Сумка для самоката"];
+        const defaultBox = ["Зарядное устройство", "Инструкция", "Набор шестигранников"];
+        const premiumBox = ["Зарядное устройство", "Инструкция", "Набор инструментов", "Пульт ДУ"];
 
+        // --- БАЗА САМОКАТОВ (Восстановлена большая часть) ---
         const scooters = [
-            { id: 1, brand: "KuKirin", model: "G2", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 26, charger: 2, price: 650, maxLoad: 120, tire: "10\"", category: "comfort", box: defaultBox },
-            { id: 2, brand: "KuKirin", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 22, charger: 2, price: 550, maxLoad: 120, tire: "10\"", category: "city", box: defaultBox },
-            { id: 3, brand: "KuKirin", model: "G2 Max", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "75", weight: 30, charger: 2, price: 800, maxLoad: 120, tire: "10\"", category: "speed", box: defaultBox },
-            { id: 4, brand: "KuKirin", model: "G2 Master", motor: "2×1000 W", battery: "52 V 20.8 Ah", speed: "60", range: "70", weight: 30, charger: 2, price: 1100, maxLoad: 120, tire: "10\"", category: "speed", box: defaultBox },
-            { id: 5, brand: "KuKirin", model: "G4", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3, price: 1800, maxLoad: 150, tire: "11\"", category: "offroad", box: premiumBox },
-            { id: 6, brand: "Kugoo", model: "G1", motor: "2×1000 W", battery: "52 V 18.2 Ah", speed: "60", range: "70", weight: 35, charger: 2, price: 1000, maxLoad: 120, tire: "10\"", category: "speed", box: defaultBox },
-            { id: 7, brand: "Kugoo", model: "S3", motor: "350 W", battery: "36 V 6 Ah", speed: "28", range: "25", weight: 11, charger: 1.5, price: 260, maxLoad: 100, tire: "8.5\"", category: "budget", box: defaultBox },
-            { id: 8, brand: "Ninebot", model: "Max G30", motor: "350 W", battery: "36 V 15.3 Ah", speed: "25", range: "65", weight: 19, charger: 2, price: 800, maxLoad: 100, tire: "10\"", category: "city", box: defaultBox },
-            { id: 9, brand: "Ninebot", model: "Max G2", motor: "900 W", battery: "36 V 15.3 Ah", speed: "25", range: "70", weight: 24.3, charger: 2, price: 1000, maxLoad: 120, tire: "10\"", category: "comfort", box: defaultBox },
-            { id: 10, brand: "Xiaomi", model: "Electric Scooter 4 Pro", motor: "350 W", battery: "446 Wh", speed: "25", range: "55", weight: 17, charger: 1.5, price: 450, maxLoad: 100, tire: "10\"", category: "budget", box: defaultBox },
-            { id: 11, brand: "Dualtron", model: "Spider 2", motor: "2×2000 W", battery: "60 V 30 Ah", speed: "64", range: "80", weight: 26, charger: 4, price: 2500, maxLoad: 120, tire: "10\"", category: "speed", box: premiumBox },
-            { id: 12, brand: "Kaabo", model: "Wolf Warrior X GT", motor: "2×1100 W", battery: "60 V 29 Ah", speed: "70", range: "110", weight: 38, charger: 4, price: 2500, maxLoad: 150, tire: "11\"", category: "offroad", box: premiumBox },
-            { id: 13, brand: "Vsett", model: "10+", motor: "2×1400 W", battery: "60 V 24 Ah", speed: "65", range: "100", weight: 32, charger: 3, price: 2200, maxLoad: 150, tire: "10\"", category: "comfort", box: premiumBox },
-            { id: 14, brand: "Inmotion", model: "RS", motor: "2×2000 W", battery: "72 V 40 Ah", speed: "80", range: "120", weight: 56, charger: 5, price: 3500, maxLoad: 150, tire: "10\"", category: "offroad", box: premiumBox }
+            { id: 1, brand: "KuKirin", model: "G2", motor: "800 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 26, charger: 2, maxLoad: 120, tire: "10\"", category: "comfort", box: defaultBox },
+            { id: 2, brand: "KuKirin", model: "G2 Pro", motor: "600 W", battery: "48 V 15 Ah", speed: "45", range: "55", weight: 22, charger: 2, maxLoad: 120, tire: "10\"", category: "city", box: defaultBox },
+            { id: 3, brand: "KuKirin", model: "G2 Max", motor: "1000 W", battery: "48 V 20 Ah", speed: "55", range: "75", weight: 30, charger: 2, maxLoad: 120, tire: "10\"", category: "speed", box: defaultBox },
+            { id: 4, brand: "KuKirin", model: "G4", motor: "2000 W", battery: "60 V 20 Ah", speed: "70", range: "75", weight: 37, charger: 3, maxLoad: 150, tire: "11\"", category: "offroad", box: premiumBox },
+            { id: 5, brand: "KuKirin", model: "M4 Pro", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "64", weight: 24, charger: 2, maxLoad: 100, tire: "10\"", category: "comfort", box: defaultBox },
+            { id: 6, brand: "Kugoo", model: "G1", motor: "2×1000 W", battery: "52 V 18.2 Ah", speed: "60", range: "70", weight: 35, charger: 2, maxLoad: 120, tire: "10\"", category: "speed", box: defaultBox },
+            { id: 7, brand: "Kugoo", model: "S3", motor: "350 W", battery: "36 V 6 Ah", speed: "28", range: "25", weight: 11, charger: 1.5, maxLoad: 100, tire: "8.5\"", category: "budget", box: defaultBox },
+            { id: 8, brand: "Kugoo", model: "M4 Pro", motor: "500 W", battery: "48 V 13 Ah", speed: "45", range: "60", weight: 22, charger: 2, maxLoad: 120, tire: "10\"", category: "city", box: defaultBox },
+            { id: 9, brand: "Kugoo", model: "Kirin", motor: "800 W", battery: "48 V 18 Ah", speed: "45", range: "70", weight: 47, charger: 2, maxLoad: 150, tire: "10\"", category: "comfort", box: defaultBox },
+            { id: 10, brand: "Ninebot", model: "Max G30", motor: "350 W", battery: "36 V 15.3 Ah", speed: "25", range: "65", weight: 19, charger: 2, maxLoad: 100, tire: "10\"", category: "city", box: defaultBox },
+            { id: 11, brand: "Ninebot", model: "Max G2", motor: "900 W", battery: "36 V 15.3 Ah", speed: "25", range: "70", weight: 24.3, charger: 2, maxLoad: 120, tire: "10\"", category: "comfort", box: defaultBox },
+            { id: 12, brand: "Ninebot", model: "F40", motor: "350 W", battery: "36 V 10.2 Ah", speed: "30", range: "40", weight: 17.1, charger: 2, maxLoad: 100, tire: "10\"", category: "city", box: defaultBox },
+            { id: 13, brand: "Ninebot", model: "F30", motor: "350 W", battery: "36 V 7.65 Ah", speed: "25", range: "30", weight: 16, charger: 2, maxLoad: 100, tire: "10\"", category: "budget", box: defaultBox },
+            { id: 14, brand: "Xiaomi", model: "Electric Scooter 4 Pro", motor: "350 W", battery: "446 Wh", speed: "25", range: "55", weight: 17, charger: 1.5, maxLoad: 100, tire: "10\"", category: "budget", box: defaultBox },
+            { id: 15, brand: "Xiaomi", model: "Electric Scooter 6 Pro", motor: "400 W", battery: "~477 Wh", speed: "20", range: "70", weight: 27.3, charger: 2, maxLoad: 120, tire: "10\"", category: "comfort", box: defaultBox },
+            { id: 16, brand: "Xiaomi", model: "Mi Electric Scooter 3", motor: "300 W", battery: "260 Wh", speed: "25", range: "30", weight: 13.2, charger: 1.5, maxLoad: 100, tire: "8.5\"", category: "budget", box: defaultBox },
+            { id: 17, brand: "Dualtron", model: "Spider 2", motor: "2×2000 W", battery: "60 V 30 Ah", speed: "64", range: "80", weight: 26, charger: 4, maxLoad: 120, tire: "10\"", category: "speed", box: premiumBox },
+            { id: 18, brand: "Dualtron", model: "Compact", motor: "2×1700 W", battery: "60 V 30 Ah", speed: "61", range: "105", weight: 34, charger: 4, maxLoad: 120, tire: "10\"", category: "offroad", box: premiumBox },
+            { id: 19, brand: "Dualtron", model: "City 2.0", motor: "2×2000 W", battery: "60 V 25 Ah", speed: "70", range: "80", weight: 35, charger: 4, maxLoad: 120, tire: "10\"", category: "speed", box: premiumBox },
+            { id: 20, brand: "Kaabo", model: "Wolf Warrior X GT", motor: "2×1100 W", battery: "60 V 29 Ah", speed: "70", range: "110", weight: 38, charger: 4, maxLoad: 150, tire: "11\"", category: "offroad", box: premiumBox },
+            { id: 21, brand: "Kaabo", model: "Mantis King Pro", motor: "2×1000 W", battery: "60 V 18 Ah", speed: "60", range: "80", weight: 34, charger: 2, maxLoad: 120, tire: "10\"", category: "speed", box: premiumBox },
+            { id: 22, brand: "Kaabo", model: "Urban", motor: "500 W", battery: "48 V 15 Ah", speed: "45", range: "40", weight: 23, charger: 2, maxLoad: 120, tire: "10\"", category: "city", box: defaultBox },
+            { id: 23, brand: "Vsett", model: "10+", motor: "2×1400 W", battery: "60 V 24 Ah", speed: "65", range: "100", weight: 32, charger: 3, maxLoad: 150, tire: "10\"", category: "comfort", box: premiumBox },
+            { id: 24, brand: "Vsett", model: "9+", motor: "2×650 W", battery: "48 V 19.2 Ah", speed: "50", range: "70", weight: 23, charger: 2, maxLoad: 120, tire: "8.5\"", category: "city", box: defaultBox },
+            { id: 25, brand: "Vsett", model: "8+", motor: "600 W", battery: "48 V 16 Ah", speed: "45", range: "90", weight: 24, charger: 2, maxLoad: 120, tire: "8.5\"", category: "comfort", box: defaultBox }
+        ];
+
+        // --- БАЗА КОНТРОЛЛЕРОВ ---
+        const controllers = [
+            { brand: "MiniMotors", model: "Eye 4", voltage: "48V - 72V", current: "100A", power: "5000W", price: "250 $" },
+            { brand: "Sabvoton", model: "SVMC 72150", voltage: "72V", current: "150A", power: "6000W", price: "300 $" },
+            { brand: "Kelly", model: "KLS7230S", voltage: "72V", current: "300A", power: "8000W", price: "400 $" },
+            { brand: "Lingbo", model: "LB72122", voltage: "72V", current: "120A", power: "3000W", price: "120 $" },
+            { brand: "Votol", model: "EM100", voltage: "72V", current: "100A", power: "3000W", price: "150 $" }
         ];
 
         const tableBody = document.getElementById('tableBody');
+        const controllersBody = document.getElementById('controllersBody');
         const modelSelect = document.getElementById('modelSelect');
-        const langModal = document.getElementById('languageModal');
         const langSelect = document.getElementById('langSelect');
         const tray = document.getElementById('compareTray');
         const trayItems = document.getElementById('trayItems');
         const compareResult = document.getElementById('compareResult');
         const compareTable = document.getElementById('compareTable');
         const recommendationBox = document.getElementById('recommendationBox');
-        const matcherResult = document.getElementById('matcherResult');
         const themeBtn = document.getElementById('themeBtn');
         const detailsModal = document.getElementById('detailsModal');
-
-        function t(key) {
-            return translations[currentLang][key] || translations['en'][key] || key;
-        }
 
         function toggleTheme() {
             currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1107,47 +953,58 @@
             themeBtn.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
         }
 
-        function applyTranslations() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.textContent = translations[currentLang][key];
-                }
+        // Рендер Самокатов (Правильная логика с 'all')
+        function renderTable() {
+            tableBody.innerHTML = '';
+            const filtered = scooters.filter(s => {
+                const matchBrand = currentFilter === 'all' || s.brand === currentFilter;
+                const matchCat = currentCategory === 'all' || s.category === currentCategory;
+                return matchBrand && matchCat;
             });
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
-            renderTable();
-            populateModelSelect();
-            updateTray();
-            if (compareResult.classList.contains('active')) {
-                showComparison();
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding: 20px;">Нет самокатов с такими параметрами</td></tr>';
+                return;
             }
-            calculateRange();
-            runMatcher();
+
+            filtered.forEach(s => {
+                const tr = document.createElement('tr');
+                const isSelected = compareList.includes(s.id);
+                const btnClass = isSelected ? 'btn-compare-row selected' : 'btn-compare-row';
+                const btnText = isSelected ? '✓ Выбрано' : '+ Сравнить';
+
+                tr.innerHTML = `
+                    <td><div class="model-name" onclick="showDetails(${s.id})">${s.model} <span class="brand-tag">${s.brand}</span></div></td>
+                    <td class="spec-value"><strong>${s.motor}</strong></td>
+                    <td class="spec-value">${s.battery}</td>
+                    <td class="spec-value">${s.speed} км/ч</td>
+                    <td class="spec-value">${s.range} км</td>
+                    <td class="spec-value"><strong>${s.weight} кг</strong></td>
+                    <td class="spec-value">${s.maxLoad} кг</td>
+                    <td class="spec-value">${s.tire}</td>
+                    <td class="spec-value">${s.charger} A</td>
+                    <td><button class="${btnClass}" onclick="toggleCompare(${s.id})">${btnText}</button></td>
+                `;
+                tableBody.appendChild(tr);
+            });
         }
 
-        function setLanguage(lang) {
-            if (!translations[lang]) lang = 'en';
-            currentLang = lang;
-            langSelect.value = lang;
-            localStorage.setItem('scooterLang', lang);
-            langModal.classList.remove('active');
-            applyTranslations();
+        // Рендер Контроллеров
+        function renderControllers() {
+            controllersBody.innerHTML = '';
+            controllers.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="model-name">${c.model}</td>
+                    <td class="spec-value"><strong>${c.brand}</strong></td>
+                    <td class="spec-value">${c.voltage}</td>
+                    <td class="spec-value">${c.current}</td>
+                    <td class="spec-value">${c.power}</td>
+                    <td class="spec-value">${c.price}</td>
+                `;
+                controllersBody.appendChild(tr);
+            });
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('scooterLang') || 'ru';
-            currentLang = savedLang;
-            langSelect.value = savedLang;
-            if (currentTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeBtn.textContent = '☀️';
-            }
-            applyTranslations();
-            if (!localStorage.getItem('scooterLang')) {
-                langModal.classList.add('active');
-            }
-        });
 
         function showDetails(id) {
             const s = scooters.find(x => x.id === id);
@@ -1155,17 +1012,14 @@
             
             document.getElementById('modalTitle').textContent = `${s.brand} ${s.model}`;
             
-            let specsHtml = `
-                <div class="modal-spec-item"><span>${t('th_motor')}</span><strong>${s.motor}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_battery')}</span><strong>${s.battery}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_speed')}</span><strong>${s.speed} ${t('unit_kmh')}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_range')}</span><strong>${s.range} ${t('unit_km')}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_weight')}</span><strong>${s.weight} ${t('unit_kg')}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_load')}</span><strong>${s.maxLoad} ${t('unit_kg')}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_tire')}</span><strong>${s.tire}</strong></div>
-                <div class="modal-spec-item"><span>${t('th_charger')}</span><strong>${s.charger} A</strong></div>
+            document.getElementById('modalSpecs').innerHTML = `
+                <div class="modal-spec-item"><span>Мотор</span><strong>${s.motor}</strong></div>
+                <div class="modal-spec-item"><span>Батарея</span><strong>${s.battery}</strong></div>
+                <div class="modal-spec-item"><span>Скорость</span><strong>${s.speed} км/ч</strong></div>
+                <div class="modal-spec-item"><span>Пробег</span><strong>${s.range} км</strong></div>
+                <div class="modal-spec-item"><span>Вес</span><strong>${s.weight} кг</strong></div>
+                <div class="modal-spec-item"><span>Нагрузка</span><strong>${s.maxLoad} кг</strong></div>
             `;
-            document.getElementById('modalSpecs').innerHTML = specsHtml;
 
             const boxList = document.getElementById('modalBoxList');
             boxList.innerHTML = '';
@@ -1182,39 +1036,8 @@
             detailsModal.classList.remove('active');
         }
 
-        function renderTable() {
-            tableBody.innerHTML = '';
-            scooters.forEach(s => {
-                const matchBrand = currentFilter === 'all' || s.brand === currentFilter;
-                const matchCat = currentCategory === 'all' || s.category === currentCategory;
-                
-                if (matchBrand && matchCat) {
-                    const tr = document.createElement('tr');
-                    tr.setAttribute('data-brand', s.brand);
-                    
-                    const isSelected = compareList.includes(s.id);
-                    const btnClass = isSelected ? 'btn-compare-row selected' : 'btn-compare-row';
-                    const btnText = isSelected ? t('btn_added_compare') : t('btn_add_compare');
-
-                    tr.innerHTML = `
-                        <td><div class="model-name" onclick="showDetails(${s.id})">${s.model} <span class="brand-tag ${s.brand.toLowerCase()}">${s.brand}</span></div></td>
-                        <td class="spec-value"><strong>${s.motor}</strong></td>
-                        <td class="spec-value">${s.battery}</td>
-                        <td class="spec-value">${s.speed} ${t('unit_kmh')}</td>
-                        <td class="spec-value">${s.range} ${t('unit_km')}</td>
-                        <td class="spec-value"><strong>${s.weight} ${t('unit_kg')}</strong></td>
-                        <td class="spec-value">${s.maxLoad} ${t('unit_kg')}</td>
-                        <td class="spec-value">${s.tire}</td>
-                        <td class="spec-value">${s.charger} A</td>
-                        <td><button class="${btnClass}" onclick="toggleCompare(${s.id})">${btnText}</button></td>
-                    `;
-                    tableBody.appendChild(tr);
-                }
-            });
-        }
-
         function populateModelSelect() {
-            modelSelect.innerHTML = `<option value="custom">${t('custom_battery')}</option>`;
+            modelSelect.innerHTML = `<option value="custom">-- Свой аккумулятор --</option>`;
             const grouped = scooters.reduce((acc, s) => {
                 if (!acc[s.brand]) acc[s.brand] = [];
                 acc[s.brand].push(s);
@@ -1237,10 +1060,7 @@
             if (compareList.includes(id)) {
                 compareList = compareList.filter(item => item !== id);
             } else {
-                if (compareList.length >= 4) {
-                    alert(t('max_alert'));
-                    return;
-                }
+                if (compareList.length >= 4) { alert("Максимум 4 самоката"); return; }
                 compareList.push(id);
             }
             updateTray();
@@ -1273,148 +1093,94 @@
         }
 
         function showComparison() {
-            if (compareList.length < 2) {
-                alert("Выберите минимум 2 самоката");
-                return;
-            }
+            if (compareList.length < 2) { alert("Выберите минимум 2 самоката"); return; }
             const selectedScooters = compareList.map(id => scooters.find(s => s.id === id));
             
-            let html = `<tr><th>${t('th_model')}</th>`;
-            selectedScooters.forEach(s => {
-                html += `<th>${s.brand} ${s.model}</th>`;
-            });
+            let html = `<tr><th>Характеристика</th>`;
+            selectedScooters.forEach(s => { html += `<th>${s.brand} ${s.model}</th>`; });
             html += '</tr>';
 
             const specs = [
-                { label: t('th_motor'), key: 'motor' },
-                { label: t('th_battery'), key: 'battery' },
-                { label: t('th_speed'), key: 'speed', unit: 'unit_kmh' },
-                { label: t('th_range'), key: 'range', unit: 'unit_km' },
-                { label: t('th_weight'), key: 'weight', unit: 'unit_kg' },
-                { label: t('th_load'), key: 'maxLoad', unit: 'unit_kg' },
-                { label: t('th_tire'), key: 'tire' },
-                { label: t('th_charger'), key: 'charger', unit: 'unit_amp' }
+                { label: 'Мотор', key: 'motor' },
+                { label: 'Батарея', key: 'battery' },
+                { label: 'Скорость', key: 'speed', unit: 'км/ч' },
+                { label: 'Пробег', key: 'range', unit: 'км' },
+                { label: 'Вес', key: 'weight', unit: 'кг' },
+                { label: 'Нагрузка', key: 'maxLoad', unit: 'кг' }
             ];
 
             specs.forEach(spec => {
                 html += `<tr><td>${spec.label}</td>`;
                 selectedScooters.forEach(s => {
                     let val = s[spec.key];
-                    if (spec.unit) {
-                        if (spec.key === 'charger') {
-                            val += ' A';
-                        } else {
-                            val += ' ' + t(spec.unit);
-                        }
-                    }
-                    if (spec.key === 'weight' || spec.key === 'maxLoad') {
-                        const minVal = Math.min(...selectedScooters.map(x => x[spec.key]));
-                        const maxVal = Math.max(...selectedScooters.map(x => x[spec.key]));
-                        if (s[spec.key] === minVal && spec.key === 'weight') val = `<span class="best">${val}</span>`;
-                        if (s[spec.key] === maxVal && spec.key === 'maxLoad') val = `<span class="best">${val}</span>`;
-                    }
+                    if (spec.unit) val += ' ' + spec.unit;
                     html += `<td>${val}</td>`;
                 });
                 html += '</tr>';
             });
 
             compareTable.innerHTML = html;
-
-            const parseSpeed = s => parseFloat(s.speed) || 0;
-            const parseRange = s => parseFloat(s.range) || 0;
-
-            let best = selectedScooters[0];
-            selectedScooters.forEach(s => {
-                if (parseSpeed(s) > parseSpeed(best)) best = s;
-                else if (parseSpeed(s) === parseSpeed(best) && parseRange(s) > parseRange(best)) best = s;
-            });
-
-            recommendationBox.innerHTML = `
-                <h3>${t('recommendation')}</h3>
-                <p>${t('rec_text')} <strong>${best.brand} ${best.model}</strong>. ${t('rec_text2')}</p>
-            `;
-
             compareResult.classList.add('active');
             compareResult.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function runMatcher() {
-            const budget = parseFloat(document.getElementById('matcherBudget').value);
-            const minSpeed = parseFloat(document.getElementById('matcherSpeed').value);
-            const userWeight = parseFloat(document.getElementById('matcherWeight').value);
+        // Логика Калькулятора
+        const weightInput = document.getElementById('weight');
+        const scooterWeightInput = document.getElementById('scooterWeight');
+        const speedInput = document.getElementById('speed');
+        const batteryInput = document.getElementById('battery');
+        const healthInput = document.getElementById('health');
+        const terrainSelect = document.getElementById('terrain');
+        const priceInput = document.getElementById('price');
+        const chargerInput = document.getElementById('charger');
+        let currentVoltage = 48;
 
-            document.getElementById('budgetVal').textContent = budget;
-            document.getElementById('minSpeedVal').textContent = minSpeed;
-            document.getElementById('userWeightVal').textContent = userWeight;
+        function calculateRange() {
+            const rw = parseFloat(weightInput.value);
+            const sw = parseFloat(scooterWeightInput.value);
+            const sp = parseFloat(speedInput.value);
+            const bat = parseFloat(batteryInput.value);
+            const health = parseFloat(healthInput.value) / 100;
+            const terr = parseFloat(terrainSelect.value);
 
-            const matches = scooters.filter(s => 
-                s.price <= budget && 
-                parseFloat(s.speed) >= minSpeed && 
-                s.maxLoad >= userWeight
-            ).sort((a, b) => parseFloat(b.speed) - parseFloat(a.speed)).slice(0, 3);
+            document.getElementById('weightVal').textContent = rw;
+            document.getElementById('scooterWeightVal').textContent = sw;
+            document.getElementById('speedVal').textContent = sp;
+            document.getElementById('batteryVal').textContent = bat;
+            document.getElementById('healthVal').textContent = (health*100).toFixed(0);
 
-            matcherResult.innerHTML = '';
-            if (matches.length === 0) {
-                matcherResult.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Нет подходящих моделей. Попробуйте изменить параметры.</p>';
-                return;
-            }
+            const effectiveBattery = bat * health;
+            let cons = 16;
+            if (sp > 25) cons *= (1 + (sp - 25) * 0.04);
+            cons *= ((rw + sw) / 75);
+            cons *= terr;
 
-            matches.forEach(m => {
-                const div = document.createElement('div');
-                div.className = 'matcher-card';
-                div.innerHTML = `
-                    <div>
-                        <h4>${m.brand} ${m.model}</h4>
-                        <span>${m.speed} ${t('unit_kmh')} | ${m.range} ${t('unit_km')} | ${t('th_load')} ${m.maxLoad} ${t('unit_kg')}</span>
-                    </div>
-                    <div style="font-weight:800; color:var(--accent);">${m.price} $</div>
-                `;
-                matcherResult.appendChild(div);
-            });
-        }
+            const range = effectiveBattery / cons;
+            document.getElementById('rangeResult').textContent = Math.round(range);
 
-        function parseBatteryWh(batteryStr) {
-            if (!batteryStr) return 200;
-            if (batteryStr.includes('Wh')) {
-                return parseInt(batteryStr.replace(/[^0-9]/g, '')) || 200;
-            }
-            let match = batteryStr.match(/(\d+(?:\.\d+)?)\s*V\s*(\d+(?:\.\d+)?)\s*Ah/i);
-            if (match) {
-                return Math.round(parseFloat(match[1]) * parseFloat(match[2]));
-            }
-            return 200;
+            const cost = (effectiveBattery / 1000) * parseFloat(priceInput.value);
+            document.getElementById('costResult').textContent = cost.toFixed(2);
+
+            const time = (effectiveBattery / (currentVoltage * parseFloat(chargerInput.value))) * 1.15;
+            document.getElementById('timeResult').textContent = time.toFixed(1);
         }
 
         modelSelect.addEventListener('change', (e) => {
-            const val = e.target.value;
-            if (val === 'custom') {
-                document.getElementById('battery').disabled = false;
-                document.getElementById('battery').value = 750;
-                updateBatteryDisplay(750);
-                document.getElementById('scooterWeight').value = 26;
-                document.getElementById('scooterWeightVal').textContent = 26;
-                document.getElementById('charger').value = 2;
-                currentVoltage = 48;
-            } else {
-                const s = JSON.parse(val);
-                const batteryCapacity = parseBatteryWh(s.battery);
-                document.getElementById('battery').disabled = true;
-                document.getElementById('battery').value = batteryCapacity;
-                updateBatteryDisplay(batteryCapacity);
-                document.getElementById('scooterWeight').value = s.weight;
-                document.getElementById('scooterWeightVal').textContent = s.weight;
-                document.getElementById('charger').value = s.charger || 2;
-                
-                let voltMatch = s.battery.match(/(\d+(?:\.\d+)?)\s*V/i);
-                currentVoltage = voltMatch ? parseFloat(voltMatch[1]) : 48;
-            }
+            if (e.target.value === 'custom') return;
+            const s = JSON.parse(e.target.value);
+            let match = s.battery.match(/(\d+(?:\.\d+)?)\s*V/i);
+            currentVoltage = match ? parseFloat(match[1]) : 48;
+            
+            let batMatch = s.battery.match(/(\d+(?:\.\d+)?)\s*V\s*(\d+(?:\.\d+)?)\s*Ah/i);
+            let cap = batMatch ? (parseFloat(batMatch[1]) * parseFloat(batMatch[2])) : 750;
+            
+            batteryInput.value = cap;
+            scooterWeightInput.value = s.weight;
+            chargerInput.value = s.charger;
             calculateRange();
         });
 
-        function updateBatteryDisplay(val) {
-            document.getElementById('batteryVal').textContent = val;
-        }
-
+        // Слушатели фильтров
         document.querySelectorAll('#brandFilters .filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('#brandFilters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1433,109 +1199,25 @@
             });
         });
 
-        const weightInput = document.getElementById('weight');
-        const scooterWeightInput = document.getElementById('scooterWeight');
-        const speedInput = document.getElementById('speed');
-        const batteryInput = document.getElementById('battery');
-        const tempInput = document.getElementById('temp');
-        const regenInput = document.getElementById('regen');
-        const healthInput = document.getElementById('health');
-        const terrainSelect = document.getElementById('terrain');
-        const styleSelect = document.getElementById('style');
-        const priceInput = document.getElementById('price');
-        const chargerInput = document.getElementById('charger');
-        const dailyDistInput = document.getElementById('dailyDist');
-        
-        const weightVal = document.getElementById('weightVal');
-        const scooterWeightVal = document.getElementById('scooterWeightVal');
-        const speedVal = document.getElementById('speedVal');
-        const batteryVal = document.getElementById('batteryVal');
-        const tempVal = document.getElementById('tempVal');
-        const regenVal = document.getElementById('regenVal');
-        const healthVal = document.getElementById('healthVal');
-        const rangeResult = document.getElementById('rangeResult');
-        const costResult = document.getElementById('costResult');
-        const timeResult = document.getElementById('timeResult');
-        const costKmResult = document.getElementById('costKmResult');
-        const monthlyCostResult = document.getElementById('monthlyCostResult');
+        ['input', 'change'].forEach(evt => {
+            weightInput.addEventListener(evt, calculateRange);
+            scooterWeightInput.addEventListener(evt, calculateRange);
+            speedInput.addEventListener(evt, calculateRange);
+            batteryInput.addEventListener(evt, calculateRange);
+            healthInput.addEventListener(evt, calculateRange);
+            terrainSelect.addEventListener(evt, calculateRange);
+            priceInput.addEventListener(evt, calculateRange);
+            chargerInput.addEventListener(evt, calculateRange);
+        });
 
-        document.getElementById('matcherBudget').addEventListener('input', runMatcher);
-        document.getElementById('matcherSpeed').addEventListener('input', runMatcher);
-        document.getElementById('matcherWeight').addEventListener('input', runMatcher);
-
-        function calculateRange() {
-            const riderWeight = parseFloat(weightInput.value);
-            const scooterWeight = parseFloat(scooterWeightInput.value);
-            const speed = parseFloat(speedInput.value);
-            const nominalBattery = parseFloat(batteryInput.value);
-            const temp = parseFloat(tempInput.value);
-            const regen = parseFloat(regenInput.value) / 100;
-            const health = parseFloat(healthInput.value) / 100;
-            const terrain = parseFloat(terrainSelect.value);
-            const style = parseFloat(styleSelect.value);
-            const price = parseFloat(priceInput.value);
-            const charger = parseFloat(chargerInput.value);
-            const dailyDist = parseFloat(dailyDistInput.value);
-
-            weightVal.textContent = riderWeight;
-            scooterWeightVal.textContent = scooterWeight;
-            speedVal.textContent = speed;
-            batteryVal.textContent = nominalBattery;
-            tempVal.textContent = temp;
-            regenVal.textContent = (regen * 100).toFixed(0);
-            healthVal.textContent = (health * 100).toFixed(0);
-
-            const effectiveBattery = nominalBattery * health;
-            const totalWeight = riderWeight + scooterWeight;
-            let consumptionPerKm = 16;
-
-            if (speed > 25) {
-                consumptionPerKm *= (1 + (speed - 25) * 0.04); 
-            }
-
-            consumptionPerKm *= (totalWeight / 75);
-
-            if (temp < 20) {
-                consumptionPerKm *= (1 + (20 - temp) * 0.015);
-            } else if (temp > 30) {
-                consumptionPerKm *= (1 + (temp - 30) * 0.01);
-            }
-
-            consumptionPerKm *= terrain;
-            consumptionPerKm *= style;
-            consumptionPerKm *= (1 - regen * 0.15);
-
-            if (consumptionPerKm <= 5) consumptionPerKm = 5;
-
-            const estimatedRange = effectiveBattery / consumptionPerKm;
-            rangeResult.textContent = Math.round(estimatedRange);
-
-            const cost = (effectiveBattery / 1000) * price;
-            costResult.textContent = cost.toFixed(2);
-
-            const chargerPower = currentVoltage * charger;
-            const chargeTime = (effectiveBattery / chargerPower) * 1.15;
-            timeResult.textContent = chargeTime.toFixed(1);
-
-            const costPerKm = (consumptionPerKm / 1000) * price;
-            costKmResult.textContent = costPerKm.toFixed(2);
-
-            const monthlyCost = dailyDist * 30 * costPerKm;
-            monthlyCostResult.textContent = monthlyCost.toFixed(2);
-        }
-
-        weightInput.addEventListener('input', calculateRange);
-        scooterWeightInput.addEventListener('input', calculateRange);
-        speedInput.addEventListener('input', calculateRange);
-        batteryInput.addEventListener('input', calculateRange);
-        tempInput.addEventListener('input', calculateRange);
-        regenInput.addEventListener('input', calculateRange);
-        healthInput.addEventListener('input', calculateRange);
-        terrainSelect.addEventListener('change', calculateRange);
-        styleSelect.addEventListener('change', calculateRange);
-        priceInput.addEventListener('input', calculateRange);
-        chargerInput.addEventListener('input', calculateRange);
-        dailyDistInput.addEventListener('input', calculateRange);
+        // Инициализация
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; }
+            renderTable();
+            renderControllers();
+            populateModelSelect();
+            calculateRange();
+        });
     </script>
 </body>
 </html>
