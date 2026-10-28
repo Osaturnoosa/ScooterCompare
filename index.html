@@ -5,36 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scooter Compare — каталог электросамокатов</title>
 <meta name="description" content="Каталог электросамокатов: 320+ моделей от 50+ брендов, сравнение до 4 моделей, калькулятор запаса хода, умный подбор, каталог контроллеров.">
-<meta name="keywords" content="электросамокат, самокат, сравнение, каталог, KuKirin, Kugoo, Ninebot, Xiaomi, Dualtron, Kaabo, Vsett">
-<meta property="og:title" content="Scooter Compare — каталог электросамокатов">
-<meta property="og:description" content="320+ моделей, сравнение до 4, калькулятор запаса хода, подбор и контроллеры">
+<meta property="og:title" content="Scooter Compare">
+<meta property="og:description" content="320+ моделей, сравнение, подбор, контроллеры">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Scooter Compare",
-  "description": "Каталог электросамокатов с фильтрами и сравнением",
-  "inLanguage": "ru"
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Scooter Compare","inLanguage":"ru"}</script>
 <style>
 :root{--bg-color:#0a0a0e;--card-bg:#16161d;--text-main:#fff;--text-muted:#8b8b9e;--accent:#3b82f6;--accent-glow:rgba(59,130,246,.3);--border-color:rgba(255,255,255,.08);--table-header-bg:#1c1c24;--row-hover:rgba(59,130,246,.06);--success:#10b981;--danger:#ef4444;--star:#f59e0b}
 [data-theme="light"]{--bg-color:#f3f4f6;--card-bg:#fff;--text-main:#111827;--text-muted:#6b7280;--accent:#2563eb;--accent-glow:rgba(37,99,235,.2);--border-color:rgba(0,0,0,.1);--table-header-bg:#f9fafb;--row-hover:rgba(37,99,235,.04);--success:#059669;--danger:#dc2626;--star:#d97706}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;scroll-behavior:smooth}
 body{background-color:var(--bg-color);color:var(--text-main);line-height:1.6;min-height:100vh;padding-bottom:80px;transition:background-color .3s,color .3s}
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 5%;background:var(--card-bg);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);transition:background-color .3s,border-color .3s;flex-wrap:wrap;gap:15px}
-.logo{font-size:24px;font-weight:900;color:var(--text-main);text-decoration:none}.logo span{color:var(--accent)}
-nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-nav a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:15px;transition:color .3s}nav a:hover{color:var(--accent)}
-.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.lang-selector,.currency-selector,.theme-btn{background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-main);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;font-family:'Montserrat',sans-serif;outline:none;transition:all .3s}
-.theme-btn{font-size:18px;display:flex;align-items:center;justify-content:center}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:var(--card-bg);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);gap:15px;flex-wrap:nowrap}
+.logo{font-size:22px;font-weight:900;color:var(--text-main);text-decoration:none;white-space:nowrap}.logo span{color:var(--accent)}
+nav.desktop-nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav.desktop-nav a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:15px;transition:color .3s}
+nav.desktop-nav a:hover{color:var(--accent)}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
+.lang-selector,.currency-selector,.theme-btn{background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-main);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-family:'Montserrat',sans-serif;outline:none;transition:all .3s;font-size:14px}
+.theme-btn{font-size:17px;display:flex;align-items:center;justify-content:center}
 .lang-selector:focus,.currency-selector:focus,.theme-btn:hover{border-color:var(--accent)}
+nav.mobile-nav{display:none}
 .container{max-width:1500px;margin:0 auto;padding:40px 3%}
+section[id]{scroll-margin-top:80px}
 .section-title{text-align:center;font-size:38px;font-weight:900;margin-bottom:10px}
 .section-subtitle{text-align:center;color:var(--text-muted);font-size:16px;margin-bottom:40px}
 .filters,.category-filters{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:20px}
@@ -54,7 +48,7 @@ nav a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:15p
 .filter-check input{width:18px;height:18px;cursor:pointer;accent-color:var(--accent)}
 .reset-btn{background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-main);padding:12px 20px;border-radius:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:14px;transition:all .2s}
 .reset-btn:hover{border-color:var(--accent);color:var(--accent)}
-.table-wrapper{overflow-x:auto;border-radius:24px;border:1px solid var(--border-color);background:var(--card-bg);box-shadow:0 20px 50px rgba(0,0,0,.1);transition:background-color .3s,border-color .3s}
+.table-wrapper{overflow-x:auto;border-radius:24px;border:1px solid var(--border-color);background:var(--card-bg);box-shadow:0 20px 50px rgba(0,0,0,.1)}
 table{width:100%;border-collapse:collapse;min-width:1500px}
 th{background:var(--table-header-bg);color:var(--text-muted);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:18px 20px;text-align:left;border-bottom:1px solid var(--border-color);white-space:nowrap}
 th.sortable{cursor:pointer;user-select:none;transition:color .2s}
@@ -91,15 +85,13 @@ tr:last-child td{border-bottom:none}tr:hover td{background:var(--row-hover)}
 .btn-tray.clear{background:transparent;color:var(--text-muted);border:1px solid var(--border-color)}
 .btn-tray.share{background:transparent;color:var(--accent);border:1px solid var(--accent)}
 .btn-tray.share:hover{background:rgba(59,130,246,.1)}
-.compare-result,.matcher-section,.calculator,.about-section,.faq-section,.controllers-section{margin-top:80px;background:var(--card-bg);border-radius:24px;padding:40px;border:1px solid var(--border-color);transition:background-color .3s,border-color .3s}
+.compare-result,.matcher-section,.calculator,.faq-section,.controllers-section{margin-top:80px;background:var(--card-bg);border-radius:24px;padding:40px;border:1px solid var(--border-color)}
 .compare-result{display:none}.compare-result.active{display:block}
 .compare-table{width:100%;border-collapse:collapse;margin-bottom:30px}
 .compare-table th,.compare-table td{padding:15px;text-align:left;border-bottom:1px solid var(--border-color)}
 .compare-table th{background:var(--table-header-bg);color:var(--text-muted);font-size:12px;text-transform:uppercase}
 .compare-table td{font-size:14px}
 .compare-table .best{color:var(--success);font-weight:800}
-.recommendation-box{background:rgba(16,185,129,.1);border:1px solid var(--success);border-radius:16px;padding:25px;text-align:center}
-.recommendation-box h3{color:var(--success);font-size:20px;margin-bottom:10px}
 .calc-grid,.matcher-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:30px}
 .calc-group{display:flex;flex-direction:column;gap:10px}
 .calc-group label{font-weight:700;font-size:14px;color:var(--text-muted)}
@@ -149,15 +141,52 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 .modal-box-list li{padding:10px 0;border-bottom:1px solid var(--border-color);color:var(--text-muted);display:flex;align-items:center}
 .modal-box-list li::before{content:'📦';margin-right:10px;font-size:18px}
 .modal-box-list li:last-child{border-bottom:none}
-@media(max-width:768px){header{flex-direction:column;gap:15px;padding:15px}nav{flex-wrap:wrap;justify-content:center}.section-title{font-size:28px}.calculator,.about-section,.matcher-section,.faq-section,.controllers-section{padding:20px}.calc-result .range-value{font-size:42px}.modal-content{padding:20px}.modal-specs{grid-template-columns:1fr}.compare-tray{flex-direction:column;gap:15px;padding:15px}.tray-items{width:100%;margin-right:0}.tray-actions{width:100%;justify-content:space-between}.toolbar{padding:15px}.search-input{min-width:100%}}
+@media(max-width:900px){
+  header{padding:10px 15px;gap:10px}
+  .logo{font-size:18px}
+  nav.desktop-nav{display:none}
+  .lang-selector,.currency-selector,.theme-btn{padding:6px 8px;font-size:13px;border-radius:7px}
+  .theme-btn{font-size:15px;padding:6px 9px}
+  nav.mobile-nav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    background:var(--card-bg);border-top:1px solid var(--border-color);
+    z-index:998;justify-content:space-around;padding:8px 4px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+  }
+  nav.mobile-nav a{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    color:var(--text-muted);text-decoration:none;font-size:10px;font-weight:700;
+    padding:4px 2px;border-radius:8px;transition:all .2s;text-align:center;
+  }
+  nav.mobile-nav a .mi{font-size:18px;line-height:1}
+  nav.mobile-nav a:active,nav.mobile-nav a:hover{color:var(--accent);background:var(--row-hover)}
+  body{padding-bottom:110px}
+  .container{padding:20px 3%}
+  .section-title{font-size:26px}
+  .section-subtitle{font-size:14px;margin-bottom:25px}
+  .calculator,.matcher-section,.faq-section,.controllers-section{padding:20px}
+  .calc-result .range-value{font-size:42px}
+  .modal-content{padding:20px}
+  .modal-specs{grid-template-columns:1fr}
+  .modal-title{font-size:22px}
+  .compare-tray{flex-direction:column;gap:12px;padding:12px 15px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+  .tray-items{width:100%;margin-right:0}
+  .tray-actions{width:100%;justify-content:space-between}
+  .btn-tray{padding:10px 15px;font-size:13px}
+  .toolbar{padding:15px;gap:15px}
+  .search-input{min-width:100%;max-width:100%}
+  .filter-group{min-width:140px;flex:1}
+  th,td{padding:12px 14px;font-size:13px}
+  .filter-btn{padding:8px 16px;font-size:13px}
+}
 </style>
 </head>
 <body>
 
 <div id="languageModal" class="modal-overlay">
 <div class="modal-content" style="text-align:center;">
-<h2>Select Language</h2>
-<p>Choose your preferred language</p>
+<h2 data-i18n="lang_title">Выберите язык</h2>
+<p data-i18n="lang_subtitle">Choose your preferred language</p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:15px;margin-top:20px;">
 <button onclick="setLanguage('ru')" style="background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-main);padding:12px;border-radius:12px;cursor:pointer;">🇷🇺 Русский</button>
 <button onclick="setLanguage('en')" style="background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-main);padding:12px;border-radius:12px;cursor:pointer;">🇬🇧 English</button>
@@ -168,23 +197,21 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 <div id="detailsModal" class="modal-overlay">
 <div class="modal-content">
 <button class="modal-close" onclick="closeDetails()">×</button>
-<h2 class="modal-title" id="modalTitle">Model Name</h2>
+<h2 class="modal-title" id="modalTitle">Model</h2>
 <div class="modal-specs" id="modalSpecs"></div>
-<h3 class="modal-box-title" id="modalBoxTitle">Комплектация:</h3>
+<h3 class="modal-box-title" id="modalBoxTitle" data-i18n="modal_box">Комплектация:</h3>
 <ul class="modal-box-list" id="modalBoxList"></ul>
 </div>
 </div>
 
 <header>
 <a href="#" class="logo">Scooter<span>Compare</span></a>
-<nav>
-<a href="#compare">Самокаты</a>
-<a href="#matcher">Подбор</a>
-<a href="#controllers">Контроллеры</a>
-<a href="#calculator">Калькулятор</a>
-<a href="#ctrlCalc">Мощность</a>
-<a href="#batCalc">Батарея</a>
-<a href="#faq">FAQ</a>
+<nav class="desktop-nav">
+<a href="#compare" data-i18n="nav_scooters">Самокаты</a>
+<a href="#matcher" data-i18n="nav_matcher">Подбор</a>
+<a href="#controllers" data-i18n="nav_controllers">Контроллеры</a>
+<a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
+<a href="#faq" data-i18n="nav_faq">FAQ</a>
 </nav>
 <div class="controls">
 <select id="currencySel" class="currency-selector" onchange="changeCurrency()">
@@ -200,52 +227,56 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 </div>
 </header>
 
+<nav class="mobile-nav">
+<a href="#compare"><span class="mi">🛴</span><span data-i18n="nav_scooters_short">Самокаты</span></a>
+<a href="#matcher"><span class="mi">🎯</span><span data-i18n="nav_matcher_short">Подбор</span></a>
+<a href="#controllers"><span class="mi">⚙️</span><span data-i18n="nav_controllers_short">Контролл.</span></a>
+<a href="#calculator"><span class="mi">🔋</span><span data-i18n="nav_calc_short">Калькул.</span></a>
+<a href="#faq"><span class="mi">❓</span><span data-i18n="nav_faq_short">FAQ</span></a>
+</nav>
+
 <div class="container">
 <section id="compare" style="padding-top:20px;">
-<h1 class="section-title" id="mainTitle">Сравнение электросамокатов</h1>
-<p class="section-subtitle" id="mainSubtitle">Каталог реальных моделей</p>
-
+<h1 class="section-title" id="mainTitle" data-i18n="main_title">Сравнение электросамокатов</h1>
+<p class="section-subtitle" id="mainSubtitle" data-i18n="main_subtitle">Каталог реальных моделей</p>
 <div class="category-filters" id="categoryFilters">
-<button class="filter-btn active" data-category="all">Все категории</button>
-<button class="filter-btn" data-category="speed">Скорость</button>
-<button class="filter-btn" data-category="comfort">Комфорт</button>
-<button class="filter-btn" data-category="city">Город</button>
-<button class="filter-btn" data-category="offroad">Бездорожье</button>
-<button class="filter-btn" data-category="budget">Бюджетный</button>
+<button class="filter-btn active" data-category="all" data-i18n="cat_all">Все категории</button>
+<button class="filter-btn" data-category="speed" data-i18n="cat_speed">Скорость</button>
+<button class="filter-btn" data-category="comfort" data-i18n="cat_comfort">Комфорт</button>
+<button class="filter-btn" data-category="city" data-i18n="cat_city">Город</button>
+<button class="filter-btn" data-category="offroad" data-i18n="cat_offroad">Бездорожье</button>
+<button class="filter-btn" data-category="budget" data-i18n="cat_budget">Бюджетный</button>
 </div>
-
 <div class="filters" id="brandFilters"></div>
-
 <div class="toolbar">
-<input type="search" id="searchInput" class="search-input" placeholder="Поиск по модели или бренду...">
+<input type="search" id="searchInput" class="search-input" data-i18n-ph="search_ph" placeholder="Поиск по модели или бренду...">
 <div class="filter-group">
-<span>Цена: <span id="pMinVal">0</span> – <span id="pMaxVal">8000</span> <span id="pCurLabel">$</span></span>
+<span><span data-i18n="filter_price">Цена</span>: <span id="pMinVal">0</span> – <span id="pMaxVal">8000</span> <span id="pCurLabel">$</span></span>
 <input type="range" id="priceMin" min="0" max="8000" value="0" step="50">
 <input type="range" id="priceMax" min="0" max="8000" value="8000" step="50">
 </div>
 <div class="filter-group">
-<span>Макс. вес: <span id="wMaxVal">70</span> кг</span>
+<span><span data-i18n="filter_weight">Макс. вес</span>: <span id="wMaxVal">70</span> <span data-i18n="unit_kg">кг</span></span>
 <input type="range" id="weightMax" min="8" max="70" value="70" step="1">
 </div>
-<label class="filter-check"><input type="checkbox" id="onlyFav"> ★ Только избранное</label>
-<button class="reset-btn" onclick="resetFilters()">↺ Сбросить</button>
+<label class="filter-check"><input type="checkbox" id="onlyFav"> <span data-i18n="filter_fav">★ Только избранное</span></label>
+<button class="reset-btn" onclick="resetFilters()"><span data-i18n="filter_reset">↺ Сбросить</span></button>
 </div>
-
 <div class="table-wrapper">
 <table>
 <thead>
 <tr>
-<th data-sort="model">Модель</th>
-<th>Мотор</th>
-<th>Батарея</th>
-<th data-sort="speed">Скорость</th>
-<th data-sort="range">Пробег</th>
-<th data-sort="weight">Вес</th>
-<th data-sort="maxLoad">Нагрузка</th>
-<th>Колёса</th>
-<th data-sort="charger">Зарядка</th>
-<th data-sort="price">Цена</th>
-<th>Действие</th>
+<th data-sort="model" data-i18n="th_model">Модель</th>
+<th data-i18n="th_motor">Мотор</th>
+<th data-i18n="th_battery">Батарея</th>
+<th data-sort="speed" data-i18n="th_speed">Скорость</th>
+<th data-sort="range" data-i18n="th_range">Пробег</th>
+<th data-sort="weight" data-i18n="th_weight">Вес</th>
+<th data-sort="maxLoad" data-i18n="th_maxload">Нагрузка</th>
+<th data-i18n="th_tire">Колёса</th>
+<th data-sort="charger" data-i18n="th_charger">Зарядка</th>
+<th data-sort="price" data-i18n="th_price">Цена</th>
+<th data-i18n="th_action">Действие</th>
 </tr>
 </thead>
 <tbody id="tableBody"></tbody>
@@ -255,33 +286,33 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 </section>
 
 <section id="matcher" class="matcher-section">
-<h2 class="section-title">Умный подбор</h2>
-<p class="section-subtitle">Подберём самокат по бюджету, скорости и весу</p>
+<h2 class="section-title" data-i18n="matcher_title">Умный подбор</h2>
+<p class="section-subtitle" data-i18n="matcher_subtitle">Подберём самокат по бюджету, скорости и весу</p>
 <div class="matcher-grid">
-<div class="calc-group"><label>Бюджет до: <span id="bVal" class="value-display">1500</span> <span id="bCur">$</span></label><input type="range" id="mBudget" min="100" max="8000" value="1500" step="50"></div>
-<div class="calc-group"><label>Мин. скорость: <span id="sVal" class="value-display">25</span> км/ч</label><input type="range" id="mSpeed" min="15" max="100" value="25" step="5"></div>
-<div class="calc-group"><label>Ваш вес: <span id="wVal" class="value-display">80</span> кг</label><input type="range" id="mWeight" min="40" max="150" value="80" step="5"></div>
+<div class="calc-group"><label><span data-i18n="matcher_budget">Бюджет до</span>: <span id="bVal" class="value-display">1500</span> <span id="bCur">$</span></label><input type="range" id="mBudget" min="100" max="8000" value="1500" step="50"></div>
+<div class="calc-group"><label><span data-i18n="matcher_speed">Мин. скорость</span>: <span id="sVal" class="value-display">25</span> <span data-i18n="unit_kmh">км/ч</span></label><input type="range" id="mSpeed" min="15" max="100" value="25" step="5"></div>
+<div class="calc-group"><label><span data-i18n="matcher_weight">Ваш вес</span>: <span id="wVal" class="value-display">80</span> <span data-i18n="unit_kg">кг</span></label><input type="range" id="mWeight" min="40" max="150" value="80" step="5"></div>
 <div class="matcher-result" id="mResult"></div>
 </div>
 </section>
 
 <section id="controllers" class="controllers-section">
-<h2 class="section-title">Каталог контроллеров</h2>
-<p class="section-subtitle">Для тюнинга и замены</p>
+<h2 class="section-title" data-i18n="controllers_title">Каталог контроллеров</h2>
+<p class="section-subtitle" data-i18n="controllers_subtitle">Для тюнинга и замены</p>
 <div class="table-wrapper">
 <table>
-<thead><tr><th>Модель</th><th>Бренд</th><th>Напряжение</th><th>Макс. ток</th><th>Мощность</th><th>Цена</th></tr></thead>
+<thead><tr><th data-i18n="th_ctrl_model">Модель</th><th data-i18n="th_ctrl_brand">Бренд</th><th data-i18n="th_ctrl_voltage">Напряжение</th><th data-i18n="th_ctrl_current">Макс. ток</th><th data-i18n="th_ctrl_power">Мощность</th><th data-i18n="th_price">Цена</th></tr></thead>
 <tbody id="controllersBody"></tbody>
 </table>
 </div>
 </section>
 
 <section id="ctrlCalc" class="calculator">
-<h2 class="section-title">Калькулятор мощности контроллера</h2>
-<p class="section-subtitle">Подбор контроллера под мотор</p>
+<h2 class="section-title" data-i18n="ctrlcalc_title">Калькулятор мощности контроллера</h2>
+<p class="section-subtitle" data-i18n="ctrlcalc_subtitle">Подбор контроллера под мотор</p>
 <div class="calc-grid">
 <div class="calc-group">
-<label>Напряжение батареи (V):</label>
+<label data-i18n="ctrlcalc_voltage">Напряжение батареи (V):</label>
 <select id="ccVoltage">
 <option value="36">36 V</option>
 <option value="48" selected>48 V</option>
@@ -292,14 +323,14 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 <option value="96">96 V</option>
 </select>
 </div>
-<div class="calc-group"><label>Мощность мотора (W):</label><input type="number" id="ccPower" value="1000" step="100" min="100" max="20000"></div>
-<div class="calc-group"><label>Пиковый коэффициент:</label><input type="number" id="ccPeak" value="1.5" step="0.1" min="1" max="3"></div>
+<div class="calc-group"><label data-i18n="ctrlcalc_power">Мощность мотора (W):</label><input type="number" id="ccPower" value="1000" step="100" min="100" max="20000"></div>
+<div class="calc-group"><label data-i18n="ctrlcalc_peak">Пиковый коэффициент:</label><input type="number" id="ccPeak" value="1.5" step="0.1" min="1" max="3"></div>
 <div class="calc-result">
-<h3>Требуемый непрерывный ток</h3>
+<h3 data-i18n="ctrlcalc_req">Требуемый непрерывный ток</h3>
 <div><span id="ccCurrent" class="range-value">21</span> <span class="range-unit">A</span></div>
 <div class="calc-extra-results">
-<div class="calc-extra-item"><span>Пиковый ток:</span><strong><span id="ccPeakCurrent">31</span> A</strong></div>
-<div class="calc-extra-item"><span>Подходящих контроллеров:</span><strong><span id="ccCount">0</span></strong></div>
+<div class="calc-extra-item"><span data-i18n="ctrlcalc_peakreq">Пиковый ток:</span><strong><span id="ccPeakCurrent">31</span> A</strong></div>
+<div class="calc-extra-item"><span data-i18n="ctrlcalc_count">Подходящих контроллеров:</span><strong><span id="ccCount">0</span></strong></div>
 </div>
 <div class="cc-list" id="ccList"></div>
 </div>
@@ -307,20 +338,20 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 </section>
 
 <section id="batCalc" class="calculator">
-<h2 class="section-title">Калькулятор замены батареи</h2>
-<p class="section-subtitle">Проверка совместимости новой батареи</p>
+<h2 class="section-title" data-i18n="batcalc_title">Калькулятор замены батареи</h2>
+<p class="section-subtitle" data-i18n="batcalc_subtitle">Проверка совместимости новой батареи</p>
 <div class="calc-grid">
-<div class="calc-group"><label>Старая батарея — напряжение (V):</label><input type="number" id="bcOldV" value="48" min="12" max="120"></div>
-<div class="calc-group"><label>Старая батарея — ёмкость (Ah):</label><input type="number" id="bcOldAh" value="15" min="1" max="100"></div>
-<div class="calc-group"><label>Новая батарея — напряжение (V):</label><input type="number" id="bcNewV" value="48" min="12" max="120"></div>
-<div class="calc-group"><label>Новая батарея — ёмкость (Ah):</label><input type="number" id="bcNewAh" value="20" min="1" max="100"></div>
+<div class="calc-group"><label data-i18n="batcalc_oldv">Старая батарея — напряжение (V):</label><input type="number" id="bcOldV" value="48" min="12" max="120"></div>
+<div class="calc-group"><label data-i18n="batcalc_oldah">Старая батарея — ёмкость (Ah):</label><input type="number" id="bcOldAh" value="15" min="1" max="100"></div>
+<div class="calc-group"><label data-i18n="batcalc_newv">Новая батарея — напряжение (V):</label><input type="number" id="bcNewV" value="48" min="12" max="120"></div>
+<div class="calc-group"><label data-i18n="batcalc_newah">Новая батарея — ёмкость (Ah):</label><input type="number" id="bcNewAh" value="20" min="1" max="100"></div>
 <div class="calc-result">
-<h3>Результат замены</h3>
+<h3 data-i18n="batcalc_result">Результат замены</h3>
 <div class="calc-extra-results">
-<div class="calc-extra-item"><span>Старая ёмкость:</span><strong><span id="bcOldWh">720</span> Вт·ч</strong></div>
-<div class="calc-extra-item"><span>Новая ёмкость:</span><strong><span id="bcNewWh">960</span> Вт·ч</strong></div>
-<div class="calc-extra-item"><span>Прирост:</span><strong><span id="bcGrowth">+33%</span></strong></div>
-<div class="calc-extra-item"><span>Совместимость:</span><strong id="bcCompat" class="compat-ok">OK</strong></div>
+<div class="calc-extra-item"><span data-i18n="batcalc_oldwh">Старая ёмкость:</span><strong><span id="bcOldWh">720</span> Вт·ч</strong></div>
+<div class="calc-extra-item"><span data-i18n="batcalc_newwh">Новая ёмкость:</span><strong><span id="bcNewWh">960</span> Вт·ч</strong></div>
+<div class="calc-extra-item"><span data-i18n="batcalc_growth">Прирост:</span><strong><span id="bcGrowth">+33%</span></strong></div>
+<div class="calc-extra-item"><span data-i18n="batcalc_compat">Совместимость:</span><strong id="bcCompat" class="compat-ok">OK</strong></div>
 </div>
 <p id="bcNote" style="margin-top:15px;color:var(--text-muted);font-size:14px;"></p>
 </div>
@@ -328,69 +359,139 @@ footer{text-align:center;padding:40px;border-top:1px solid var(--border-color);c
 </section>
 
 <div id="compareResult" class="compare-result">
-<h2 class="section-title" style="font-size:28px;">Результат сравнения</h2>
+<h2 class="section-title" style="font-size:28px" data-i18n="cmp_title">Результат сравнения</h2>
 <div style="overflow-x:auto;"><table class="compare-table" id="compareTable"></table></div>
-<div class="recommendation-box" id="recommendationBox"></div>
 </div>
 
 <section id="calculator" class="calculator">
-<h2 class="section-title">Калькулятор запаса хода</h2>
+<h2 class="section-title" data-i18n="calc_title">Калькулятор запаса хода</h2>
 <div class="calc-grid">
-<div class="calc-group" style="grid-column:1/-1;"><label>Выберите модель из каталога:</label><select id="modelSelect"></select></div>
-<div class="calc-group"><label>Вес райдера: <span id="weightVal" class="value-display">75</span> кг</label><input type="range" id="weight" min="30" max="150" value="75" step="1"></div>
-<div class="calc-group"><label>Вес самоката: <span id="scooterWeightVal" class="value-display">26</span> кг</label><input type="range" id="scooterWeight" min="10" max="70" value="26" step="1"></div>
-<div class="calc-group"><label>Средняя скорость: <span id="speedVal" class="value-display">25</span> км/ч</label><input type="range" id="speed" min="10" max="100" value="25" step="1"></div>
-<div class="calc-group"><label>Ёмкость батареи: <span id="batteryVal" class="value-display">750</span> Вт·ч</label><input type="range" id="battery" min="200" max="5000" value="750" step="10"></div>
-<div class="calc-group"><label>Износ батареи: <span id="healthVal" class="value-display">100</span>%</label><input type="range" id="health" min="50" max="100" value="100" step="1"></div>
-<div class="calc-group"><label>Покрытие:</label><select id="terrain"><option value="1.0">Асфальт</option><option value="1.15">Город/Грунт</option><option value="1.3">Бездорожье</option></select></div>
-<div class="calc-group"><label>Цена за 1 кВт·ч:</label><input type="number" id="price" value="5" step="0.1" min="0"></div>
-<div class="calc-group"><label>Зарядное (Амперы):</label><input type="number" id="charger" value="2" step="0.5" min="1" max="10"></div>
+<div class="calc-group" style="grid-column:1/-1;"><label data-i18n="calc_model">Выберите модель из каталога:</label><select id="modelSelect"></select></div>
+<div class="calc-group"><label><span data-i18n="calc_rweight">Вес райдера</span>: <span id="weightVal" class="value-display">75</span> <span data-i18n="unit_kg">кг</span></label><input type="range" id="weight" min="30" max="150" value="75" step="1"></div>
+<div class="calc-group"><label><span data-i18n="calc_sw">Вес самоката</span>: <span id="scooterWeightVal" class="value-display">26</span> <span data-i18n="unit_kg">кг</span></label><input type="range" id="scooterWeight" min="10" max="70" value="26" step="1"></div>
+<div class="calc-group"><label><span data-i18n="calc_sp">Средняя скорость</span>: <span id="speedVal" class="value-display">25</span> <span data-i18n="unit_kmh">км/ч</span></label><input type="range" id="speed" min="10" max="100" value="25" step="1"></div>
+<div class="calc-group"><label><span data-i18n="calc_bat">Ёмкость батареи</span>: <span id="batteryVal" class="value-display">750</span> Вт·ч</label><input type="range" id="battery" min="200" max="5000" value="750" step="10"></div>
+<div class="calc-group"><label><span data-i18n="calc_health">Износ батареи</span>: <span id="healthVal" class="value-display">100</span>%</label><input type="range" id="health" min="50" max="100" value="100" step="1"></div>
+<div class="calc-group"><label data-i18n="calc_terrain">Покрытие:</label><select id="terrain"><option value="1.0" data-i18n="calc_terrain_road">Асфальт</option><option value="1.15" data-i18n="calc_terrain_mix">Город/Грунт</option><option value="1.3" data-i18n="calc_terrain_off">Бездорожье</option></select></div>
+<div class="calc-group"><label data-i18n="calc_price">Цена за 1 кВт·ч:</label><input type="number" id="price" value="5" step="0.1" min="0"></div>
+<div class="calc-group"><label data-i18n="calc_charger">Зарядное (Амперы):</label><input type="number" id="charger" value="2" step="0.5" min="1" max="10"></div>
 <div class="calc-result">
-<h3>Примерный запас хода</h3>
-<div><span id="rangeResult" class="range-value">55</span> <span class="range-unit">км</span></div>
+<h3 data-i18n="calc_result">Примерный запас хода</h3>
+<div><span id="rangeResult" class="range-value">55</span> <span class="range-unit" data-i18n="unit_km">км</span></div>
 <div class="calc-extra-results">
-<div class="calc-extra-item"><span>Стоимость зарядки:</span><strong><span id="costResult">0.00</span> руб</strong></div>
-<div class="calc-extra-item"><span>Время зарядки:</span><strong><span id="timeResult">0.0</span> ч</strong></div>
+<div class="calc-extra-item"><span data-i18n="calc_cost">Стоимость зарядки:</span><strong><span id="costResult">0.00</span> <span data-i18n="unit_rub">руб</span></strong></div>
+<div class="calc-extra-item"><span data-i18n="calc_time">Время зарядки:</span><strong><span id="timeResult">0.0</span> <span data-i18n="unit_h">ч</span></strong></div>
 </div>
 </div>
 </div>
 </section>
 
 <section id="faq" class="faq-section">
-<h2 class="section-title">FAQ</h2>
-<details class="faq-item"><summary>Как выбрать первый электросамокат?</summary><div class="faq-content">Начните с бюджета и целей: для города хватит 350–500 Вт и запаса 30–40 км, для бездорожья — от 1000 Вт на колесо и полный привод. Обязательно учитывайте вес райдера и нагрузку самоката.</div></details>
-<details class="faq-item"><summary>Сколько служит батарея самоката?</summary><div class="faq-content">Литий-ионная батарея служит 500–1000 полных циклов заряда-разряда, это 2–4 года при активном использовании. Ёмкость постепенно падает; при потере 30% пора менять.</div></details>
-<details class="faq-item"><summary>Как продлить жизнь батарее?</summary><div class="faq-content">Не оставляйте на 100% без нужды. Храните при 40–60% заряда, если не катаетесь. Избегайте экстремальных температур — не заряжайте на морозе.</div></details>
-<details class="faq-item"><summary>Что такое рекуперация?</summary><div class="faq-content">Возврат энергии в батарею при торможении. Даёт до 10–15% дополнительного пробега, но может быть отключена для плавного торможения.</div></details>
-<details class="faq-item"><summary>Можно ли ездить зимой?</summary><div class="faq-content">Технически да, но ёмкость батареи на морозе падает на 20–40%. Не заряжайте холодный самокат — дайте согреться до комнатной температуры.</div></details>
-<details class="faq-item"><summary>Что такое BMS?</summary><div class="faq-content">Battery Management System — плата, которая защищает батарею от перезаряда, переразряда, перегрева и балансирует ячейки. От её качества зависит безопасность.</div></details>
-<details class="faq-item"><summary>Какой вес самоката считается лёгким?</summary><div class="faq-content">До 15 кг — легко носить в метро и по лестнице. 15–25 кг — компромисс. Свыше 25 кг — только для лифта и гаража.</div></details>
-<details class="faq-item"><summary>Что делать, если самокат не заряжается?</summary><div class="faq-content">Проверьте зарядное устройство мультиметром, контакты разъёма, предохранитель. Если BMS в защите — попробуйте «толкнуть» батарею малым током. Если не помогает — к специалисту.</div></details>
-<details class="faq-item"><summary>Что значит IP-рейтинг?</summary><div class="faq-content">IP54 — защита от пыли и брызг, годится для сырого асфальта. IP65 — от струй воды, можно ездить в дождь. IP67 — кратковременное погружение, для серьёзного бездорожья.</div></details>
-<details class="faq-item"><summary>Как ухаживать за самокатом?</summary><div class="faq-content">Раз в месяц проверяйте давление в шинах, раз в 500 км — тормозные колодки и болты. Смазывайте подшипники, чистите от грязи, не мойте под давлением.</div></details>
-<details class="faq-item"><summary>Можно ли перевозить самокат в метро?</summary><div class="faq-content">В большинстве городов РФ — да, если в сложенном виде и вес до 30 кг. В час пик могут попросить подождать. Литиевые батареи до 300 Вт·ч обычно разрешены, свыше — уточняйте правила.</div></details>
-<details class="faq-item"><summary>Можно ли ставить батарею большей ёмкости?</summary><div class="faq-content">Да, если напряжение совпадает с оригиналом. Ёмкость (Ah) можно увеличить, напряжение (V) — нельзя, иначе сгорит контроллер. Проверьте габариты отсека и разъём.</div></details>
+<h2 class="section-title" data-i18n="faq_title">FAQ</h2>
+<details class="faq-item"><summary data-i18n="faq1_q">Как выбрать первый электросамокат?</summary><div class="faq-content" data-i18n="faq1_a">Начните с бюджета и целей: для города хватит 350–500 Вт и запаса 30–40 км, для бездорожья — от 1000 Вт на колесо и полный привод. Обязательно учитывайте вес райдера и нагрузку самоката.</div></details>
+<details class="faq-item"><summary data-i18n="faq2_q">Сколько служит батарея самоката?</summary><div class="faq-content" data-i18n="faq2_a">Литий-ионная батарея служит 500–1000 полных циклов заряда-разряда, это 2–4 года при активном использовании.</div></details>
+<details class="faq-item"><summary data-i18n="faq3_q">Как продлить жизнь батарее?</summary><div class="faq-content" data-i18n="faq3_a">Не оставляйте на 100% без нужды. Храните при 40–60% заряда, если не катаетесь. Избегайте экстремальных температур — не заряжайте на морозе.</div></details>
+<details class="faq-item"><summary data-i18n="faq4_q">Что такое рекуперация?</summary><div class="faq-content" data-i18n="faq4_a">Возврат энергии в батарею при торможении. Даёт до 10–15% дополнительного пробега.</div></details>
+<details class="faq-item"><summary data-i18n="faq5_q">Можно ли ездить зимой?</summary><div class="faq-content" data-i18n="faq5_a">Технически да, но ёмкость батареи на морозе падает на 20–40%. Не заряжайте холодный самокат — дайте согреться до комнатной температуры.</div></details>
+<details class="faq-item"><summary data-i18n="faq6_q">Что такое BMS?</summary><div class="faq-content" data-i18n="faq6_a">Battery Management System — плата, которая защищает батарею от перезаряда, переразряда, перегрева и балансирует ячейки.</div></details>
+<details class="faq-item"><summary data-i18n="faq7_q">Какой вес самоката считается лёгким?</summary><div class="faq-content" data-i18n="faq7_a">До 15 кг — легко носить в метро и по лестнице. 15–25 кг — компромисс. Свыше 25 кг — только для лифта и гаража.</div></details>
+<details class="faq-item"><summary data-i18n="faq8_q">Что делать, если самокат не заряжается?</summary><div class="faq-content" data-i18n="faq8_a">Проверьте зарядное устройство мультиметром, контакты разъёма, предохранитель. Если BMS в защите — попробуйте «толкнуть» батарею малым током. Если не помогает — к специалисту.</div></details>
+<details class="faq-item"><summary data-i18n="faq9_q">Что значит IP-рейтинг?</summary><div class="faq-content" data-i18n="faq9_a">IP54 — защита от пыли и брызг. IP65 — от струй воды. IP67 — кратковременное погружение.</div></details>
+<details class="faq-item"><summary data-i18n="faq10_q">Как ухаживать за самокатом?</summary><div class="faq-content" data-i18n="faq10_a">Раз в месяц проверяйте давление в шинах, раз в 500 км — тормозные колодки и болты. Смазывайте подшипники, чистите от грязи, не мойте под давлением.</div></details>
+<details class="faq-item"><summary data-i18n="faq11_q">Можно ли перевозить самокат в метро?</summary><div class="faq-content" data-i18n="faq11_a">В большинстве городов РФ — да, если в сложенном виде и вес до 30 кг. Литиевые батареи до 300 Вт·ч обычно разрешены.</div></details>
+<details class="faq-item"><summary data-i18n="faq12_q">Можно ли ставить батарею большей ёмкости?</summary><div class="faq-content" data-i18n="faq12_a">Да, если напряжение совпадает с оригиналом. Ёмкость (Ah) можно увеличить, напряжение (V) — нельзя, иначе сгорит контроллер.</div></details>
 </section>
 </div>
 
 <div id="compareTray" class="compare-tray">
 <div class="tray-items" id="trayItems"></div>
 <div class="tray-actions">
-<button class="btn-tray clear" onclick="clearCompare()">Очистить</button>
-<button class="btn-tray share" onclick="shareComparison()">Поделиться</button>
-<button class="btn-tray primary" onclick="showComparison()">Сравнить выбранные</button>
+<button class="btn-tray clear" onclick="clearCompare()" data-i18n="tray_clear">Очистить</button>
+<button class="btn-tray share" onclick="shareComparison()" data-i18n="tray_share">Поделиться</button>
+<button class="btn-tray primary" onclick="showComparison()" data-i18n="tray_compare">Сравнить выбранные</button>
 </div>
 </div>
 
 <footer><p>© 2026 Scooter Compare.</p></footer>
 
 <script>
-const translations = {
-ru: { title: "Сравнение", modal_box: "Комплектация:" },
-en: { title: "Compare", modal_box: "Box contents:" }
-};
 const rates = { USD: 1, EUR: 0.92, RUB: 90 };
 const symbols = { USD: "$", EUR: "€", RUB: "₽" };
+
+const i18n = {
+ru: {
+  nav_scooters: "Самокаты", nav_matcher: "Подбор", nav_controllers: "Контроллеры", nav_calc: "Калькулятор", nav_faq: "FAQ",
+  nav_scooters_short: "Самокаты", nav_matcher_short: "Подбор", nav_controllers_short: "Контролл.", nav_calc_short: "Калькул.", nav_faq_short: "FAQ",
+  lang_title: "Выберите язык", lang_subtitle: "Choose your preferred language",
+  main_title: "Сравнение электросамокатов", main_subtitle: "Каталог реальных моделей",
+  cat_all: "Все категории", cat_speed: "Скорость", cat_comfort: "Комфорт", cat_city: "Город", cat_offroad: "Бездорожье", cat_budget: "Бюджетный",
+  search_ph: "Поиск по модели или бренду...",
+  filter_price: "Цена", filter_weight: "Макс. вес", filter_fav: "★ Только избранное", filter_reset: "↺ Сбросить",
+  th_model: "Модель", th_motor: "Мотор", th_battery: "Батарея", th_speed: "Скорость", th_range: "Пробег", th_weight: "Вес", th_maxload: "Нагрузка", th_tire: "Колёса", th_charger: "Зарядка", th_price: "Цена", th_action: "Действие",
+  btn_compare: "+ Сравнить", btn_selected: "✓ Выбрано",
+  matcher_title: "Умный подбор", matcher_subtitle: "Подберём самокат по бюджету, скорости и весу", matcher_budget: "Бюджет до", matcher_speed: "Мин. скорость", matcher_weight: "Ваш вес", matcher_empty: "Нет совпадений. Измените параметры.",
+  controllers_title: "Каталог контроллеров", controllers_subtitle: "Для тюнинга и замены",
+  th_ctrl_model: "Модель", th_ctrl_brand: "Бренд", th_ctrl_voltage: "Напряжение", th_ctrl_current: "Макс. ток", th_ctrl_power: "Мощность",
+  ctrlcalc_title: "Калькулятор мощности контроллера", ctrlcalc_subtitle: "Подбор контроллера под мотор", ctrlcalc_voltage: "Напряжение батареи (V):", ctrlcalc_power: "Мощность мотора (W):", ctrlcalc_peak: "Пиковый коэффициент:", ctrlcalc_req: "Требуемый непрерывный ток", ctrlcalc_peakreq: "Пиковый ток:", ctrlcalc_count: "Подходящих контроллеров:", ctrlcalc_none: "Нет контроллеров подходящих по току.",
+  batcalc_title: "Калькулятор замены батареи", batcalc_subtitle: "Проверка совместимости новой батареи", batcalc_oldv: "Старая батарея — напряжение (V):", batcalc_oldah: "Старая батарея — ёмкость (Ah):", batcalc_newv: "Новая батарея — напряжение (V):", batcalc_newah: "Новая батарея — ёмкость (Ah):", batcalc_result: "Результат замены", batcalc_oldwh: "Старая ёмкость:", batcalc_newwh: "Новая ёмкость:", batcalc_growth: "Прирост:", batcalc_compat: "Совместимость:", batcalc_ok: "OK", batcalc_bad: "Не совпадает", batcalc_ok_note: "Напряжение совпадает — новая батарея совместима. Проверьте габариты отсека и разъём.", batcalc_bad_note: "Напряжение отличается. Замена без замены контроллера приведёт к поломке.",
+  calc_title: "Калькулятор запаса хода", calc_model: "Выберите модель из каталога:", calc_custom: "-- Свой аккумулятор --", calc_rweight: "Вес райдера", calc_sw: "Вес самоката", calc_sp: "Средняя скорость", calc_bat: "Ёмкость батареи", calc_health: "Износ батареи", calc_terrain: "Покрытие:", calc_terrain_road: "Асфальт", calc_terrain_mix: "Город/Грунт", calc_terrain_off: "Бездорожье", calc_price: "Цена за 1 кВт·ч:", calc_charger: "Зарядное (Амперы):", calc_result: "Примерный запас хода", calc_cost: "Стоимость зарядки:", calc_time: "Время зарядки:",
+  faq_title: "FAQ",
+  cmp_title: "Результат сравнения",
+  tray_clear: "Очистить", tray_share: "Поделиться", tray_compare: "Сравнить выбранные",
+  modal_box: "Комплектация:", modal_motor: "Мотор", modal_battery: "Батарея", modal_speed: "Скорость", modal_range: "Пробег", modal_weight: "Вес", modal_maxload: "Нагрузка", modal_tire: "Колёса", modal_price: "Цена",
+  unit_kg: "кг", unit_kmh: "км/ч", unit_km: "км", unit_rub: "руб", unit_h: "ч",
+  empty_found: "Нет самокатов с такими параметрами", page_of: "Страница", from: "из", models_count: "моделей", prev: "← Назад", next: "Вперёд →",
+  alert_max4: "Максимум 4 самоката", alert_min2: "Выберите минимум 2 самоката", alert_copied: "Ссылка скопирована", alert_prompt: "Скопируйте ссылку:",
+  faq1_q: "Как выбрать первый электросамокат?", faq1_a: "Начните с бюджета и целей: для города хватит 350–500 Вт и запаса 30–40 км, для бездорожья — от 1000 Вт на колесо и полный привод. Обязательно учитывайте вес райдера и нагрузку самоката.",
+  faq2_q: "Сколько служит батарея самоката?", faq2_a: "Литий-ионная батарея служит 500–1000 полных циклов заряда-разряда, это 2–4 года при активном использовании.",
+  faq3_q: "Как продлить жизнь батарее?", faq3_a: "Не оставляйте на 100% без нужды. Храните при 40–60% заряда, если не катаетесь. Избегайте экстремальных температур — не заряжайте на морозе.",
+  faq4_q: "Что такое рекуперация?", faq4_a: "Возврат энергии в батарею при торможении. Даёт до 10–15% дополнительного пробега.",
+  faq5_q: "Можно ли ездить зимой?", faq5_a: "Технически да, но ёмкость батареи на морозе падает на 20–40%. Не заряжайте холодный самокат — дайте согреться до комнатной температуры.",
+  faq6_q: "Что такое BMS?", faq6_a: "Battery Management System — плата, которая защищает батарею от перезаряда, переразряда, перегрева и балансирует ячейки.",
+  faq7_q: "Какой вес самоката считается лёгким?", faq7_a: "До 15 кг — легко носить в метро и по лестнице. 15–25 кг — компромисс. Свыше 25 кг — только для лифта и гаража.",
+  faq8_q: "Что делать, если самокат не заряжается?", faq8_a: "Проверьте зарядное устройство мультиметром, контакты разъёма, предохранитель. Если BMS в защите — попробуйте «толкнуть» батарею малым током. Если не помогает — к специалисту.",
+  faq9_q: "Что значит IP-рейтинг?", faq9_a: "IP54 — защита от пыли и брызг. IP65 — от струй воды. IP67 — кратковременное погружение.",
+  faq10_q: "Как ухаживать за самокатом?", faq10_a: "Раз в месяц проверяйте давление в шинах, раз в 500 км — тормозные колодки и болты. Смазывайте подшипники, чистите от грязи, не мойте под давлением.",
+  faq11_q: "Можно ли перевозить самокат в метро?", faq11_a: "В большинстве городов РФ — да, если в сложенном виде и вес до 30 кг. Литиевые батареи до 300 Вт·ч обычно разрешены.",
+  faq12_q: "Можно ли ставить батарею большей ёмкости?", faq12_a: "Да, если напряжение совпадает с оригиналом. Ёмкость (Ah) можно увеличить, напряжение (V) — нельзя, иначе сгорит контроллер."
+},
+en: {
+  nav_scooters: "Scooters", nav_matcher: "Matcher", nav_controllers: "Controllers", nav_calc: "Calculator", nav_faq: "FAQ",
+  nav_scooters_short: "Scooters", nav_matcher_short: "Matcher", nav_controllers_short: "Ctrl", nav_calc_short: "Calc", nav_faq_short: "FAQ",
+  lang_title: "Select Language", lang_subtitle: "Choose your preferred language",
+  main_title: "Electric Scooter Comparison", main_subtitle: "Catalog of real models",
+  cat_all: "All categories", cat_speed: "Speed", cat_comfort: "Comfort", cat_city: "City", cat_offroad: "Off-road", cat_budget: "Budget",
+  search_ph: "Search by model or brand...",
+  filter_price: "Price", filter_weight: "Max weight", filter_fav: "★ Favorites only", filter_reset: "↺ Reset",
+  th_model: "Model", th_motor: "Motor", th_battery: "Battery", th_speed: "Speed", th_range: "Range", th_weight: "Weight", th_maxload: "Load", th_tire: "Tires", th_charger: "Charger", th_price: "Price", th_action: "Action",
+  btn_compare: "+ Compare", btn_selected: "✓ Selected",
+  matcher_title: "Smart Matcher", matcher_subtitle: "Find a scooter by budget, speed and weight", matcher_budget: "Budget up to", matcher_speed: "Min speed", matcher_weight: "Your weight", matcher_empty: "No matches. Change parameters.",
+  controllers_title: "Controller Catalog", controllers_subtitle: "For tuning and replacement",
+  th_ctrl_model: "Model", th_ctrl_brand: "Brand", th_ctrl_voltage: "Voltage", th_ctrl_current: "Max current", th_ctrl_power: "Power",
+  ctrlcalc_title: "Controller Power Calculator", ctrlcalc_subtitle: "Pick controller for motor", ctrlcalc_voltage: "Battery voltage (V):", ctrlcalc_power: "Motor power (W):", ctrlcalc_peak: "Peak coefficient:", ctrlcalc_req: "Required continuous current", ctrlcalc_peakreq: "Peak current:", ctrlcalc_count: "Matching controllers:", ctrlcalc_none: "No controllers matching current.",
+  batcalc_title: "Battery Replacement Calculator", batcalc_subtitle: "Check new battery compatibility", batcalc_oldv: "Old battery — voltage (V):", batcalc_oldah: "Old battery — capacity (Ah):", batcalc_newv: "New battery — voltage (V):", batcalc_newah: "New battery — capacity (Ah):", batcalc_result: "Replacement result", batcalc_oldwh: "Old capacity:", batcalc_newwh: "New capacity:", batcalc_growth: "Growth:", batcalc_compat: "Compatibility:", batcalc_ok: "OK", batcalc_bad: "Mismatch", batcalc_ok_note: "Voltage matches — battery is compatible. Check compartment size and connector.", batcalc_bad_note: "Voltage differs. Replacement without swapping the controller will damage it.",
+  calc_title: "Range Calculator", calc_model: "Select model from catalog:", calc_custom: "-- Custom battery --", calc_rweight: "Rider weight", calc_sw: "Scooter weight", calc_sp: "Average speed", calc_bat: "Battery capacity", calc_health: "Battery health", calc_terrain: "Terrain:", calc_terrain_road: "Asphalt", calc_terrain_mix: "City/Ground", calc_terrain_off: "Off-road", calc_price: "Price per 1 kWh:", calc_charger: "Charger (Amps):", calc_result: "Estimated range", calc_cost: "Charging cost:", calc_time: "Charging time:",
+  faq_title: "FAQ",
+  cmp_title: "Comparison Result",
+  tray_clear: "Clear", tray_share: "Share", tray_compare: "Compare Selected",
+  modal_box: "Box contents:", modal_motor: "Motor", modal_battery: "Battery", modal_speed: "Speed", modal_range: "Range", modal_weight: "Weight", modal_maxload: "Max load", modal_tire: "Tires", modal_price: "Price",
+  unit_kg: "kg", unit_kmh: "km/h", unit_km: "km", unit_rub: "rub", unit_h: "h",
+  empty_found: "No scooters with such parameters", page_of: "Page", from: "of", models_count: "models", prev: "← Prev", next: "Next →",
+  alert_max4: "Max 4 scooters", alert_min2: "Select at least 2 scooters", alert_copied: "Link copied", alert_prompt: "Copy link:",
+  faq1_q: "How to choose your first e-scooter?", faq1_a: "Start with budget and goals: for city 350–500 W and 30–40 km range is enough; for off-road — from 1000 W per wheel and dual drive. Consider rider weight and scooter max load.",
+  faq2_q: "How long does the battery last?", faq2_a: "Li-ion battery lasts 500–1000 full cycles — 2–4 years of active use.",
+  faq3_q: "How to extend battery life?", faq3_a: "Don't leave at 100% unnecessarily. Store at 40–60% if not riding. Avoid extreme temperatures — don't charge in freezing cold.",
+  faq4_q: "What is regenerative braking?", faq4_a: "Returns energy to the battery when braking. Adds up to 10–15% extra range.",
+  faq5_q: "Can I ride in winter?", faq5_a: "Technically yes, but battery capacity drops 20–40% in cold. Don't charge a cold scooter — let it warm to room temperature.",
+  faq6_q: "What is BMS?", faq6_a: "Battery Management System — a board that protects the battery from overcharge, over-discharge, overheating and balances cells.",
+  faq7_q: "What weight is considered light?", faq7_a: "Under 15 kg — easy to carry in metro and up stairs. 15–25 kg — compromise. Over 25 kg — elevator and garage only.",
+  faq8_q: "What if the scooter won't charge?", faq8_a: "Check charger with a multimeter, connector contacts, fuse. If BMS is in protection — try pushing the battery with low current. If nothing helps — see a technician.",
+  faq9_q: "What does IP rating mean?", faq9_a: "IP54 — dust and splash protection. IP65 — water jets. IP67 — short immersion.",
+  faq10_q: "How to maintain the scooter?", faq10_a: "Monthly check tire pressure, every 500 km — brake pads and bolts. Lube bearings, clean dirt, don't wash with pressure.",
+  faq11_q: "Can I take the scooter on the metro?", faq11_a: "In most cities — yes, if folded and under 30 kg. Li-ion batteries up to 300 Wh are usually allowed.",
+  faq12_q: "Can I install a larger battery?", faq12_a: "Yes, if voltage matches the original. Capacity (Ah) can increase, voltage (V) cannot — controller will burn."
+}
+};
 
 let currentLang = 'ru';
 let currentFilter = 'all';
@@ -404,6 +505,13 @@ let sortKey = null;
 let sortDir = 'asc';
 let searchQuery = '';
 const itemsPerPage = 50;
+
+const tr = k => (i18n[currentLang] && i18n[currentLang][k] !== undefined) ? i18n[currentLang][k] : (i18n.ru[k] || k);
+
+function applyI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = tr(el.dataset.i18nPh); });
+}
 
 const defaultBox = ["Зарядное устройство", "Инструкция", "Набор шестигранников"];
 const premiumBox = ["Зарядное устройство", "Инструкция", "Набор инструментов", "Пульт ДУ"];
@@ -437,58 +545,54 @@ const rawScooters = [
 `Kugoo|G-Booster|2×1600 W|60 V 24 Ah|70|90|40|3|150|10"|offroad|1800`,
 `Kugoo|Kirin|800 W|48 V 18 Ah|45|70|47|2|150|10"|comfort|800`,
 `Kugoo|H4|1000 W|48 V 15 Ah|50|60|28|2|120|10"|speed|850`,
-`Ninebot|KickScooter ES1|250 W|36 V 5.1 Ah|20|20|12.5|1.5|100|8"|budget|300`,
-`Ninebot|KickScooter ES2|300 W|36 V 5.2 Ah|25|25|13|1.5|100|8"|budget|350`,
-`Ninebot|KickScooter ES4|300 W|36 V 7.8 Ah|30|45|14|1.5|100|8"|budget|500`,
-`Ninebot|KickScooter Max G30|350 W|36 V 15.3 Ah|25|65|19.1|2|100|10"|city|800`,
-`Ninebot|KickScooter Max G30D|350 W|36 V 15.3 Ah|25|65|19.1|2|100|10"|city|850`,
-`Ninebot|KickScooter Max G30P|350 W|36 V 15.3 Ah|30|65|19.1|2|100|10"|city|900`,
-`Ninebot|KickScooter Max G2|900 W|36 V 15.3 Ah|25|70|24.3|2|120|10"|comfort|950`,
-`Ninebot|KickScooter F20|250 W|36 V 5.1 Ah|20|20|13.6|1.5|90|8.5"|budget|300`,
-`Ninebot|KickScooter F25|300 W|36 V 7.65 Ah|25|25|15.5|2|100|10"|budget|400`,
-`Ninebot|KickScooter F30|350 W|36 V 7.65 Ah|25|30|16|2|100|10"|budget|400`,
-`Ninebot|KickScooter F40|350 W|36 V 10.2 Ah|30|40|17.1|2|100|10"|city|550`,
-`Ninebot|KickScooter F60|400 W|36 V 12.8 Ah|30|60|19|2|100|10"|city|700`,
-`Ninebot|KickScooter P65|1000 W|48 V 20 Ah|40|60|28|3|120|11"|city|1100`,
-`Ninebot|KickScooter P100|2000 W|48 V 30 Ah|55|90|38|4|150|11"|speed|1800`,
-`Ninebot|KickScooter D18|250 W|36 V 5 Ah|20|18|12|1.5|90|8"|budget|280`,
-`Ninebot|KickScooter D28|250 W|36 V 7.65 Ah|20|28|13|1.5|90|8"|budget|320`,
-`Ninebot|KickScooter D38|300 W|36 V 10.2 Ah|25|38|14.5|2|100|8"|budget|380`,
-`Ninebot|KickScooter E22|250 W|36 V 5.1 Ah|20|22|12|1.5|90|8.5"|budget|300`,
-`Ninebot|KickScooter E45|300 W|36 V 10.2 Ah|25|45|14|2|100|9"|city|500`,
-`Segway|KickScooter GT1|1400 W|60 V 20.4 Ah|50|70|43|4|150|10"|speed|2200`,
-`Segway|KickScooter GT2|3000 W|60 V 24.6 Ah|70|90|52.6|5|150|11"|offroad|3500`,
-`Segway|KickScooter GT2 Pro|3000 W|60 V 24.6 Ah|70|90|52.6|5|150|11"|offroad|4000`,
-`Segway|KickScooter E2|250 W|36 V 5 Ah|20|20|11.5|1.5|90|8"|budget|300`,
-`Segway|KickScooter E2 Plus|300 W|36 V 7.8 Ah|25|25|13|1.5|100|8.5"|budget|400`,
-`Segway|KickScooter E2 Pro|400 W|36 V 10.2 Ah|25|35|15|2|100|9"|city|500`,
-`Segway|KickScooter F2|400 W|36 V 10.2 Ah|30|40|16|2|100|10"|city|550`,
-`Segway|KickScooter F2 Plus|450 W|36 V 12.8 Ah|30|55|18|2|100|10"|city|700`,
-`Segway|KickScooter F2 Pro|500 W|36 V 14.4 Ah|30|65|20|2|110|10"|city|850`,
-`Segway|KickScooter ZT3 Pro|1500 W|48 V 20 Ah|50|60|40|3|150|11"|offroad|1800`,
-`Segway|KickScooter Max G2|900 W|36 V 15.3 Ah|25|70|24.3|2|120|10"|comfort|950`,
-`Segway|KickScooter P65|1000 W|48 V 20 Ah|40|60|28|3|120|11"|city|1200`,
-`Segway|KickScooter P100|2000 W|48 V 30 Ah|55|90|38|4|150|11"|speed|1900`,
-`Segway|KickScooter Air T15|250 W|36 V 5.6 Ah|20|15|10|1.5|90|8"|budget|350`,
-`Segway|KickScooter Zing E8|150 W|24 V 5.4 Ah|15|15|8|1|60|6"|budget|250`,
-`Segway|KickScooter Zing E10|150 W|24 V 5.4 Ah|15|15|9|1|60|7"|budget|280`,
-`Segway|KickScooter Zing E12|200 W|24 V 7.8 Ah|20|20|11|1.5|80|8"|budget|350`,
-`Xiaomi|Mi Electric Scooter 1S|250 W|36 V 7.65 Ah|25|30|12.5|1.5|100|8.5"|budget|350`,
-`Xiaomi|Mi Electric Scooter Pro 2|300 W|36 V 12.8 Ah|25|45|14.2|2|100|8.5"|city|550`,
-`Xiaomi|Mi Electric Scooter 3|300 W|36 V 7.65 Ah|25|30|13.2|1.5|100|8.5"|budget|400`,
-`Xiaomi|Electric Scooter 4 Lite|300 W|36 V 7.65 Ah|25|25|14|1.5|100|8.5"|budget|400`,
-`Xiaomi|Electric Scooter 4|400 W|36 V 10.2 Ah|25|35|17|2|100|10"|city|500`,
-`Xiaomi|Electric Scooter 4 Pro|350 W|446 Wh|25|55|17|1.5|100|10"|budget|450`,
-`Xiaomi|Electric Scooter 4 Ultra|500 W|561 Wh|25|60|24|2|120|10"|comfort|700`,
-`Xiaomi|Electric Scooter 5|400 W|36 V 10.2 Ah|25|40|18|2|100|10"|city|550`,
-`Xiaomi|Electric Scooter 5 Pro|500 W|561 Wh|25|60|22|2|120|10"|comfort|750`,
-`Xiaomi|Electric Scooter 5 Max|500 W|561 Wh|25|60|24|2|120|10"|comfort|850`,
-`Xiaomi|Electric Scooter 6|400 W|36 V 10.2 Ah|25|45|19|2|100|10"|city|600`,
-`Xiaomi|Electric Scooter 6 Pro|400 W|477 Wh|20|70|27.3|2|120|10"|comfort|900`,
+`Ninebot|Max G30|350 W|36 V 15.3 Ah|25|65|19.1|2|100|10"|city|800`,
+`Ninebot|Max G30D|350 W|36 V 15.3 Ah|25|65|19.1|2|100|10"|city|850`,
+`Ninebot|Max G30P|350 W|36 V 15.3 Ah|30|65|19.1|2|100|10"|city|900`,
+`Ninebot|Max G2|900 W|36 V 15.3 Ah|25|70|24.3|2|120|10"|comfort|950`,
+`Ninebot|F20|250 W|36 V 5.1 Ah|20|20|13.6|1.5|90|8.5"|budget|300`,
+`Ninebot|F25|300 W|36 V 7.65 Ah|25|25|15.5|2|100|10"|budget|400`,
+`Ninebot|F30|350 W|36 V 7.65 Ah|25|30|16|2|100|10"|budget|400`,
+`Ninebot|F40|350 W|36 V 10.2 Ah|30|40|17.1|2|100|10"|city|550`,
+`Ninebot|F60|400 W|36 V 12.8 Ah|30|60|19|2|100|10"|city|700`,
+`Ninebot|P65|1000 W|48 V 20 Ah|40|60|28|3|120|11"|city|1100`,
+`Ninebot|P100|2000 W|48 V 30 Ah|55|90|38|4|150|11"|speed|1800`,
+`Ninebot|D18|250 W|36 V 5 Ah|20|18|12|1.5|90|8"|budget|280`,
+`Ninebot|D28|250 W|36 V 7.65 Ah|20|28|13|1.5|90|8"|budget|320`,
+`Ninebot|D38|300 W|36 V 10.2 Ah|25|38|14.5|2|100|8"|budget|380`,
+`Ninebot|E22|250 W|36 V 5.1 Ah|20|22|12|1.5|90|8.5"|budget|300`,
+`Ninebot|E45|300 W|36 V 10.2 Ah|25|45|14|2|100|9"|city|500`,
+`Segway|GT1|1400 W|60 V 20.4 Ah|50|70|43|4|150|10"|speed|2200`,
+`Segway|GT2|3000 W|60 V 24.6 Ah|70|90|52.6|5|150|11"|offroad|3500`,
+`Segway|GT2 Pro|3000 W|60 V 24.6 Ah|70|90|52.6|5|150|11"|offroad|4000`,
+`Segway|E2|250 W|36 V 5 Ah|20|20|11.5|1.5|90|8"|budget|300`,
+`Segway|E2 Plus|300 W|36 V 7.8 Ah|25|25|13|1.5|100|8.5"|budget|400`,
+`Segway|E2 Pro|400 W|36 V 10.2 Ah|25|35|15|2|100|9"|city|500`,
+`Segway|F2|400 W|36 V 10.2 Ah|30|40|16|2|100|10"|city|550`,
+`Segway|F2 Plus|450 W|36 V 12.8 Ah|30|55|18|2|100|10"|city|700`,
+`Segway|F2 Pro|500 W|36 V 14.4 Ah|30|65|20|2|110|10"|city|850`,
+`Segway|ZT3 Pro|1500 W|48 V 20 Ah|50|60|40|3|150|11"|offroad|1800`,
+`Segway|Max G2|900 W|36 V 15.3 Ah|25|70|24.3|2|120|10"|comfort|950`,
+`Segway|P65|1000 W|48 V 20 Ah|40|60|28|3|120|11"|city|1200`,
+`Segway|P100|2000 W|48 V 30 Ah|55|90|38|4|150|11"|speed|1900`,
+`Segway|Air T15|250 W|36 V 5.6 Ah|20|15|10|1.5|90|8"|budget|350`,
+`Segway|Zing E8|150 W|24 V 5.4 Ah|15|15|8|1|60|6"|budget|250`,
+`Segway|Zing E10|150 W|24 V 5.4 Ah|15|15|9|1|60|7"|budget|280`,
+`Segway|Zing E12|200 W|24 V 7.8 Ah|20|20|11|1.5|80|8"|budget|350`,
+`Xiaomi|Mi 1S|250 W|36 V 7.65 Ah|25|30|12.5|1.5|100|8.5"|budget|350`,
+`Xiaomi|Pro 2|300 W|36 V 12.8 Ah|25|45|14.2|2|100|8.5"|city|550`,
+`Xiaomi|Mi 3|300 W|36 V 7.65 Ah|25|30|13.2|1.5|100|8.5"|budget|400`,
+`Xiaomi|4 Lite|300 W|36 V 7.65 Ah|25|25|14|1.5|100|8.5"|budget|400`,
+`Xiaomi|4|400 W|36 V 10.2 Ah|25|35|17|2|100|10"|city|500`,
+`Xiaomi|4 Pro|350 W|446 Wh|25|55|17|1.5|100|10"|budget|450`,
+`Xiaomi|4 Ultra|500 W|561 Wh|25|60|24|2|120|10"|comfort|700`,
+`Xiaomi|5|400 W|36 V 10.2 Ah|25|40|18|2|100|10"|city|550`,
+`Xiaomi|5 Pro|500 W|561 Wh|25|60|22|2|120|10"|comfort|750`,
+`Xiaomi|5 Max|500 W|561 Wh|25|60|24|2|120|10"|comfort|850`,
+`Xiaomi|6|400 W|36 V 10.2 Ah|25|45|19|2|100|10"|city|600`,
+`Xiaomi|6 Pro|400 W|477 Wh|20|70|27.3|2|120|10"|comfort|900`,
 `Dualtron|Mini|2×800 W|48 V 13 Ah|50|60|19|2|100|8"|speed|1200`,
 `Dualtron|Spider|2×1300 W|60 V 24 Ah|55|75|21|3|100|10"|speed|1800`,
 `Dualtron|Spider 2|2×2000 W|60 V 30 Ah|64|80|26|4|120|10"|speed|2500`,
-`Dualtron|Spider Max|2×2000 W|60 V 30 Ah|65|90|27|4|120|10"|speed|2800`,
 `Dualtron|Compact|2×1700 W|60 V 30 Ah|61|105|34|4|120|10"|offroad|2800`,
 `Dualtron|City|2×1500 W|60 V 20 Ah|60|60|30|3|120|10"|speed|2000`,
 `Dualtron|Thunder|2×2700 W|60 V 35 Ah|75|120|43|5|120|11"|offroad|3800`,
@@ -497,7 +601,6 @@ const rawScooters = [
 `Dualtron|Ultra 2|2×3500 W|72 V 35 Ah|85|140|48|5|150|11"|offroad|5000`,
 `Dualtron|X2|2×4000 W|72 V 45 Ah|90|150|55|5|150|11"|offroad|6000`,
 `Dualtron|Storm|2×2700 W|72 V 35 Ah|80|130|50|5|150|11"|offroad|4500`,
-`Dualtron|Storm Ltd|2×3000 W|72 V 35 Ah|85|140|50|5|150|11"|offroad|5200`,
 `Dualtron|Eagle|2×1800 W|60 V 25 Ah|65|90|30|3|120|10"|speed|2200`,
 `Dualtron|Eagle Pro|2×2000 W|60 V 30 Ah|70|100|32|4|150|10"|speed|2600`,
 `Dualtron|Popular|2×1000 W|48 V 15 Ah|50|60|22|2|120|10"|city|1500`,
@@ -561,7 +664,6 @@ const rawScooters = [
 `Nami|Burn-e|2×1000 W|72 V 25 Ah|65|130|45|5|150|11"|offroad|2600`,
 `Nami|Burn-e 2|2×1000 W|72 V 30 Ah|72|150|47|5|150|11"|offroad|3200`,
 `Nami|Burn-e 2 Pro|2×1500 W|72 V 30 Ah|75|160|48|5|150|11"|offroad|3800`,
-`Nami|Burn-e Max|2×1500 W|72 V 35 Ah|80|170|50|5|150|11"|offroad|4200`,
 `Nami|Viper|2×1500 W|72 V 30 Ah|75|150|50|5|150|11"|offroad|4200`,
 `Nami|Viper Pro|2×1500 W|72 V 35 Ah|80|160|52|5|150|11"|offroad|4800`,
 `Nami|Klima|2×1000 W|60 V 25 Ah|65|110|40|4|150|10"|offroad|2400`,
@@ -571,82 +673,56 @@ const rawScooters = [
 `Hiboy|S2|350 W|36 V 7.5 Ah|25|25|13|1.5|100|8.5"|budget|300`,
 `Hiboy|S2 Pro|500 W|48 V 13 Ah|32|40|17|2|100|10"|city|500`,
 `Hiboy|S2 Lite|350 W|36 V 7.5 Ah|25|22|11|1.5|90|8.5"|budget|280`,
-`Hiboy|S2 Max|500 W|48 V 13 Ah|32|40|18|2|100|10"|city|550`,
 `Hiboy|MAX|500 W|48 V 15 Ah|32|50|25|2|120|10"|comfort|650`,
 `Hiboy|MAX Pro|500 W|48 V 15 Ah|32|50|25|2|120|10"|comfort|700`,
-`Hiboy|MAX V2|500 W|48 V 15 Ah|32|50|25|2|120|10"|comfort|750`,
 `Hiboy|Titan|2×750 W|48 V 26 Ah|50|110|42|3|150|10"|offroad|1200`,
 `Hiboy|Titan Pro|2×750 W|48 V 36 Ah|53|128|47|3|150|10"|offroad|1400`,
-`Hiboy|Titan Pro Plus|2×1000 W|48 V 40 Ah|55|140|50|3|150|10"|offroad|1700`,
 `Hiboy|S10|500 W|48 V 15 Ah|32|50|25|2|120|10"|comfort|750`,
 `Hiboy|S10 Max|600 W|48 V 18 Ah|35|60|28|2|120|10"|comfort|900`,
 `Apollo|Air|500 W|36 V 10.4 Ah|30|40|18|2|100|10"|city|700`,
 `Apollo|Air Pro|600 W|48 V 13.5 Ah|35|50|20|2|100|10"|city|900`,
 `Apollo|City|1000 W|48 V 15 Ah|45|55|26|2|120|10"|city|1100`,
 `Apollo|City Pro|1200 W|48 V 18 Ah|51|64|32.7|3|120|10"|city|1200`,
-`Apollo|City 2.0|1200 W|48 V 18 Ah|51|64|32.7|3|120|10"|city|1200`,
 `Apollo|Ghost|2×800 W|52 V 18 Ah|55|65|30|3|120|10"|speed|1400`,
 `Apollo|Ghost 2|2×1000 W|52 V 18 Ah|60|75|32|3|120|10"|speed|1600`,
 `Apollo|Phantom|2×1200 W|60 V 24 Ah|65|90|35|4|120|10"|speed|2200`,
 `Apollo|Phantom Pro|2×1200 W|60 V 24 Ah|70|100|36|4|120|10"|offroad|2500`,
-`Apollo|Phantom V3|2×1200 W|60 V 30 Ah|70|100|38|4|120|10"|offroad|2800`,
 `Apollo|Go|500 W|48 V 13 Ah|40|50|20|2|100|10"|city|700`,
 `Techlife|X7|500 W|48 V 15 Ah|40|60|22|2|120|10"|city|600`,
-`Techlife|X7 Pro|600 W|48 V 15 Ah|40|60|23|2|120|10"|city|700`,
 `Techlife|X9|800 W|48 V 18 Ah|45|70|28|2|120|10"|comfort|850`,
 `Techlife|X9 Pro|800 W|52 V 20 Ah|50|75|30|3|120|10"|speed|1000`,
 `Techlife|X10|1000 W|52 V 20 Ah|50|80|32|3|150|10"|speed|1200`,
-`Techlife|X9 Max|1000 W|52 V 22 Ah|55|85|34|3|150|10"|speed|1300`,
 `Fiido|Q1|350 W|36 V 7.5 Ah|25|30|16|1.5|100|8.5"|budget|350`,
 `Fiido|Q2|500 W|48 V 15 Ah|40|60|20|2|100|10"|city|650`,
-`Fiido|Q3|500 W|48 V 15 Ah|40|60|20|2|100|10"|city|700`,
 `Fiido|D11|500 W|48 V 20 Ah|45|80|24|2|120|10"|city|850`,
-`Fiido|D21|500 W|48 V 20 Ah|45|80|24|2|120|10"|city|900`,
-`Fiido|E1|250 W|36 V 7.5 Ah|25|30|14|1.5|100|8"|budget|400`,
 `Zero|8X|2×800 W|48 V 20 Ah|50|80|32|3|120|10"|speed|1400`,
 `Zero|9|600 W|48 V 13 Ah|40|60|24|2|120|10"|city|800`,
 `Zero|10|1000 W|52 V 18 Ah|50|70|28|3|120|10"|speed|1100`,
 `Zero|10X|2×1000 W|60 V 24 Ah|60|90|35|4|120|10"|speed|1800`,
 `Zero|11X|2×1500 W|60 V 30 Ah|70|100|42|4|150|11"|offroad|2600`,
 `Zero|11X Plus|2×1800 W|60 V 32 Ah|75|110|44|4|150|11"|offroad|3000`,
-`Zero|8X Pro|2×800 W|52 V 20 Ah|55|85|32|3|120|10"|speed|1600`,
 `Teverun|Fighter 4|2×800 W|48 V 20 Ah|50|70|28|3|120|10"|speed|1400`,
 `Teverun|Fighter 10|2×1000 W|60 V 24 Ah|60|80|32|3|120|10"|speed|1800`,
 `Teverun|Fighter 11|2×1500 W|60 V 30 Ah|70|100|42|4|150|11"|offroad|2500`,
 `Teverun|Fighter 11+|2×1500 W|60 V 30 Ah|70|110|42|4|150|11"|offroad|2700`,
-`Teverun|Fighter 11 Supreme|2×2000 W|72 V 35 Ah|80|120|45|5|150|11"|offroad|3500`,
-`Teverun|Fighter Mini|2×1000 W|48 V 20 Ah|50|70|24|2|120|10"|speed|1500`,
 `Teverun|Blade GT|2×1000 W|60 V 24 Ah|65|90|38|3|150|11"|speed|2000`,
 `Teverun|Blade GT Pro|2×1200 W|60 V 30 Ah|70|100|40|4|150|11"|speed|2400`,
-`Teverun|Blade Mini|2×800 W|48 V 20 Ah|50|70|24|2|120|10"|city|1300`,
-`Teverun|Blade 10|2×1000 W|60 V 24 Ah|65|90|35|3|150|10"|speed|1800`,
 `Mercane|Widewheel|2×500 W|48 V 15 Ah|45|60|24|2|100|8"|city|800`,
-`Mercane|Widewheel Pro|2×500 W|48 V 15 Ah|45|60|24|2|100|8"|city|800`,
 `Mercane|MX60|600 W|48 V 15 Ah|45|50|25|2|120|10"|comfort|700`,
-`Mercane|Widewheel 2|2×500 W|48 V 15 Ah|45|60|24|2|100|8"|city|900`,
 `Fluid Freeride|Mosquito|500 W|48 V 13 Ah|40|50|15|2|100|8.5"|city|600`,
 `Fluid Freeride|Horizon|500 W|48 V 13 Ah|40|55|18|2|100|10"|city|700`,
-`Fluid Freeride|CityRider|500 W|48 V 13 Ah|35|50|19|2|100|10"|city|650`,
 `Fluid Freeride|Mantis|2×1000 W|48 V 18 Ah|55|80|28|2|120|10"|speed|1400`,
-`Fluid Freeride|Wolf Warrior|2×1200 W|60 V 24 Ah|65|100|38|3|150|11"|offroad|2400`,
 `Emove|Cruiser|600 W|52 V 25 Ah|40|100|30|3|150|10"|comfort|1100`,
 `Emove|Touring|600 W|52 V 18 Ah|45|70|25|3|120|10"|comfort|900`,
-`Emove|Touring Pro|600 W|52 V 20 Ah|45|75|26|3|120|10"|comfort|1000`,
 `Emove|Roadster|2×1000 W|60 V 24 Ah|65|90|38|4|150|10"|speed|2200`,
-`Emove|Roadrunner|2×1000 W|60 V 24 Ah|65|90|38|4|150|10"|speed|2000`,
 `Eskute|Pollux|500 W|48 V 13 Ah|40|50|20|2|120|10"|city|550`,
-`Eskute|Netuno|500 W|48 V 13 Ah|40|50|20|2|120|10"|city|550`,
 `Eskute|Voyager|500 W|48 V 15 Ah|40|60|22|2|120|10"|comfort|650`,
-`Eskute|Wayfarer|500 W|48 V 15 Ah|40|60|22|2|120|10"|comfort|700`,
-`Eskute|Skywalker|500 W|48 V 13 Ah|40|50|18|2|120|10"|city|600`,
 `Pure|Air|250 W|36 V 6 Ah|25|20|11|1.5|100|8.5"|budget|400`,
 `Pure|Air Pro|350 W|36 V 10 Ah|25|50|14|2|100|10"|city|550`,
 `Pure|Advance|500 W|36 V 10 Ah|25|40|16|2|100|10"|city|650`,
-`Pure|Advance Flex|500 W|36 V 10 Ah|25|40|17|2|100|10"|city|700`,
 `Bird|Air|350 W|36 V 6 Ah|25|25|14|1.5|100|10"|budget|500`,
 `Bird|Air 2|350 W|36 V 7.8 Ah|25|30|16|1.5|100|10"|city|600`,
 `Bird|One|350 W|36 V 12.8 Ah|25|50|17|2|100|10"|city|800`,
-`Bird|Zero|350 W|36 V 12.8 Ah|30|60|18|2|100|10"|city|900`,
 `Unagi|Model One|2×250 W|36 V 9.6 Ah|25|25|12|1.5|100|7.5"|budget|700`,
 `Unagi|Model Eleven|2×450 W|48 V 18 Ah|30|40|22|2|100|10"|city|1300`,
 `Boosted|Rev|2×750 W|48 V 15 Ah|40|35|22|2|120|9"|city|1200`,
@@ -655,35 +731,23 @@ const rawScooters = [
 `GoTrax|GMax Ultra|350 W|36 V 10.4 Ah|25|40|15|2|100|10"|city|450`,
 `GoTrax|G4|350 W|36 V 10 Ah|25|35|16|2|100|10"|city|400`,
 `GoTrax|GPro|350 W|36 V 10.4 Ah|25|40|16|2|100|10"|city|450`,
-`GoTrax|Xr Pro|300 W|36 V 6 Ah|25|25|13|1.5|100|8.5"|budget|320`,
-`GoTrax|V3|250 W|36 V 5.2 Ah|20|20|12|1.5|100|8.5"|budget|260`,
-`GoTrax|Prime|350 W|36 V 7.5 Ah|25|25|14|2|100|10"|budget|350`,
 `GoTrax|GMax Pro|350 W|36 V 10.4 Ah|25|40|15|2|100|10"|city|500`,
-`GoTrax|GMax 3|350 W|36 V 12 Ah|25|45|17|2|100|10"|city|550`,
 `Swagtron|Swagger 5|250 W|36 V 6 Ah|25|18|12|1.5|100|8.5"|budget|250`,
 `Swagtron|Swagger Pro|350 W|36 V 8.4 Ah|25|30|14|1.5|100|8.5"|budget|350`,
-`Swagtron|Swagger 5 Elite|250 W|36 V 7.2 Ah|25|20|13|1.5|100|8.5"|budget|300`,
-`Swagtron|Swagger 5 Plus|350 W|36 V 8.4 Ah|25|30|14|1.5|100|8.5"|budget|380`,
 `Glion|Dolly|250 W|36 V 7.8 Ah|25|25|12|1.5|100|8.5"|budget|400`,
 `Glion|Balto|350 W|36 V 10.4 Ah|30|35|15|2|100|10"|city|550`,
-`Glion|Roma|350 W|36 V 10.4 Ah|30|35|15|2|100|10"|city|600`,
 `Levy|Electric Scooter|350 W|36 V 7.8 Ah|25|25|14|2|100|8.5"|budget|500`,
 `Levy|Plus|350 W|36 V 10.4 Ah|25|35|17|2|100|10"|city|650`,
-`Levy|Lite|250 W|36 V 7.8 Ah|25|22|13|1.5|100|8.5"|budget|450`,
 `Varla|Eagle One|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|2000`,
 `Varla|Eagle Pro|2×1000 W|60 V 30 Ah|70|100|38|4|120|10"|offroad|2400`,
-`Varla|Eagle One Pro|2×1500 W|60 V 32 Ah|75|110|42|4|150|11"|offroad|2900`,
-`Varla|E-Moto|2×1500 W|60 V 40 Ah|70|130|55|5|150|11"|offroad|3500`,
 `Speedway|Mini 4|2×500 W|48 V 13 Ah|45|50|19|2|100|8"|speed|900`,
 `Speedway|4|2×500 W|48 V 13 Ah|50|60|22|2|100|10"|speed|1200`,
 `Speedway|5|2×1000 W|60 V 24 Ah|60|80|30|3|120|10"|speed|2000`,
 `Speedway|Leger|2×500 W|48 V 20 Ah|55|90|26|3|120|10"|comfort|1500`,
-`Speedway|5 Pro|2×1200 W|60 V 24 Ah|65|85|32|3|120|10"|speed|2200`,
 `Okai|Neon|350 W|36 V 7.8 Ah|25|30|14|1.5|100|9"|budget|500`,
 `Okai|ES500|350 W|36 V 7.8 Ah|25|30|14|1.5|100|9"|city|550`,
 `Okai|ES400|350 W|36 V 7.8 Ah|25|30|14|1.5|100|9"|budget|500`,
 `Okai|Neon Pro|400 W|36 V 10 Ah|25|40|16|2|100|10"|city|700`,
-`Okai|ES800|500 W|48 V 13 Ah|30|50|20|2|120|10"|city|850`,
 `Ducati|Pro-I Plus|350 W|36 V 10 Ah|25|40|18|2|100|10"|city|900`,
 `Ducati|Pro-II Plus|500 W|48 V 15 Ah|35|50|22|2|120|10"|city|1200`,
 `Jeep|2XE Adventure|350 W|36 V 10 Ah|25|40|22|2|100|10"|city|900`,
@@ -694,39 +758,21 @@ const rawScooters = [
 `Iconbit|S500|350 W|36 V 10 Ah|25|35|18|2|100|10"|city|450`,
 `Iconbit|S600|500 W|48 V 13 Ah|35|50|22|2|120|10"|city|600`,
 `Iconbit|S800|800 W|48 V 15 Ah|45|60|25|2|120|10"|comfort|800`,
-`Slim Sher|U2|500 W|48 V 15 Ah|40|50|22|2|120|10"|city|700`,
-`Slim Sher|U3|800 W|48 V 18 Ah|45|70|28|2|120|10"|comfort|850`,
-`El-sport|E1|250 W|36 V 7.5 Ah|25|25|13|1.5|100|8.5"|budget|350`,
-`El-sport|E3|350 W|36 V 10 Ah|25|30|15|2|100|10"|city|450`,
-`El-sport|E5|500 W|48 V 13 Ah|35|50|22|2|120|10"|city|650`,
 `Kixin|K3|350 W|36 V 10 Ah|25|35|16|2|100|10"|city|450`,
 `Kixin|K5|500 W|48 V 15 Ah|40|60|22|2|120|10"|comfort|700`,
 `Wheelspeed|WS1|350 W|36 V 10 Ah|25|35|15|2|100|10"|city|400`,
 `Wheelspeed|WS2|500 W|48 V 13 Ah|35|50|20|2|120|10"|city|550`,
 `Mukuta|10 Plus|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|2000`,
 `Mukuta|10 Pro|2×1200 W|60 V 30 Ah|70|100|38|4|150|10"|offroad|2400`,
-`Halo|Knight T104|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|2000`,
-`Halo|Knight T107|2×1500 W|60 V 30 Ah|70|110|42|4|150|11"|offroad|2600`,
 `Hiley|Tiger 10|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
-`Hiley|Tiger 8|2×800 W|48 V 20 Ah|55|80|28|3|120|10"|speed|1500`,
 `Teewing|X2|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
-`Teewing|X3|2×1500 W|60 V 30 Ah|70|110|42|4|150|11"|offroad|2500`,
 `Obarter|X5|2×1500 W|60 V 30 Ah|70|100|42|4|150|11"|offroad|2400`,
-`Obarter|D5|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
-`Boyueda|S3|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
-`Boyueda|S4|2×1500 W|60 V 30 Ah|70|100|42|4|150|11"|offroad|2400`,
-`Janobike|T10|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
-`Janobike|H11|2×1500 W|60 V 30 Ah|70|100|42|4|150|11"|offroad|2400`,
-`Angwatt|C10|2×1000 W|60 V 24 Ah|65|90|35|4|120|10"|speed|1900`,
 `iScooter|i9|350 W|36 V 7.5 Ah|25|25|14|1.5|100|8.5"|budget|350`,
-`iScooter|i9 Pro|500 W|36 V 10 Ah|30|35|16|2|100|10"|city|450`,
 `iScooter|iX3|500 W|48 V 13 Ah|35|50|20|2|120|10"|city|550`,
 `Micro|Merlin|250 W|36 V 7.8 Ah|25|25|14|1.5|100|8.5"|budget|600`,
-`Micro|Explorer|500 W|48 V 13 Ah|35|50|20|2|120|10"|city|900`,
 `Razor|E-Prime|250 W|24 V 5 Ah|25|25|16|1.5|100|10"|budget|350`,
 `Razor|Icon|350 W|36 V 7.8 Ah|25|30|16|1.5|100|10"|budget|450`,
 `Kbo|Hurricane|350 W|36 V 10 Ah|25|35|17|2|100|10"|city|700`,
-`Kbo|Wolf|750 W|48 V 15 Ah|40|60|25|2|150|10"|comfort|1100`,
 `Bugatti|Electric Scooter|1000 W|48 V 18 Ah|50|70|26|3|120|10"|city|2500`
 ];
 
@@ -741,24 +787,19 @@ const rawControllers = [
 `Sabvoton|SVMC 72350|72V|350A|10000W|520`,
 `Sabvoton|SVMC 7260|72V|60A|2500W|180`,
 `Sabvoton|SVMC 96120|96V|120A|6000W|340`,
-`Sabvoton|SVMC 9680|96V|80A|5000W|280`,
 `Kelly|KLS7212S|72V|120A|3000W|180`,
 `Kelly|KLS7218S|72V|180A|5000W|260`,
 `Kelly|KLS7230S|72V|300A|8000W|400`,
 `Kelly|KLS7245S|72V|450A|12000W|540`,
-`Kelly|KLS7275S|72V|750A|18000W|720`,
-`Kelly|KLS96601|96V|600A|20000W|800`,
 `Lingbo|LB72122|72V|120A|3000W|120`,
 `Lingbo|LB72150|72V|150A|4000W|160`,
 `Lingbo|LB72200|72V|200A|6000W|220`,
 `Lingbo|LB72250|72V|250A|7000W|280`,
-`Lingbo|LB72450|72V|450A|10000W|400`,
 `Votol|EM30|72V|30A|1500W|80`,
 `Votol|EM50|72V|50A|2500W|110`,
 `Votol|EM100|72V|100A|3000W|150`,
 `Votol|EM150|72V|150A|4500W|220`,
 `Votol|EM200|72-96V|200A|8000W|310`,
-`Votol|EM300|96V|300A|12000W|450`,
 `ASI|BAC4000|48-72V|100A|4000W|380`,
 `ASI|BAC8000|48-96V|200A|8000W|620`,
 `ASI|BAC855|48-72V|85A|3500W|320`,
@@ -778,7 +819,6 @@ const rawControllers = [
 `Bafang|M620|48V|30A|1000W|580`,
 `CYC|X1|48-72V|40A|1500W|480`,
 `CYC|X1 Pro|48-72V|60A|2500W|620`,
-`CYC|X1 Stealth|48-72V|40A|1500W|560`,
 `Tongsheng|TSDZ2|36-48V|18A|500W|180`,
 `Tongsheng|TSDZ8|48-52V|25A|750W|280`,
 `Golden Motor|72V 100A|72V|100A|5000W|240`,
@@ -828,16 +868,12 @@ const weightMaxInput = document.getElementById('weightMax');
 const onlyFavCheckbox = document.getElementById('onlyFav');
 
 function formatPrice(usdPrice) {
-    const converted = Math.round(usdPrice * rates[currentCurrency]);
-    return converted.toLocaleString('ru-RU') + ' ' + symbols[currentCurrency];
+    return Math.round(usdPrice * rates[currentCurrency]).toLocaleString('ru-RU') + ' ' + symbols[currentCurrency];
 }
 
 function debounce(fn, ms) {
     let t;
-    return function (...args) {
-        clearTimeout(t);
-        t = setTimeout(() => fn.apply(this, args), ms);
-    };
+    return function (...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
 }
 
 function toggleTheme() {
@@ -848,12 +884,18 @@ function toggleTheme() {
 }
 
 function setLanguage(lang) {
-    if (!translations[lang]) return;
+    if (!i18n[lang]) return;
     currentLang = lang;
     localStorage.setItem('lang', lang);
     langSelect.value = lang;
     document.getElementById('languageModal').classList.remove('active');
-    document.getElementById('modalBoxTitle').textContent = translations[lang].modal_box;
+    applyI18n();
+    renderTable();
+    renderControllers();
+    renderMatcher();
+    renderControllerCalc();
+    calculateBattery();
+    if (compareList.length >= 2) showComparison();
 }
 
 function updateToolbarLabels() {
@@ -877,7 +919,7 @@ function changeCurrency() {
 function populateBrandFilters() {
     const container = document.getElementById('brandFilters');
     const brands = [...new Set(scooters.map(s => s.brand))].sort((a, b) => a.localeCompare(b, 'ru'));
-    container.innerHTML = '<button class="filter-btn active" data-brand="all">Все бренды</button>' +
+    container.innerHTML = '<button class="filter-btn active" data-brand="all">' + (currentLang === 'en' ? 'All brands' : 'Все бренды') + '</button>' +
         brands.map(b => `<button class="filter-btn" data-brand="${b}">${b}</button>`).join('');
     container.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -910,11 +952,8 @@ function getFilteredScooters() {
     }
     if (sortKey) {
         filtered = [...filtered].sort((a, b) => {
-            const av = a[sortKey];
-            const bv = b[sortKey];
-            if (typeof av === 'string') {
-                return sortDir === 'asc' ? av.localeCompare(bv, 'ru') : bv.localeCompare(av, 'ru');
-            }
+            const av = a[sortKey], bv = b[sortKey];
+            if (typeof av === 'string') return sortDir === 'asc' ? av.localeCompare(bv, 'ru') : bv.localeCompare(av, 'ru');
             return sortDir === 'asc' ? av - bv : bv - av;
         });
     }
@@ -932,66 +971,58 @@ function renderTable() {
 
     tableBody.innerHTML = '';
     if (filtered.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:20px">Нет самокатов с такими параметрами</td></tr>';
+        tableBody.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:20px">${tr('empty_found')}</td></tr>`;
         pagination.innerHTML = '';
         return;
     }
     const frag = document.createDocumentFragment();
     paginated.forEach(s => {
-        const tr = document.createElement('tr');
+        const tr_ = document.createElement('tr');
         const isSelected = cmpSet.has(s.id);
         const isFav = favSet.has(s.id);
         const btnClass = isSelected ? 'btn-compare-row selected' : 'btn-compare-row';
-        const btnText = isSelected ? '✓ Выбрано' : '+ Сравнить';
-        tr.innerHTML = `
+        const btnText = isSelected ? tr('btn_selected') : tr('btn_compare');
+        tr_.innerHTML = `
             <td><div class="model-name" onclick="showDetails(${s.id})">${s.model} <span class="brand-tag">${s.brand}</span></div></td>
             <td class="spec-value"><strong>${s.motor}</strong></td>
             <td class="spec-value">${s.battery}</td>
-            <td class="spec-value">${s.speed} км/ч</td>
-            <td class="spec-value">${s.range} км</td>
-            <td class="spec-value"><strong>${s.weight} кг</strong></td>
-            <td class="spec-value">${s.maxLoad} кг</td>
+            <td class="spec-value">${s.speed} ${tr('unit_kmh')}</td>
+            <td class="spec-value">${s.range} ${tr('unit_km')}</td>
+            <td class="spec-value"><strong>${s.weight} ${tr('unit_kg')}</strong></td>
+            <td class="spec-value">${s.maxLoad} ${tr('unit_kg')}</td>
             <td class="spec-value">${s.tire}</td>
             <td class="spec-value">${s.charger} A</td>
             <td class="price-value">${formatPrice(s.price)}</td>
             <td style="white-space:nowrap">
-                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${s.id})" title="В избранное">★</button>
+                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${s.id})">★</button>
                 <button class="${btnClass}" onclick="toggleCompare(${s.id})">${btnText}</button>
             </td>
         `;
-        frag.appendChild(tr);
+        frag.appendChild(tr_);
     });
     tableBody.appendChild(frag);
 
     if (totalPages <= 1) { pagination.innerHTML = ''; return; }
     pagination.innerHTML = `
-        <button class="page-btn" onclick="prevPage()" ${currentPage === 1 ? 'disabled' : ''}>← Назад</button>
-        <span class="page-info">Страница ${currentPage} из ${totalPages} · ${filtered.length} моделей</span>
-        <button class="page-btn" onclick="nextPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}>Вперёд →</button>
+        <button class="page-btn" onclick="prevPage()" ${currentPage === 1 ? 'disabled' : ''}>${tr('prev')}</button>
+        <span class="page-info">${tr('page_of')} ${currentPage} ${tr('from')} ${totalPages} · ${filtered.length} ${tr('models_count')}</span>
+        <button class="page-btn" onclick="nextPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}>${tr('next')}</button>
     `;
 }
 
 function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        renderTable();
-        document.getElementById('compare').scrollIntoView({ behavior: 'smooth' });
-    }
+    if (currentPage > 1) { currentPage--; renderTable(); document.getElementById('compare').scrollIntoView({ behavior: 'smooth' }); }
 }
 
 function nextPage(total) {
-    if (currentPage < total) {
-        currentPage++;
-        renderTable();
-        document.getElementById('compare').scrollIntoView({ behavior: 'smooth' });
-    }
+    if (currentPage < total) { currentPage++; renderTable(); document.getElementById('compare').scrollIntoView({ behavior: 'smooth' }); }
 }
 
 function renderControllers() {
     const frag = document.createDocumentFragment();
     controllers.forEach(c => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+        const tr_ = document.createElement('tr');
+        tr_.innerHTML = `
             <td class="model-name">${c.model}</td>
             <td class="spec-value"><strong>${c.brand}</strong></td>
             <td class="spec-value">${c.voltage}</td>
@@ -999,7 +1030,7 @@ function renderControllers() {
             <td class="spec-value">${c.power}</td>
             <td class="price-value">${formatPrice(c.price)}</td>
         `;
-        frag.appendChild(tr);
+        frag.appendChild(tr_);
     });
     controllersBody.innerHTML = '';
     controllersBody.appendChild(frag);
@@ -1009,27 +1040,24 @@ function renderMatcher() {
     const budgetUSD = +document.getElementById('mBudget').value;
     const minSpeed = +document.getElementById('mSpeed').value;
     const riderWeight = +document.getElementById('mWeight').value;
-
     document.getElementById('bVal').textContent = Math.round(budgetUSD * rates[currentCurrency]).toLocaleString('ru-RU');
     document.getElementById('bCur').textContent = symbols[currentCurrency];
     document.getElementById('sVal').textContent = minSpeed;
     document.getElementById('wVal').textContent = riderWeight;
-
     const matches = scooters
         .filter(s => s.price <= budgetUSD && s.speed >= minSpeed && s.maxLoad >= riderWeight)
         .sort((a, b) => a.price - b.price)
         .slice(0, 6);
-
     const container = document.getElementById('mResult');
     if (!matches.length) {
-        container.innerHTML = '<p style="text-align:center;padding:20px;color:var(--text-muted)">Нет совпадений. Измените параметры.</p>';
+        container.innerHTML = `<p style="text-align:center;padding:20px;color:var(--text-muted)">${tr('matcher_empty')}</p>`;
         return;
     }
     container.innerHTML = matches.map(s => `
         <div class="matcher-card">
             <div>
                 <h4>${s.brand} ${s.model}</h4>
-                <span>${s.speed} км/ч · ${s.range} км · ${s.maxLoad} кг · ${s.weight} кг</span>
+                <span>${s.speed} ${tr('unit_kmh')} · ${s.range} ${tr('unit_km')} · ${s.maxLoad} ${tr('unit_kg')} · ${s.weight} ${tr('unit_kg')}</span>
             </div>
             <div class="m-price">${formatPrice(s.price)}</div>
         </div>
@@ -1061,7 +1089,7 @@ function renderControllerCalc() {
     document.getElementById('ccCount').textContent = candidates.length;
     const list = document.getElementById('ccList');
     if (!candidates.length) {
-        list.innerHTML = '<p style="color:var(--text-muted);margin-top:10px">Нет контроллеров, подходящих по току. Уменьшите пиковый коэффициент.</p>';
+        list.innerHTML = `<p style="color:var(--text-muted);margin-top:10px">${tr('ctrlcalc_none')}</p>`;
         return;
     }
     list.innerHTML = candidates.map(c => `
@@ -1086,13 +1114,13 @@ function calculateBattery() {
     const compat = document.getElementById('bcCompat');
     const note = document.getElementById('bcNote');
     if (oldV === newV) {
-        compat.textContent = 'OK';
+        compat.textContent = tr('batcalc_ok');
         compat.className = 'compat-ok';
-        note.textContent = 'Напряжение совпадает — новая батарея совместима с контроллером и мотором. Проверьте габариты отсека и разъём.';
+        note.textContent = tr('batcalc_ok_note');
     } else {
-        compat.textContent = 'Не совпадает';
+        compat.textContent = tr('batcalc_bad');
         compat.className = 'compat-warn';
-        note.textContent = 'Напряжение отличается. Контроллер и мотор рассчитаны на исходное напряжение — замена без замены контроллера приведёт к поломке.';
+        note.textContent = tr('batcalc_bad_note');
     }
 }
 
@@ -1101,36 +1129,27 @@ function showDetails(id) {
     if (!s) return;
     document.getElementById('modalTitle').textContent = `${s.brand} ${s.model}`;
     document.getElementById('modalSpecs').innerHTML = `
-        <div class="modal-spec-item"><span>Мотор</span><strong>${s.motor}</strong></div>
-        <div class="modal-spec-item"><span>Батарея</span><strong>${s.battery}</strong></div>
-        <div class="modal-spec-item"><span>Скорость</span><strong>${s.speed} км/ч</strong></div>
-        <div class="modal-spec-item"><span>Пробег</span><strong>${s.range} км</strong></div>
-        <div class="modal-spec-item"><span>Вес</span><strong>${s.weight} кг</strong></div>
-        <div class="modal-spec-item"><span>Нагрузка</span><strong>${s.maxLoad} кг</strong></div>
-        <div class="modal-spec-item"><span>Колёса</span><strong>${s.tire}</strong></div>
-        <div class="modal-spec-item"><span>Цена</span><strong style="color:var(--accent)">${formatPrice(s.price)}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_motor')}</span><strong>${s.motor}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_battery')}</span><strong>${s.battery}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_speed')}</span><strong>${s.speed} ${tr('unit_kmh')}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_range')}</span><strong>${s.range} ${tr('unit_km')}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_weight')}</span><strong>${s.weight} ${tr('unit_kg')}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_maxload')}</span><strong>${s.maxLoad} ${tr('unit_kg')}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_tire')}</span><strong>${s.tire}</strong></div>
+        <div class="modal-spec-item"><span>${tr('modal_price')}</span><strong style="color:var(--accent)">${formatPrice(s.price)}</strong></div>
     `;
+    document.getElementById('modalBoxTitle').textContent = tr('modal_box');
     const boxList = document.getElementById('modalBoxList');
     boxList.innerHTML = '';
-    s.box.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        boxList.appendChild(li);
-    });
+    s.box.forEach(item => { const li = document.createElement('li'); li.textContent = item; boxList.appendChild(li); });
     detailsModal.classList.add('active');
 }
 
-function closeDetails() {
-    detailsModal.classList.remove('active');
-}
+function closeDetails() { detailsModal.classList.remove('active'); }
 
 function populateModelSelect() {
-    modelSelect.innerHTML = `<option value="custom">-- Свой аккумулятор --</option>`;
-    const grouped = scooters.reduce((acc, s) => {
-        if (!acc[s.brand]) acc[s.brand] = [];
-        acc[s.brand].push(s);
-        return acc;
-    }, {});
+    modelSelect.innerHTML = `<option value="custom">${tr('calc_custom')}</option>`;
+    const grouped = scooters.reduce((acc, s) => { (acc[s.brand] = acc[s.brand] || []).push(s); return acc; }, {});
     for (const brand in grouped) {
         const optgroup = document.createElement('optgroup');
         optgroup.label = brand;
@@ -1150,14 +1169,8 @@ function saveState() {
 }
 
 function loadState() {
-    try {
-        const saved = JSON.parse(localStorage.getItem('compare') || '[]');
-        compareList = saved.filter(id => scooters.some(s => s.id === id)).slice(0, 4);
-    } catch (e) { compareList = []; }
-    try {
-        const saved = JSON.parse(localStorage.getItem('favorites') || '[]');
-        favorites = saved.filter(id => scooters.some(s => s.id === id));
-    } catch (e) { favorites = []; }
+    try { compareList = JSON.parse(localStorage.getItem('compare') || '[]').filter(id => scooters.some(s => s.id === id)).slice(0, 4); } catch (e) { compareList = []; }
+    try { favorites = JSON.parse(localStorage.getItem('favorites') || '[]').filter(id => scooters.some(s => s.id === id)); } catch (e) { favorites = []; }
 }
 
 function toggleFavorite(id) {
@@ -1170,7 +1183,7 @@ function toggleFavorite(id) {
 function toggleCompare(id) {
     if (compareList.includes(id)) compareList = compareList.filter(x => x !== id);
     else {
-        if (compareList.length >= 4) { alert('Максимум 4 самоката'); return; }
+        if (compareList.length >= 4) { alert(tr('alert_max4')); return; }
         compareList.push(id);
     }
     saveState();
@@ -1179,19 +1192,15 @@ function toggleCompare(id) {
 }
 
 function updateTray() {
-    if (compareList.length === 0) {
-        tray.classList.remove('active');
-        compareResult.classList.remove('active');
-        return;
-    }
+    if (compareList.length === 0) { tray.classList.remove('active'); compareResult.classList.remove('active'); return; }
     tray.classList.add('active');
     trayItems.innerHTML = '';
     compareList.forEach(id => {
-        const scooter = scooters.find(s => s.id === id);
-        if (scooter) {
+        const sc = scooters.find(s => s.id === id);
+        if (sc) {
             const div = document.createElement('div');
             div.className = 'tray-item';
-            div.innerHTML = `${scooter.brand} ${scooter.model} <button onclick="toggleCompare(${id})">×</button>`;
+            div.innerHTML = `${sc.brand} ${sc.model} <button onclick="toggleCompare(${id})">×</button>`;
             trayItems.appendChild(div);
         }
     });
@@ -1205,44 +1214,38 @@ function clearCompare() {
 }
 
 function shareComparison() {
-    if (compareList.length < 2) { alert('Выберите минимум 2 самоката'); return; }
+    if (compareList.length < 2) { alert(tr('alert_min2')); return; }
     const url = location.origin + location.pathname + '#compare=' + compareList.join(',');
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => alert('Ссылка скопирована')).catch(() => prompt('Скопируйте ссылку:', url));
-    } else {
-        prompt('Скопируйте ссылку:', url);
-    }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => alert(tr('alert_copied'))).catch(() => prompt(tr('alert_prompt'), url));
+    else prompt(tr('alert_prompt'), url);
 }
 
 function showComparison() {
-    if (compareList.length < 2) { alert('Выберите минимум 2 самоката'); return; }
-    const selectedScooters = compareList.map(id => scooters.find(s => s.id === id));
+    if (compareList.length < 2) { alert(tr('alert_min2')); return; }
+    const sel = compareList.map(id => scooters.find(s => s.id === id));
     const bestRules = { speed: 'max', range: 'max', maxLoad: 'max', weight: 'min', price: 'min' };
-
-    let html = `<tr><th>Характеристика</th>`;
-    selectedScooters.forEach(s => { html += `<th>${s.brand} ${s.model}</th>`; });
+    let html = `<tr><th>${tr('th_model')}</th>`;
+    sel.forEach(s => { html += `<th>${s.brand} ${s.model}</th>`; });
     html += '</tr>';
-
     const specs = [
-        { label: 'Мотор', key: 'motor' },
-        { label: 'Батарея', key: 'battery' },
-        { label: 'Скорость', key: 'speed', unit: 'км/ч' },
-        { label: 'Пробег', key: 'range', unit: 'км' },
-        { label: 'Вес', key: 'weight', unit: 'кг' },
-        { label: 'Нагрузка', key: 'maxLoad', unit: 'кг' },
-        { label: 'Колёса', key: 'tire' },
-        { label: 'Зарядка', key: 'charger', unit: 'A' }
+        { label: tr('modal_motor'), key: 'motor' },
+        { label: tr('modal_battery'), key: 'battery' },
+        { label: tr('modal_speed'), key: 'speed', unit: tr('unit_kmh') },
+        { label: tr('modal_range'), key: 'range', unit: tr('unit_km') },
+        { label: tr('modal_weight'), key: 'weight', unit: tr('unit_kg') },
+        { label: tr('modal_maxload'), key: 'maxLoad', unit: tr('unit_kg') },
+        { label: tr('modal_tire'), key: 'tire' },
+        { label: 'A', key: 'charger', unit: 'A' }
     ];
-
     specs.forEach(spec => {
         html += `<tr><td>${spec.label}</td>`;
         const rule = bestRules[spec.key];
         let bestVal = null;
         if (rule) {
-            const vals = selectedScooters.map(s => +s[spec.key]);
+            const vals = sel.map(s => +s[spec.key]);
             bestVal = rule === 'max' ? Math.max(...vals) : Math.min(...vals);
         }
-        selectedScooters.forEach(s => {
+        sel.forEach(s => {
             let val = s[spec.key];
             if (spec.unit) val += ' ' + spec.unit;
             const isBest = rule && +s[spec.key] === bestVal;
@@ -1250,53 +1253,36 @@ function showComparison() {
         });
         html += '</tr>';
     });
-
-    html += `<tr><td>Цена</td>`;
-    const minPrice = Math.min(...selectedScooters.map(s => s.price));
-    selectedScooters.forEach(s => {
-        const isBest = s.price === minPrice;
-        html += `<td class="price-value${isBest ? ' best' : ''}">${formatPrice(s.price)}</td>`;
-    });
+    html += `<tr><td>${tr('modal_price')}</td>`;
+    const minPrice = Math.min(...sel.map(s => s.price));
+    sel.forEach(s => { html += `<td class="price-value${s.price === minPrice ? ' best' : ''}">${formatPrice(s.price)}</td>`; });
     html += '</tr>';
-
     compareTable.innerHTML = html;
     compareResult.classList.add('active');
     compareResult.scrollIntoView({ behavior: 'smooth' });
 }
 
-const weightInput = document.getElementById('weight');
-const scooterWeightInput = document.getElementById('scooterWeight');
-const speedInput = document.getElementById('speed');
-const batteryInput = document.getElementById('battery');
-const healthInput = document.getElementById('health');
-const terrainSelect = document.getElementById('terrain');
-const priceInput = document.getElementById('price');
-const chargerInput = document.getElementById('charger');
 let currentVoltage = 48;
 
 function calculateRange() {
-    const rw = parseFloat(weightInput.value);
-    const sw = parseFloat(scooterWeightInput.value);
-    const sp = parseFloat(speedInput.value);
-    const bat = parseFloat(batteryInput.value);
-    const health = parseFloat(healthInput.value) / 100;
-    const terr = parseFloat(terrainSelect.value);
-
+    const rw = +document.getElementById('weight').value;
+    const sw = +document.getElementById('scooterWeight').value;
+    const sp = +document.getElementById('speed').value;
+    const bat = +document.getElementById('battery').value;
+    const health = +document.getElementById('health').value / 100;
+    const terr = +document.getElementById('terrain').value;
     document.getElementById('weightVal').textContent = rw;
     document.getElementById('scooterWeightVal').textContent = sw;
     document.getElementById('speedVal').textContent = sp;
     document.getElementById('batteryVal').textContent = bat;
     document.getElementById('healthVal').textContent = (health * 100).toFixed(0);
-
     const effectiveBattery = bat * health;
     let cons = 16;
     if (sp > 25) cons *= (1 + (sp - 25) * 0.04);
-    cons *= ((rw + sw) / 75);
-    cons *= terr;
-
+    cons *= ((rw + sw) / 75) * terr;
     document.getElementById('rangeResult').textContent = Math.round(effectiveBattery / cons);
-    document.getElementById('costResult').textContent = ((effectiveBattery / 1000) * parseFloat(priceInput.value)).toFixed(2);
-    document.getElementById('timeResult').textContent = ((effectiveBattery / (currentVoltage * parseFloat(chargerInput.value))) * 1.15).toFixed(1);
+    document.getElementById('costResult').textContent = ((effectiveBattery / 1000) * +document.getElementById('price').value).toFixed(2);
+    document.getElementById('timeResult').textContent = ((effectiveBattery / (currentVoltage * +document.getElementById('charger').value)) * 1.15).toFixed(1);
 }
 
 function resetFilters() {
@@ -1320,8 +1306,7 @@ function resetFilters() {
 
 modelSelect.addEventListener('change', (e) => {
     if (e.target.value === 'custom') return;
-    const id = parseInt(e.target.value, 10);
-    const s = scooters.find(x => x.id === id);
+    const s = scooters.find(x => x.id === +e.target.value);
     if (!s) return;
     const vMatch = s.battery.match(/(\d+(?:\.\d+)?)\s*V/i);
     currentVoltage = vMatch ? parseFloat(vMatch[1]) : 48;
@@ -1332,9 +1317,9 @@ modelSelect.addEventListener('change', (e) => {
         const vaMatch = s.battery.match(/(\d+(?:\.\d+)?)\s*V\s*(\d+(?:\.\d+)?)\s*Ah/i);
         if (vaMatch) cap = parseFloat(vaMatch[1]) * parseFloat(vaMatch[2]);
     }
-    batteryInput.value = cap;
-    scooterWeightInput.value = s.weight;
-    chargerInput.value = s.charger;
+    document.getElementById('battery').value = cap;
+    document.getElementById('scooterWeight').value = s.weight;
+    document.getElementById('charger').value = s.charger;
     calculateRange();
 });
 
@@ -1342,7 +1327,7 @@ document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentCategory = btn.getAttribute('data-category');
+        currentCategory = btn.dataset.category;
         currentPage = 1;
         renderTable();
     });
@@ -1354,7 +1339,7 @@ document.querySelectorAll('th[data-sort]').forEach(th => {
         const key = th.dataset.sort;
         if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
         else { sortKey = key; sortDir = 'asc'; }
-        document.querySelectorAll('th').forEach(t => t.classList.remove('sort-asc', 'sort-desc'));
+        document.querySelectorAll('th[data-sort]').forEach(t => t.classList.remove('sort-asc', 'sort-desc'));
         th.classList.add(sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
         currentPage = 1;
         renderTable();
@@ -1369,28 +1354,14 @@ searchInput.addEventListener('input', debounce((e) => {
 
 priceMinInput.addEventListener('input', () => {
     if (+priceMinInput.value > +priceMaxInput.value) priceMinInput.value = priceMaxInput.value;
-    updateToolbarLabels();
-    currentPage = 1;
-    renderTable();
+    updateToolbarLabels(); currentPage = 1; renderTable();
 });
-
 priceMaxInput.addEventListener('input', () => {
     if (+priceMaxInput.value < +priceMinInput.value) priceMaxInput.value = priceMinInput.value;
-    updateToolbarLabels();
-    currentPage = 1;
-    renderTable();
+    updateToolbarLabels(); currentPage = 1; renderTable();
 });
-
-weightMaxInput.addEventListener('input', () => {
-    updateToolbarLabels();
-    currentPage = 1;
-    renderTable();
-});
-
-onlyFavCheckbox.addEventListener('change', () => {
-    currentPage = 1;
-    renderTable();
-});
+weightMaxInput.addEventListener('input', () => { updateToolbarLabels(); currentPage = 1; renderTable(); });
+onlyFavCheckbox.addEventListener('change', () => { currentPage = 1; renderTable(); });
 
 ['mBudget', 'mSpeed', 'mWeight'].forEach(id => {
     document.getElementById(id).addEventListener('input', debounce(renderMatcher, 80));
@@ -1421,13 +1392,14 @@ window.addEventListener('DOMContentLoaded', () => {
         themeBtn.textContent = '☀️';
     }
     const savedCurrency = localStorage.getItem('currency');
-    if (savedCurrency && rates[savedCurrency]) {
-        currentCurrency = savedCurrency;
-        currencySel.value = savedCurrency;
-    }
+    if (savedCurrency && rates[savedCurrency]) { currentCurrency = savedCurrency; currencySel.value = savedCurrency; }
     const savedLang = localStorage.getItem('lang');
-    if (!savedLang) document.getElementById('languageModal').classList.add('active');
-    else setLanguage(savedLang);
+    if (!savedLang) {
+        document.getElementById('languageModal').classList.add('active');
+        applyI18n();
+    } else {
+        setLanguage(savedLang);
+    }
 
     loadState();
 
@@ -1452,12 +1424,7 @@ window.addEventListener('DOMContentLoaded', () => {
     renderControllerCalc();
     calculateBattery();
     calculateRange();
-
-    if ('serviceWorker' in navigator) {
-        fetch('sw.js', { method: 'HEAD' })
-            .then(r => { if (r.ok) navigator.serviceWorker.register('sw.js').catch(() => {}); })
-            .catch(() => {});
-    }
+    applyI18n();
 });
 </script>
 </body>
